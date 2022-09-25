@@ -1,2 +1,2 @@
-# cinema-ebooking-site-prototype
-Prototype for section C group 5's Software Engineering project.
+# c5-cinema-site
+Section C group 5's Software Engineering project.
