@@ -35,27 +35,31 @@
 
 <ul> <!--Unordered List for Side Navbar -->
   <li><a class="active">Profile</a></li>
-  <li><a href="editprofile.html">Edit Profile</a></li>
-  <li><a href="usercards.html">View Cards</a></li>
+  <li><a href="usercards.html">Payment</a></li>
   <li><a href="login.html">Logout</a></li>
 </ul>
 
-<div id="registerDiv" style="width:81% ; height:84vh ; border-radius:0px ; position:absolute ; left:16% ; text-align:center ; padding:1px 16px ; margin-top:0">
+<div id="registerDiv" style="width:80% ; height:84vh ; border-radius:25px ; position:absolute ; left:16% ; text-align:center ; padding:1px 16px ; margin-top:0">
   <!--Username Display Div-->
   <div style="width:60vh ; height:10vh ; background-color:#818181 ; border-radius:15px ; font-size: 20px" id="center"> 
     <h1> (Username)'s Profile </hi>
   </div>
   <!--User Information Div-->
-  <div style="position:left ; top:15% ; background-color:#e6e6e6 ; width:60% ; height:65vh ; position:absolute ; border-radius: 35px ; color:black" >
+  <div style="float:inline-start ; background-color:#e6e6e6 ; margin-top:7%  ; width:45% ; height:auto ; border-radius: 35px ; color:black" >
     <br><h1>Name:</h1><h2>(Retrieve from Database)</h2>
     <br><h1>Phone Number:</h1><h2>(Retrieve from Database)</h2>
     <br><h1>Email:</h1><h2>(Retrieve from Database)</h2>
     <br><h1 onclick="location.href='forgotpassword.html'" style="color:red">Forgot Password</h1>
   </div>
-  <!--User recent watched Div-->
-  <div style=" left:63% ; top:15% ; background-color:#e6e6e6 ; width:35% ; height:65vh ; position:absolute ; border-radius: 35px;" >
-
+  <!--User Home Adress Div-->
+  <div style="color:black ; float: inline-end ; background-color:#e6e6e6 ; padding:15px 0px 15px 0px ; margin-top: 7% ; width:54% ; height:auto ; border-radius: 35px;" >
+    <a style="width:55%"><h2>Streen Address:</h2><p>1234 Exampleroad Street</p></a><br><br>
+    <a style="float:left; width:30%"><h2>City:</h2><p>Athens</p></a>
+    <a style="float:left ; width:30%"><h2>State:</h2><p>Ga</p></a>
+    <a style="float:left; width:30%"><h2>ZIP:</h2><p>30605</p></a>
   </div>
+
+  <button style="color:black ; float: inline-end ; background-color:#e6e6e6 ; margin-top: 1% ; width:54% ; height:27vh ; border-radius:35px ; font-size:55px ; border: 15px solid #818181 ;" onclick="location.href='editprofile.html'"> Edit Profile </button>
 
 </div>
 </div>
