@@ -39,6 +39,7 @@ input.login-field {
 	font-size: 25px;
 	background-color: black;
 	color: white;
+	align: center;
 	display: inline-block;
 }
 
@@ -176,58 +177,6 @@ li a:hover:not(.active) {
   );
 }
 
-.div-browse-search {
-	color: whitesmoke;
-	background-color: #272727;
-	position: left;
-	height: 100%;
-	text-align: left;
-	vertical-align: middle;
-	padding-top:2vh;
-  	padding-bottom:2vh;
-	padding-right: .5em;
-	padding-left: .5em;
-}
-
-.div-browse-entry {
-	color: whitesmoke;
-	background-color: #272727;
-	position: left;
-	height: 100%;
-	text-align: left;
-	vertical-align: middle;
-	border: 3px solid red;
-    overflow: auto;
-	padding: .5em;
-}
-
-.div-browse-text {
-	float: left;
-	padding: 1em;
-}
-
-.div-book-chart {
-	color: whitesmoke;
-	background-color: #272727;
-	border: 3px solid red;
-	height: auto;
-	width: auto;
-	overflow: auto;
-	text-align: center;
-	padding: .5em;
-}
-
-.div-book-fields {
-	color: whitesmoke;
-	background-color: #272727;
-	border: 3px solid red;
-	height: 37vh;
-	width: auto;
-	overflow: auto;
-	text-align: center;
-	padding: .5em;
-}
-
 .text-main {
     color: rgb(200, 200, 200);
     text-align: center;
@@ -246,44 +195,3 @@ li a:hover:not(.active) {
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
 }
-
-.text-description {
-	color: rgb(200, 200, 200);
-    text-align: left;
-    text-shadow: 1px 1px red;
-	vertical-align: middle;
-    font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.5em;
-}
-
-.img-browse-entry {
-    float: left;
-    background: #272727;
-	width: 25%;
-    height: auto;
-    left: 0px;
-    right: 0px;
-}
-
-.img-book-chart {
-	background: #272727;
-	float: center;
-	position: center;
-}
-
-.button-book-now {
-	background-color: #272727;
-	border: 2px solid red;
-  	color: whitesmoke;
-  	padding: 15px 32px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
-  	font-size: 16px;
-}
-
-.button-book-now:hover {
-	background-color: whitesmoke;
-	color: #272727;
-	cursor: pointer;
-  }

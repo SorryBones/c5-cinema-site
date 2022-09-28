@@ -6,10 +6,9 @@
   <title>UGA Flix</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="style.css" rel="stylesheet">
+  <link href="stylesheet.css" rel="stylesheet">
   <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <style>
   body {
     margin: 0;
@@ -29,28 +28,6 @@
 </head>
 
 <body style="background-color: #870500">
-	<!--Navbar-->
-	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #272727;">
-		<a class="navbar-brand" href="index.html">UGA Flix</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		</button>
-	  
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		  <ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-			  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item active">
-			  <a class="nav-link" href="browse.html">Browse</a>
-			</li>
-			<li class="nav-item active">
-			  <a class="nav-link" href="register.html">Account</a>
-			</li>
-		  </ul>
-		</div>
-	  </nav>
-	  
 <div id="stripedbg" id="pageheader" style="height:15vh;margin-top:-3vh; margin-bottom:-5vh">
 	
 	<h1 style="	font-size: 45px"> Register Your Account </h1>
@@ -62,19 +39,19 @@
 	<h2 style="text-align: center"> Login Information*</h2>
 	<form text-align="center">
 		<Label for="fname"> First Name:</Label><br>
-		<input id="registerField" type="text" id="fname" name="fname" placeholder="First Name..." required><br><br>
+		<input id="registerFeild" type="text" id="fname" name="fname" placeholder="First Name..." required><br><br>
 		<Label for="lname"> Last Name:</Label><br>
-		<input id="registerField" type="text" id="lname" name="lname" placeholder="Last Name..." required>  <br><br>
+		<input id="registerFeild" type="text" id="lname" name="lname" placeholder="Last Name..." required>  <br><br>
 		<Label for="phone"> Phone Number: (xxx-xxx-xxxx)</Label><br>
-		<input id="registerField" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>  <br><br>
+		<input id="registerFeild" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>  <br><br>
 		<Label for ="email"> Email Address:</Label><br>
-		<input id="registerField" type="text" id="email" name="email" placeholder="Example@mail.com" required>  <br><br>
+		<input id="registerFeild" type="text" id="email" name="email" placeholder="Example@mail.com" required>  <br><br>
 		<Label for="confemail"> Confirm Email Address:</Label><br>
-		<input id="registerField" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" required>  <br><br>
+		<input id="registerFeild" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" required>  <br><br>
 		<Label for ="password"> Password:</Label><br>
-		<input id="registerField" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
+		<input id="registerFeild" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
 		<Label for="confpassword"> Confirm Password:</Label><br>
-		<input id="registerField" type="password" id="confpassword" name="confpassword" placeholder="Confirm Password..." required>  <br><br>
+		<input id="registerFeild" type="password" id="confpassword" name="confpassword" placeholder="Confirm Password..." required>  <br><br>
 		
 	
   </div>
@@ -82,24 +59,24 @@
   <div id="registerDiv" style="width: 48%; float:right">
 	<h2 style="text-align: center">Payment Information (Optional)</h2>
 			<Label for="cardtype"> Card Type:</Label><br>
-			<input id="registerField" type="text" id="cardtype" name="cardtype" placeholder="Card Type"><br><br>
+			<input id="registerFeild" type="text" id="cardtype" name="cardtype" placeholder="Card Type"><br><br>
 		
 		
 			<Label for="cardnumb"> Card Number:</Label><br>
-			<input id="registerField" type="text" id="cardnumb" name="cardnumb" placeholder="#### #### #### ####"><br><br>
+			<input id="registerFeild" type="text" id="cardnumb" name="cardnumb" placeholder="#### #### #### ####"><br><br>
 		
 			<Label for="expDate"> Expiration Date:</Label><br>
-			<input id="registerField" type="text" id="" name="expDate" placeholder="MM/YYYY"><br><br>
+			<input id="registerFeild" type="text" id="" name="expDate" placeholder="MM/YYYY"><br><br>
 		
 			<h2> Billing Adress </h2>
-			<Label for="billingStreet"> Street Address:</Label>
-			<input id="registerField" style="width:70%" type="text" id="billingStreet" name="billingStreet" placeholder="123 example street"><br><br>
+			<Label for="billingStreet"> Street Adress:</Label>
+			<input id="registerFeild" style="width:70%" type="text" id="billingStreet" name="billingStreet" placeholder="123 example street"><br><br>
 
 			<Label for="billingCity"> City:</Label>
-			<input id="registerField" style="width:70%" type="text" id="billingCity" name="billingCity" placeholder="Athens"><br><br>
+			<input id="registerFeild" style="width:70%" type="text" id="billingCity" name="billingCity" placeholder="Athens"><br><br>
 
 			<Label for="billingState"> State:</Label>
-			<select id="registerField" style="width:70%" id="billingState" name="billingState">
+			<select id="registerFeild" style="width:70%" id="billingState" name="billingState">
 				<option value="AL">AL</option>
 				<option value="AK">AK</option>
 				<option value="AR">AR</option>
@@ -154,14 +131,14 @@
 			</select> <br><br>
 		
 			<h2> Home Adress </h2>
-			<Label for="homeStreet"> Street Address:</Label>
-			<input id="registerField" style="width:70%" type="text" id="homeStreet" name="homeStreet" placeholder="123 example street"><br><br>
+			<Label for="homeStreet"> Street Adress:</Label>
+			<input id="registerFeild" style="width:70%" type="text" id="homeStreet" name="homeStreet" placeholder="123 example street"><br><br>
 
 			<Label for="homeCity"> City:</Label>
-			<input id="registerField" style="width:70%" type="text" id="homeCity" name="homeCity" placeholder="Athens"><br><br>
+			<input id="registerFeild" style="width:70%" type="text" id="homeCity" name="homeCity" placeholder="Athens"><br><br>
 
 			<Label for="homeState"> State:</Label>
-			<select id="registerField" style="width:70%" id="homeState" name="homeState">
+			<select id="registerFeild" style="width:70%" id="homeState" name="homeState">
 				<option value="AL">AL</option>
 				<option value="AK">AK</option>
 				<option value="AR">AR</option>
