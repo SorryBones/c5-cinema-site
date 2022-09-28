@@ -81,7 +81,7 @@ input.login-field {
 	left: 50vh;
 }
 
-ul {
+ul.sidebar {
 	list-style-type: none;
 	margin: 0;
 	margin-top: 0vh;
@@ -99,7 +99,12 @@ li a {
 	padding: 8px 16px;
 	text-decoration: none;
 }
-  
+
+li a.navbar {
+	color: #000;
+	text-decoration: none;
+}
+
 li a.active {
 	background-color: #818181;
 	color: white;
@@ -121,32 +126,72 @@ li a:hover:not(.active) {
 	text-align: center;
 }
 
-.header
-{
+.header {
     height: 100vh;
 }
 
-.navbar-style
-{
-    box-shadow: 0 5px 10px #efefef;
+.navbar-style {
+    box-shadow: 0 5px 10px #000;
 }
 
-.logo
-{
+.logo {
     height: 48px;
     padding: 2px 10px;
 }
 
-.div-center-spread
-{
-    margin: 10vh;
+.div-center-spread {
+	color: black;
+	position: top;
+	height: 90%;
+	text-align: center;
+	vertical-align: middle;
+	padding-top:30vh;
+  	padding-bottom:30vh;
+	padding-right: 20vh;
+	padding-left: 20vh;
+  	background: repeating-linear-gradient(
+    	-55deg,
+    	#222,
+    	#222 10px,
+    	#333 10px,
+    	#333 20px
+  );
 }
 
-.text-main
-{
-    color: gray;
+.div-center-label {
+	color: black;
+	position: top;
+	height: 24%;
+	text-align: center;
+	vertical-align: middle;
+	padding-top:5vh;
+  	padding-bottom:5vh;
+	padding-right: 20vh;
+	padding-left: 20vh;
+  	background: repeating-linear-gradient(
+    	-55deg,
+    	#222,
+    	#222 10px,
+    	#333 10px,
+    	#333 20px
+  );
+}
+
+.text-main {
+    color: rgb(200, 200, 200);
     text-align: center;
     text-transform: uppercase;
     text-shadow: 1px 1px red;
+	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
+	font-size: 3em;
+}
+
+.text-sub {
+    color: rgb(200, 200, 200);
+    text-align: center;
+    text-shadow: 1px 1px red;
+	vertical-align: middle;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5em;
 }
