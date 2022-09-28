@@ -1,0 +1,2 @@
+(globalThis.webpackChunk=globalThis.webpackChunk||[]).push([["checks"],{13014(){let a=document.querySelector(".js-check-suites-sidebar");function b(){if(!a)return;a.style.height=`${window.innerHeight-a.getBoundingClientRect().top}px`;let b=a.parentElement;b&&b.getBoundingClientRect().height>a.getBoundingClientRect().height&&(a.style.height=`${b.getBoundingClientRect().height}px`)}b(),window.addEventListener("resize",b)}},a=>{var b,c,d=(b=13014,a(a.s=13014))}])
+//# sourceMappingURL=checks-e74ef9d4a620.js.map
