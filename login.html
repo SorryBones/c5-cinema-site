@@ -6,9 +6,10 @@
   <title>UGA Flix</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="stylesheet.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
   <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <style>
   body {
     margin: 0;
@@ -28,6 +29,29 @@
 </head>
 
 <body style="background-color: #870500">
+
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #272727;">
+    <a class="navbar-brand" href="index.html">UGA Flix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="browse.html">Browse</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="register.html">Account</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
 <div id="stripedbg" id="pageheader">
 	
 	
@@ -38,10 +62,10 @@
 		<h2 style="text-align: center"> User Login</h2>
 		<form text-align="center">
 			<Label for="email"> Email:</Label><br>
-			<input id="registerFeild" type="text" id="email" name="email" placeholder="Example@email.com" required><br><br>
+			<input id="registerField" type="text" id="email" name="email" placeholder="Example@email.com" required><br><br>
 			<Label for="password"> Password:</Label><br>
-			<input id="registerFeild" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
-			<button style="width: 15vh;background-color:black;font-size:100%;color:white;border-radius: 45px; border: 2px solid #686869;" onclick="location.href='forgotpassword.html'"> Forgot Password </button>
+			<input id="registerField" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
+			<button style="width: 15vh;background-color:black;font-size:100%;color:white;border-radius: 45px; border: 2px solid #686869;"> Forgot Password </button>
 
 
 			
