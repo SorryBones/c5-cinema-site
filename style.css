@@ -39,7 +39,6 @@ input.login-field {
 	font-size: 25px;
 	background-color: black;
 	color: white;
-	align: center;
 	display: inline-block;
 }
 
@@ -198,13 +197,35 @@ li a:hover:not(.active) {
 	text-align: left;
 	vertical-align: middle;
 	border: 3px solid red;
-    overflow:auto;
+    overflow: auto;
 	padding: .5em;
 }
 
 .div-browse-text {
 	float: left;
 	padding: 1em;
+}
+
+.div-book-chart {
+	color: whitesmoke;
+	background-color: #272727;
+	border: 3px solid red;
+	height: auto;
+	width: auto;
+	overflow: auto;
+	text-align: center;
+	padding: .5em;
+}
+
+.div-book-fields {
+	color: whitesmoke;
+	background-color: #272727;
+	border: 3px solid red;
+	height: 37vh;
+	width: auto;
+	overflow: auto;
+	text-align: center;
+	padding: .5em;
 }
 
 .text-main {
@@ -237,11 +258,17 @@ li a:hover:not(.active) {
 
 .img-browse-entry {
     float: left;
-    background: #000;
+    background: #272727;
 	width: 25%;
     height: auto;
     left: 0px;
     right: 0px;
+}
+
+.img-book-chart {
+	background: #272727;
+	float: center;
+	position: center;
 }
 
 .button-book-now {
@@ -256,7 +283,7 @@ li a:hover:not(.active) {
 }
 
 .button-book-now:hover {
-	background-color: whitesmoke; /* Green */
+	background-color: whitesmoke;
 	color: #272727;
 	cursor: pointer;
   }
