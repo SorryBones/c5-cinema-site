@@ -228,6 +228,17 @@ li a:hover:not(.active) {
 	padding: .5em;
 }
 
+.div-promo-fields {
+	color: whitesmoke;
+	background-color: #272727;
+	border: 3px solid red;
+	height: 94.5vh;
+	width: auto;
+	overflow: auto;
+	text-align: center;
+	padding: .5em;
+}
+
 .text-main {
     color: rgb(200, 200, 200);
     text-align: center;
