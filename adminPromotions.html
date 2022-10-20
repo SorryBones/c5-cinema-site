@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>UGA Flix</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Home page" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #272727;">
+            <a class="navbar-brand" href="index.html">UGA Flix</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="browse.html">Browse</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="profile.html">Profile</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link text-warning" href="adminMain.html">Admin</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="div-promo-fields">
+          
+          <!--Input Fields-->
+          <div class="div-browse-search">              
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">MOVIE TITLE:</span>
+              </div>
+              <input type="text" class="form-control" placeholder="title" id="basic-title" aria-describedby="basic-addon3">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">DATE:</span>
+              </div>
+              <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title" aria-describedby="basic-addon3">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">PERCENT OFF:</span>
+              </div>
+              <input type="text" class="form-control" placeholder="XX%" id="basic-title" aria-describedby="basic-addon3">
+            </div>
+
+            <div class="form-group">
+                <label for="comment">MESSAGE:</label>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+              </div>
+
+            <a href="adminMain.html"><button type="button" class="button-book-admin">Send</button></a>
+            <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
+          </div>
+        </div>
+          </div>
+</body>
+
+</html>

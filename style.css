@@ -239,6 +239,11 @@ li a:hover:not(.active) {
 	padding: .5em;
 }
 
+.div-bg-fill {
+	background-color: #272727;
+	height: 56vh;
+}
+
 .text-main {
     color: rgb(200, 200, 200);
     text-align: center;
