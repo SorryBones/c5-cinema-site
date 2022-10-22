@@ -139,7 +139,9 @@ li a:hover:not(.active) {
 }
 
 .div-center-spread {
-	color: black;
+	background-color: #272727;
+	border: 5px solid #cc0800;
+	background-image: url(images/cinemaBackground.png);
 	position: top;
 	height: 90%;
 	text-align: center;
@@ -148,32 +150,28 @@ li a:hover:not(.active) {
   	padding-bottom:30vh;
 	padding-right: 20vh;
 	padding-left: 20vh;
-  	background: repeating-linear-gradient(
-    	-55deg,
-    	#222,
-    	#222 10px,
-    	#333 10px,
-    	#333 20px
-  );
 }
 
 .div-center-label {
-	color: black;
+	background-color: #272727;
+	border: 5px solid #cc0800;
 	position: top;
-	height: 24%;
+	height: 100%;
 	text-align: center;
 	vertical-align: middle;
 	padding-top:5vh;
-  	padding-bottom:5vh;
+	padding-bottom:10vh;
 	padding-right: 20vh;
 	padding-left: 20vh;
-  	background: repeating-linear-gradient(
-    	-55deg,
-    	#222,
-    	#222 10px,
-    	#333 10px,
-    	#333 20px
-  );
+}
+
+.div-center-label-item {
+	height: 20em;
+	width: 13em;
+	padding-right: 40em;
+	padding-top: 5em;
+	padding-bottom: 20em;
+	float: left;
 }
 
 .div-browse-search {
@@ -196,7 +194,7 @@ li a:hover:not(.active) {
 	height: 100%;
 	text-align: left;
 	vertical-align: middle;
-	border: 3px solid red;
+	border: 3px solid #cc0800;
     overflow: auto;
 	padding: .5em;
 }
@@ -209,7 +207,7 @@ li a:hover:not(.active) {
 .div-book-chart {
 	color: whitesmoke;
 	background-color: #272727;
-	border: 3px solid red;
+	border: 3px solid #cc0800;
 	height: auto;
 	width: auto;
 	overflow: auto;
@@ -220,7 +218,7 @@ li a:hover:not(.active) {
 .div-book-fields {
 	color: whitesmoke;
 	background-color: #272727;
-	border: 3px solid red;
+	border: 3px solid #cc0800;
 	height: 37vh;
 	width: auto;
 	overflow: auto;
@@ -231,7 +229,7 @@ li a:hover:not(.active) {
 .div-promo-fields {
 	color: whitesmoke;
 	background-color: #272727;
-	border: 3px solid red;
+	border: 3px solid #cc0800;
 	height: 94.5vh;
 	width: auto;
 	overflow: auto;
@@ -245,28 +243,28 @@ li a:hover:not(.active) {
 }
 
 .text-main {
-    color: rgb(200, 200, 200);
+    color: rgb(240, 240, 240);
     text-align: center;
     text-transform: uppercase;
-    text-shadow: 1px 1px red;
+    text-shadow: 3px 3px #cc0800;
 	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 3em;
 }
 
 .text-sub {
-    color: rgb(200, 200, 200);
+    color: rgb(240, 240, 240);
     text-align: center;
-    text-shadow: 1px 1px red;
+    text-shadow: 1px 1px #cc0800;
 	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
 }
 
 .text-description {
-	color: rgb(200, 200, 200);
+	color: rgb(240, 240, 240);
     text-align: left;
-    text-shadow: 1px 1px red;
+    text-shadow: 1px 1px #cc0800;
 	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
@@ -289,7 +287,7 @@ li a:hover:not(.active) {
 
 .button-book-now {
 	background-color: #272727;
-	border: 2px solid red;
+	border: 2px solid #cc0800;
   	color: whitesmoke;
   	padding: 15px 32px;
   	text-align: center;
