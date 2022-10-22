@@ -1,3 +1,32 @@
+
+.div-base {
+	color: whitesmoke;
+	background-color: #272727;
+	position: left;
+	height: 100%;
+	text-align: left;
+	vertical-align: middle;
+	border: 3px solid black;
+    overflow: auto;
+	padding: .5em;
+}
+
+.form-register {
+	color: whitesmoke;
+	background-color: black;
+	position: left;
+	text-align: left;
+	vertical-align: middle;
+	border: 3px solid black;
+    overflow: auto;
+	padding: .5em;
+	width: 90%;
+	height: 35px;
+	font-size: 25px;
+}
+
+
+
 html {
 	font-family: 'Arial Black';
 }
@@ -80,13 +109,15 @@ input.login-field {
 	left: 50vh;
 }
 
+
 ul.sidebar {
 	list-style-type: none;
+	color: whitesmoke;
 	margin: 0;
 	margin-top: 0vh;
 	padding: 0;
 	width: 15%;
-	background-color: #e6e6e6;
+	background-color: #272727;
 	position: fixed;
 	height: 100%;
 	overflow: auto;
@@ -94,7 +125,7 @@ ul.sidebar {
   
 li a {
 	display: block;
-	color: #000;
+	color: whitesmoke;
 	padding: 8px 16px;
 	text-decoration: none;
 }
@@ -113,6 +144,7 @@ li a:hover:not(.active) {
 	background-color: #555;
 	color: white;
 }
+
 
 #editField {
 	width: 40%;
