@@ -377,6 +377,27 @@ app.post('/updateHomeAddress', encoder, function(req,res) {
     });
 })
 
+app.post('/updateCard', encoder, function(req,res) {
+    let cardType = req.body.cardType;
+    let cardNumb = req.body.cardNumb;
+    let cardExpiration = req.body.expDate;
+    
+
+    connection.query('SELECT * FROM user WHERE user_id = ?',[currentUserID],function(error,results,fields) {
+        let cardId = results[0].paymentCard_id;
+        const query = 'UPDATE paymentCard SET type = ?, card_num = ?, expiration = ?,  WHERE paymentCard_id = ?'
+        connection.query(query,[cardType, cardNumb, cardExpiration],function(error,results,fields) {
+            console.log('card updated');
+            connection.query('SELECT * FROM user WHERE user_id = ?;',[currentUserID],function(error,results,fields) {
+                let email = results[0].email;
+                let message = 'Your account card has been updated!'
+                sendEmail(email, message);
+            });
+            res.redirect('/editProfile.html');
+        });
+    });
+})
+
 // GET ADDRESS
 app.post('/getAddress', encoder, function(req,res) {
     let address_id = req.body.id;
