@@ -2,50 +2,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>UGA Flix</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="style.css" rel="stylesheet">
-  <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
-  <style>
-  body {
-    margin: 0;
-    font-family: "Lexend Deca";
-    background-color: black;
-  }
+  <head>
+    <title>UGA Flix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="style.css" rel="stylesheet">
+    <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    body {
+      margin: 0;
+      font-family: "Lexend Deca";
+      background-color: black;
+    }
+  
+   
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
+   
+  
+  
+    </style>
+  </head>
+  
+  <body style="padding-top:55px ; background-color: black">
+  
+    <!--Navbar-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+        <a class="navbar-brand" href="index.html">UGA Flix</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <form action="/index.html">
+              <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+            </form>
+            <form action="/browse.html">
+              <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+            </form>
+            <form action="/profile" method="GET">
+              <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+            </form>
+          </ul>
+        </div>
+      </nav>
 
- 
-  .responsive {
-    width: 100%;
-    height: auto;
-  }
- 
-
-
-  </style>
-</head>
-
-<body style="background-color: #870500">
-<div id="stripedbg" id="pageheader">
-	
-	<h1 style="	font-size: 45px"> Register Your Account </h1>
-	
-</div>
-
-<div id="regConfirm" style="height:55vh">
+<div class="div-base" style="height: 55vh; margin: 5% 20% 0 20%; width: auto; text-align: center;">
 	<div>
-		<h1 > Confirmation </h1><br>
-		<p> Check your email and enter the code sent below:<p><br>
-		<form>
-		<input id="registerField" style="width:30vh; height:5vh" type="text" id="regCode" name="regCode" placeholder="Type Code here"><br><br>
-		<input type="submit" id="registerField" style="width:30%" value="Verify">
-	  </form>
-	
-
-
-
+		<h1 style="font-size: 40px;"> Confirmation </h1><br>
+		<p style="font-size: 30px;"> You have succesfully verified your account.<p><br>
+    <button style="margin: 5% 25% 0 25%; width: 35%; height: auto; background-color:#e6e6e6;font-size:35px;color:black;border-radius: 45px; border: 8px solid black; text-align: center;" onclick="location.href='login.html'"> Back to Login </button>
+	  
 	</div>
 </div>  
             </body>
