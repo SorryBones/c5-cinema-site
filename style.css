@@ -138,6 +138,34 @@ li a:hover:not(.active) {
     padding: 2px 10px;
 }
 
+.flex-container-homepage {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	background-color: #272727;
+	border: 5px solid #cc0800;
+}
+
+.flex-container-row {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	width: 100%;
+	background-color: #272727;
+}
+
+.flex-homepage-latest-movie {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	background-color: #272727;
+	margin: 10px;
+}
+
 .div-center-spread {
 	background-color: #272727;
 	border: 5px solid #cc0800;
@@ -259,6 +287,7 @@ li a:hover:not(.active) {
 	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
+	margin: 10px;
 }
 
 .text-description {
@@ -268,6 +297,12 @@ li a:hover:not(.active) {
 	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
+}
+
+.img-movie-poster {
+	background: #272727;
+	width: 100%;
+	height: auto;
 }
 
 .img-browse-entry {
@@ -294,6 +329,7 @@ li a:hover:not(.active) {
   	text-decoration: none;
   	display: inline-block;
   	font-size: 16px;
+	margin-top: 10px;
 }
 
 .button-book-admin {
