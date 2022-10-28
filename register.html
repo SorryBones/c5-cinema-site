@@ -60,9 +60,9 @@
 			<Label for="phone"> Phone Number: (xxx-xxx-xxxx)</Label><br>
 			<input class="form-register" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>  <br><br>
 			<Label for ="email"> Email Address:</Label><br>
-			<input class="form-register" type="text" id="email" name="email" placeholder="Example@mail.com" required>  <br><br>
+			<input class="form-register" type="text" id="email" name="email" placeholder="Example@mail.com" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>  <br><br>
 			<Label for="confemail"> Confirm Email Address:</Label><br>
-			<input class="form-register" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" required>  <br><br>
+			<input class="form-register" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>  <br><br>
 			<Label for="fname"> Subscribe for Promotional Emails:</Label><br>
 			<input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh; margin-left: 10px" id="promotions" name="promotions">
 			<br><br><br>
@@ -138,7 +138,7 @@
 			</select> <br><br>
 
 			<Label for="homeZip"> Zip Code:</Label>
-			<input id="registerField" style="width:70%" type="text" id="homeZip" name="homeZip" placeholder="12345"><br><br>
+			<input id="registerField" style="width:70%" type="text" id="homeZip" name="homeZip" placeholder="12345" pattern="[0-9]{5}"><br><br>
 		<h2 style="text-align: center">Payment Information (Optional)</h2>
 			<Label for="cardtype"> Card Type:</Label><br>
 			<select id="registerField" style="width:70%" id="cardtype" name="cardType">
@@ -148,10 +148,10 @@
 				<option value="Discover">Discover</option></select> <br><br>
 			
 			<Label for="cardnumb"> Card Number:</Label><br>
-			<input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####"><br><br>
+			<input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"><br><br>
 		
 			<Label for="expDate"> Expiration Date:</Label><br>
-			<input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY"><br><br>
+			<input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern = "[0-1]{1}[0-9]{1}/[2]{1}[0]{1}[2-3]{1}[0-9]{1}"><br><br>
 		
 			<h4> Billing Address </h4>
 			<Label for="billingStreet"> Street Address:</Label>
@@ -216,7 +216,7 @@
 			</select> <br><br>
 			
 			<Label for="billingZip"> Zip Code:</Label>
-			<input id="registerField" style="width:70%" type="text" id="billingZip" name="billingZip" placeholder="12345"><br><br>
+			<input id="registerField" style="width:70%" type="text" id="billingZip" name="billingZip" placeholder="12345" pattern="[0-9]{5}" ><br><br>
 		</form>
   	</div>
 </body>
