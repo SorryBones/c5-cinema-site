@@ -36,81 +36,66 @@
     </div>
   </nav>
 
-          <div class="div-promo-fields">
-          <!--Search Fields TURN INTO ADDMOVIE INPUT-->
-          <div class="div-browse-search">              
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
+  <!--Movie Info-->
+  <div class="div-browse-entry" style="height: 95vh;">
+    <img class="img-browse-entry" src="images/poster1Indemnity.png"/>
+    <div class="div-browse-text">
+        <p>GENRE:           Action, Crime, Thriller</p>
+        <p>AGE RATING:      R</p>
+        <p>RELEASE DATE:    February 13, 2022</p>
+        <p>RUN TIME:        2h 3m</p>
+        <p>CAST:            Jared Geduld, Gail Mabalane, Andre Jacobs</p>
+        <p>DESCRIPTION:     An ex-Cape Town fireman's world is rocked when he wakes up next to his wife's body with no recollection of what transpired and all evidence pointing to him as the killer.</p>
+        <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
                 <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">TITLE:</span>
-              </div>
-              <input type="text" class="form-control" id="basic-title" aria-describedby="basic-addon3">
             </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">GENRE:</span>
-              </div>
-              <input type="text" class="form-control" id="basic-title" aria-describedby="basic-addon3">
-            </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">AGE RATING:</span>
-              </div>
-              <input type="text" class="form-control" id="basic-title" aria-describedby="basic-addon3">
-            </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">RELEASE DATE:</span>
-              </div>
-              <input type="text" class="form-control" id="basic-title" aria-describedby="basic-addon3">
-            </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">RUN TIME:</span>
-              </div>
-              <input type="text" class="form-control" id="basic-title" aria-describedby="basic-addon3">
-            </div>
-              
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">CAST:</span>
-              </div>
-              <input type="text" class="form-control" id="basic-title" aria-describedby="basic-addon3">
-            </div>
-
-            <div class="form-group">
-              <label for="comment">MESSAGE:</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
-            </div>
-            <a href="browse.html"><button type="button" class="button-book-now">Add Movie</button></a>
-            <a href="browse.html"><button type="button" class="button-book-now">Cancel</button></a>
-          </div>
-          </div>
+            <input type="text" class="form-control" placeholder="Indemnity" id="basic-title" aria-describedby="basic-addon3">
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-        crossorigin="anonymous"></script>
-      
-        <script>
-          $(document).ready(function() {
-            $.ajax( {
-              url: "/isLoggedIn",
-              type: "GET",
-              success: function(result) {
-                if (result.status == true) $('#loginButton').remove();
-                else $('#profileButton').remove();
-              },
-              error: function(XMLHttpRequest, textStatus, errorThrown) {
-                console.log('failure');
-              }
-            });
-          });
-        </script>
-      
-</body>
+        <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">GENRE:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Action, Crime, Thriller" id="basic-title" aria-describedby="basic-addon3">
+        </div>
 
-</html>
+        <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">AGE RATING:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="R" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">RELEASE DATE:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="02/13/22" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">RUN TIME:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="2h 3m" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">CAST:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Jared Geduld, Gail Mabalane, Andre Jacobs" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">DESCRIPTION:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="An ex-Cape Town fireman's world is rocked when he wakes up next to his wife's body with no recollection of what transpired and all evidence pointing to him as the killer." id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+
+        <a href="book.html"><button type="button" class="button-book-now">Save Changes</button></a>
+    </div>
+  </div>
