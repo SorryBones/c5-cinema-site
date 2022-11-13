@@ -49,175 +49,176 @@
 		  </ul>
 		</div>
 	  </nav>
+	<div style="display:flex">
+  		<div class="div-base" style="width: 48%; flex-grow: 4;">
+			<h2 style="text-align: center"> Personal Information*</h2>
+			<form action="/register" method="POST" text-align="center">
+				<Label for="fname"> First Name:</Label><br>
+				<input class="form-register" type="text" id="fname" name="fname" placeholder="First Name..." required><br><br>
+				<Label for="lname"> Last Name:</Label><br>
+				<input class="form-register" type="text" id="lname" name="lname" placeholder="Last Name..." required>  <br><br>
+				<Label for="phone"> Phone Number: (###-###-####)</Label><br>
+				<input class="form-register" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
+				<Label for ="email"> Email Address: (example@mail.com)</Label><br>
+				<input class="form-register" type="text" id="email" name="email" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
+				<Label for="confemail"> Confirm Email Address: (example@mail.com)</Label><br>
+				<input class="form-register" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>  <br><br>
+				<Label for="fname"> Subscribe for Promotional Emails:</Label><br>
+				<input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh; margin-left: 10px" id="promotions" name="promotions">
+				<br><br><br>
+				<Label for ="password"> Password:</Label><br>
+				<input class="form-register" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
+				<Label for="confpassword"> Confirm Password:</Label><br>
+				<input class="form-register" type="password" id="confpassword" name="confpassword" placeholder="Confirm Password..." required>  <br><br>
 
-  	<div class="div-base" style="width: 48%; float: left">
-		<h2 style="text-align: center"> Personal Information*</h2>
-		<form action="/register" method="POST" text-align="center">
-			<Label for="fname"> First Name:</Label><br>
-			<input class="form-register" type="text" id="fname" name="fname" placeholder="First Name..." required><br><br>
-			<Label for="lname"> Last Name:</Label><br>
-			<input class="form-register" type="text" id="lname" name="lname" placeholder="Last Name..." required>  <br><br>
-			<Label for="phone"> Phone Number: (###-###-####)</Label><br>
-			<input class="form-register" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
-			<Label for ="email"> Email Address: (example@mail.com)</Label><br>
-			<input class="form-register" type="text" id="email" name="email" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
-			<Label for="confemail"> Confirm Email Address: (example@mail.com)</Label><br>
-			<input class="form-register" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>  <br><br>
-			<Label for="fname"> Subscribe for Promotional Emails:</Label><br>
-			<input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh; margin-left: 10px" id="promotions" name="promotions">
-			<br><br><br>
-			<Label for ="password"> Password:</Label><br>
-			<input class="form-register" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
-			<Label for="confpassword"> Confirm Password:</Label><br>
-			<input class="form-register" type="password" id="confpassword" name="confpassword" placeholder="Confirm Password..." required>  <br><br>
+				<input type="submit" class="div-base" style="width:48%;height:13vh;float:left; border: 10px solid black; text-align: center; font-size: 45px;" value="Submit">
+  		</div>
 
-			<input type="submit" class="div-base" style="width:48%;height:13vh;float:left; border: 10px solid black; text-align: center; font-size: 45px;" value="Submit">
-  	</div>
+  		<div class="div-base" style="width: 48%; flex-grow: 4;">
+			<h2 style="text-align: center">Home Address (Optional)</h2><br>
+				<Label for="homeStreet">Street Address:</Label><br>
+				<input class="form-register" style="width:70%" type="text" id="homeStreet" name="homeStreet" placeholder="123 example street"><br><br>
 
-  	<div class="div-base" style="width: 48%; float:right">
-		<h2 style="text-align: center">Home Address (Optional)</h2><br>
-			<Label for="homeStreet">Street Address:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="homeStreet" name="homeStreet" placeholder="123 example street"><br><br>
+				<Label for="homeCity">City:</Label><br>
+				<input class="form-register" style="width:70%" type="text" id="homeCity" name="homeCity" placeholder="Athens"><br><br>
 
-			<Label for="homeCity">City:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="homeCity" name="homeCity" placeholder="Athens"><br><br>
+				<Label for="homeState">State:</Label><br>
+				<select class="form-register" style="width:70%" id="homeState" name="homeState">
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AR">AR</option>
+					<option value="AZ">AZ</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DC">DC</option>
+					<option value="DE">DE</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="IA">IA</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="MA">MA</option>
+					<option value="MD">MD</option>
+					<option value="ME">ME</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MO">MO</option>
+					<option value="MS">MS</option>
+					<option value="MT">MT</option>
+					<option value="NC">NC</option>
+					<option value="NE">NE</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NV">NV</option>
+					<option value="NY">NY</option>
+					<option value="ND">ND</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WI">WI</option>
+					<option value="WV">WV</option>
+					<option value="WY">WY</option>
+				</select> <br><br>
 
-			<Label for="homeState">State:</Label><br>
-			<select class="form-register" style="width:70%" id="homeState" name="homeState">
-				<option value="AL">AL</option>
-				<option value="AK">AK</option>
-				<option value="AR">AR</option>
-				<option value="AZ">AZ</option>
-				<option value="CA">CA</option>
-				<option value="CO">CO</option>
-				<option value="CT">CT</option>
-				<option value="DC">DC</option>
-				<option value="DE">DE</option>
-				<option value="FL">FL</option>
-				<option value="GA">GA</option>
-				<option value="HI">HI</option>
-				<option value="IA">IA</option>
-				<option value="ID">ID</option>
-				<option value="IL">IL</option>
-				<option value="IN">IN</option>
-				<option value="KS">KS</option>
-				<option value="KY">KY</option>
-				<option value="LA">LA</option>
-				<option value="MA">MA</option>
-				<option value="MD">MD</option>
-				<option value="ME">ME</option>
-				<option value="MI">MI</option>
-				<option value="MN">MN</option>
-				<option value="MO">MO</option>
-				<option value="MS">MS</option>
-				<option value="MT">MT</option>
-				<option value="NC">NC</option>
-				<option value="NE">NE</option>
-				<option value="NH">NH</option>
-				<option value="NJ">NJ</option>
-				<option value="NM">NM</option>
-				<option value="NV">NV</option>
-				<option value="NY">NY</option>
-				<option value="ND">ND</option>
-				<option value="OH">OH</option>
-				<option value="OK">OK</option>
-				<option value="OR">OR</option>
-				<option value="PA">PA</option>
-				<option value="RI">RI</option>
-				<option value="SC">SC</option>
-				<option value="SD">SD</option>
-				<option value="TN">TN</option>
-				<option value="TX">TX</option>
-				<option value="UT">UT</option>
-				<option value="VT">VT</option>
-				<option value="VA">VA</option>
-				<option value="WA">WA</option>
-				<option value="WI">WI</option>
-				<option value="WV">WV</option>
-				<option value="WY">WY</option>
-			</select> <br><br>
-
-			<Label for="homeZip">Zip Code: (#####)</Label><br>
-			<input id="registerField" style="width:70%" type="text" id="homeZip" name="homeZip" placeholder="12345"><br><br>
-		<h2 style="text-align: center">Payment Information (Optional)</h2>
-			<Label for="cardtype"> Card Type:</Label><br>
-			<select id="registerField" style="width:70%" id="cardtype" name="cardType">
-				<option value="Visa">Visa</option>
-				<option value="Mastercard">Mastercard</option>
-				<option value="AmericanExpress">American Express</option>
-				<option value="Discover">Discover</option></select> <br><br>
+				<Label for="homeZip">Zip Code: (#####)</Label><br>
+				<input id="registerField" style="width:70%" type="text" id="homeZip" name="homeZip" placeholder="12345"><br><br>
+			<h2 style="text-align: center">Payment Information (Optional)</h2>
+				<Label for="cardtype"> Card Type:</Label><br>
+				<select id="registerField" style="width:70%" id="cardtype" name="cardType">
+					<option value="Visa">Visa</option>
+					<option value="Mastercard">Mastercard</option>
+					<option value="AmericanExpress">American Express</option>
+					<option value="Discover">Discover</option></select> <br><br>
+				
+				<Label for="cardnumb"> Card Number: (#### #### #### ####)</Label><br>
+				<input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"><br><br>
 			
-			<Label for="cardnumb"> Card Number: (#### #### #### ####)</Label><br>
-			<input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"><br><br>
-		
-			<Label for="expDate"> Expiration Date: (##/####)</Label><br>
-			<input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern="[0-1]{1}[0-9]{1}/[0-9]{4}"><br><br>
-			<br>
-			<h4> Billing Address </h4>
-			<Label for="billingStreet"> Street Address:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="billingStreet" name="billingStreet" placeholder="123 example street"><br><br>
+				<Label for="expDate"> Expiration Date: (##/####)</Label><br>
+				<input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern="[0-1]{1}[0-9]{1}/[0-9]{4}"><br><br>
+				<br>
+				<h4> Billing Address </h4>
+				<Label for="billingStreet"> Street Address:</Label><br>
+				<input class="form-register" style="width:70%" type="text" id="billingStreet" name="billingStreet" placeholder="123 example street"><br><br>
 
-			<Label for="billingCity"> City:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="billingCity" name="billingCity" placeholder="Athens"><br><br>
+				<Label for="billingCity"> City:</Label><br>
+				<input class="form-register" style="width:70%" type="text" id="billingCity" name="billingCity" placeholder="Athens"><br><br>
 
-			<Label for="billingState"> State:</Label><br>
-			<select class="form-register" style="width:70%" id="billingState" name="billingState">
-				<option value="AL">AL</option>
-				<option value="AK">AK</option>
-				<option value="AR">AR</option>
-				<option value="AZ">AZ</option>
-				<option value="CA">CA</option>
-				<option value="CO">CO</option>
-				<option value="CT">CT</option>
-				<option value="DC">DC</option>
-				<option value="DE">DE</option>
-				<option value="FL">FL</option>
-				<option value="GA">GA</option>
-				<option value="HI">HI</option>
-				<option value="IA">IA</option>
-				<option value="ID">ID</option>
-				<option value="IL">IL</option>
-				<option value="IN">IN</option>
-				<option value="KS">KS</option>
-				<option value="KY">KY</option>
-				<option value="LA">LA</option>
-				<option value="MA">MA</option>
-				<option value="MD">MD</option>
-				<option value="ME">ME</option>
-				<option value="MI">MI</option>
-				<option value="MN">MN</option>
-				<option value="MO">MO</option>
-				<option value="MS">MS</option>
-				<option value="MT">MT</option>
-				<option value="NC">NC</option>
-				<option value="NE">NE</option>
-				<option value="NH">NH</option>
-				<option value="NJ">NJ</option>
-				<option value="NM">NM</option>
-				<option value="NV">NV</option>
-				<option value="NY">NY</option>
-				<option value="ND">ND</option>
-				<option value="OH">OH</option>
-				<option value="OK">OK</option>
-				<option value="OR">OR</option>
-				<option value="PA">PA</option>
-				<option value="RI">RI</option>
-				<option value="SC">SC</option>
-				<option value="SD">SD</option>
-				<option value="TN">TN</option>
-				<option value="TX">TX</option>
-				<option value="UT">UT</option>
-				<option value="VT">VT</option>
-				<option value="VA">VA</option>
-				<option value="WA">WA</option>
-				<option value="WI">WI</option>
-				<option value="WV">WV</option>
-				<option value="WY">WY</option>
-			</select> <br><br>
-			
-			<Label for="billingZip"> Zip Code: (#####)</Label><br>
-			<input id="registerField" style="width:70%" type="text" id="billingZip" name="billingZip" placeholder="12345" pattern="[0-9]{5}"><br><br>
-		</form>
-  	</div>
+				<Label for="billingState"> State:</Label><br>
+				<select class="form-register" style="width:70%" id="billingState" name="billingState">
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AR">AR</option>
+					<option value="AZ">AZ</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DC">DC</option>
+					<option value="DE">DE</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="IA">IA</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="MA">MA</option>
+					<option value="MD">MD</option>
+					<option value="ME">ME</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MO">MO</option>
+					<option value="MS">MS</option>
+					<option value="MT">MT</option>
+					<option value="NC">NC</option>
+					<option value="NE">NE</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NV">NV</option>
+					<option value="NY">NY</option>
+					<option value="ND">ND</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WI">WI</option>
+					<option value="WV">WV</option>
+					<option value="WY">WY</option>
+				</select> <br><br>
+				
+				<Label for="billingZip"> Zip Code: (#####)</Label><br>
+				<input id="registerField" style="width:70%" type="text" id="billingZip" name="billingZip" placeholder="12345" pattern="[0-9]{5}"><br><br>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

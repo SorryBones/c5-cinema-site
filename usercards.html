@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,67 +8,116 @@
   <link href="style.css" rel="stylesheet">
   <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <style>
-  body {
-    margin: 0;
-    font-family: "Lexend Deca";
-    background-color: black;
-  }
-
- 
-  .responsive {
-    width: 100%;
-    height: auto;
-  }
- 
+    body {
+      margin: 0;
+      font-family: "Lexend Deca";
+      background-color: black;
+    }
 
 
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 
-<body style="background-color: #870500">
-<div id="stripedbg" id="pageheader">
-	
-</div>
-<div id="aligncontainer">
-<ul class="sidebar">
-  <li><a href="profile.html">Profile</a></li>
-  <li><a class="active">Payment</a></li>
-  <li><a href="login.html">Logout</a></li>
-</ul>
-<div id="registerDiv" style="width:81% ; height:85vh ; border-radius:0px ; position:absolute ; left:16% ; text-align:center ; padding:1px 16px ; margin-top:0">
-  <!--Username Display Div-->
-  <div style="width:60vh ; height:10vh ; background-color:#818181 ; border-radius:15px ; font-size: 20px" id="center"> 
-    <h1> User Payment Info </hi>
+<body style="padding-top:55px ; background-color: black">
+
+  <!--Navbar-->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+    <a class="navbar-brand" href="index.html">UGA Flix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <form action="/index.html">
+          <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/browse.html">
+          <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/profile" method="GET">
+          <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+        </form>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="aligncontainer">
+    <ul class="sidebar">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a class="active">Payment</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+
+    <div class="div-base" style="width:80% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <!--Username Display Div-->
+        <div class="div-base" style="width:50%; height:max-content ; font-size: 20px;  text-align: center; border: none; overflow: hidden;">
+          <h1> User Payment Info </hi>
+        </div>
+        <div>
+        <!--Cards Div-->
+        <!--Add for-each method around div-->
+        <div style="background-color:#272727; width:60%; height:auto ; color:white; border: solid black 20px; display: flex; flex-direction: column; align-items: center; gap: 5px; float: inline-start; text-align: center;">
+          <a style=" width:45%">
+            <h2>Card Type:</h2>
+            <p>Visa</p>
+          </a>
+          <a style=" width:45%">
+            <h2>Exp. Date:</h2>
+            <p>XX/XXXX</p>
+          </a>
+          <br>
+          <a style="width:80% ; font-size: 20px;">
+            <h2>Card Number:</h2>
+            <h2>1234 5678 9101 2131</h2>
+          </a>
+          <a style="width:15% ; font-size:20px;"><button
+              style="background-color:red ; border-radius:25px">Delete</button></a>
+
+        </div>
+
+
+
+        <!--User Home Adress Div-->
+        <div style="background-color:#272727; width:40%; height:auto ; color:white; border: solid black 20px; display: flex; flex-direction: column; align-items: center; gap: 5px; float: inline-end; text-align: center;">
+          <a style="width:55%">
+            <h1>Billing Address</h1>
+          </a>
+          <a style="width:55%">
+            <h2>Streen Address:</h2>
+            <p>1234 Exampleroad Street</p>
+          </a><br><br>
+          <a style="float:left; width:30%">
+            <h2>City:</h2>
+            <p>Athens</p>
+          </a>
+          <a style="float:left ; width:30%">
+            <h2>State:</h2>
+            <p>Ga</p>
+          </a>
+          <a style="float:left; width:30%">
+            <h2>ZIP:</h2>
+            <p>30605</p>
+          </a>
+        </div>
+
+        <!--Add Button Div-->
+        <button onclick="location.href='addcard.html'"
+        style="width: auto; height: auto; background-color:white; font-size:30px; color:black; border-radius: 45px; border: 4px solid black; text-align: center;">
+          Add New Card +
+        </button>
+      </div>
+      </div>
+    </div>
   </div>
-
-  <!--Cards Div-->
-  <!--Add for-each method around div-->  
-  <div style="float:inline-start ; background-color:#e6e6e6 ; margin-top:7%  ; width:40em; height:auto ; border-radius: 35px ; color:black"  >
-    <a style="float:left ; width:45%"><h2>Card Type:</h2><p>Visa</p></a>
-    <a style="float:inline-end ; width:45%"><h2>Exp. Date:</h2><p>XX/XXXX</p></a>   
-    <br>
-    <a style="float:none ; width:80% ; font-size: 20px;"><h2>Card Number:</h2><h2>1234 5678 9101 2131</h2></a>   
-    <a style="float:right ; width:15% ; font-size:20px;"><button style="background-color:red ; border-radius:25px">Delete</button></a>   
-      
-  </div>
-
-
-
-  <!--User Home Adress Div-->
-  <div style="color:black ; float: right; background-color:#e6e6e6 ; padding:15px 0px 15px 0px ; margin-top: -19% ; width:50% ; height:auto ; border-radius: 35px;">
-    <a style="width:55%"><h1>Billing Address</h1></a>
-    <a style="width:55%"><h2>Streen Address:</h2><p>1234 Exampleroad Street</p></a><br><br>
-    <a style="float:left; width:30%"><h2>City:</h2><p>Athens</p></a>
-    <a style="float:left ; width:30%"><h2>State:</h2><p>Ga</p></a>
-    <a style="float:left; width:30%"><h2>ZIP:</h2><p>30605</p></a>
-  </div>
-
-  <!--Add Button Div-->
-  <button onclick="location.href='addcard.html'" style="float:inline-start ; background-color:#e6e6e6 ; margin-top:2%  ; width:25% ; height:5vh ; border-radius: 35px ; color:black ; font-size:25px;" >
-   Add New Card +
-  </button>
-</div>
-</div>
 </body>
+
 </html>

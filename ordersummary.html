@@ -1,86 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>UGA Flix</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="style.css" rel="stylesheet">
-  <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
-  <style>
-  body {
-    margin: 0;
-    font-family: "Lexend Deca";
-    background-color: black;
-  }
-
- 
-  .responsive {
-    width: 100%;
-    height: auto;
-  }
- 
+	<title>UGA Flix</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="style.css" rel="stylesheet">
+	<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		body {
+			margin: 0;
+			font-family: "Lexend Deca";
+			background-color: black;
+		}
 
 
-  </style>
+		.responsive {
+			width: 100%;
+			height: auto;
+		}
+	</style>
 </head>
 
-<body style="background-color: #870500">
-<div id="stripedbg" id="pageheader" style="height:15vh;margin-top:-3vh; margin-bottom:-5vh">
-	
-	<h1 style="	font-size: 45px ; border-bottom:15px solid black"> Order Summary </h1>
-</div>
-<div>
-<form text-align="center">
-  <div id="registerDiv" style="width: 59%; float: left ; margin-top:3% ; min-height:75vh ; max-height: auto;">
-	<h1 style="text-align: center ; font-size: 50px;"> Cart</h1>
-	<!-- for-each this for every item in cart-->
-	<div style="margin-top: 2vh ; float:left ; width:100% ; height:15vh ; border:4px solid rgb(134, 134, 134) ; max-height:auto ;">
-		<a style="float:left ; height:100% ; width:15% ; background-color:red"></a>
-		<h1 style="float:inline-start ; margin-left:5% ;">Movie Title</h1>
-		<h2 style="float:inline-start ; margin-left:4% ; margin-top:2% ;"> : Time</h2>
-		<!--Div for movie total-->
-		<div style="float:left ; width:15% ; height:4vh ; margin-top:6% ; margin-left:-27% ;">
-			<p>Total:</p>
-			<p>$XX.XX</p>
-		</div>		
-		<!--Div for Seats-->
-		<div style="height:4vh ; min-width:5% ; max-width:40% ; flex-wrap:wrap ; float:inline-start ; margin-top:7% ; margin-left:-17% ; display: flex">
-			<h1>Seats : </h1>
-			<h2>G6  </h2>
-			<h2>, G7  </h2>
-			<h2>, G8  </h2>
-			<h2>, H6   </h2>
-			<h2>, H5   </h2>
+<body style="padding-top:55px ; background-color: black">
 
-	
+	<!--Navbar-->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+		<a class="navbar-brand" href="index.html">UGA Flix</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<form action="/index.html">
+					<input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+				</form>
+				<form action="/browse.html">
+					<input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+				</form>
+				<form action="/profile" method="GET">
+					<input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+				</form>
+			</ul>
 		</div>
-		<!--Div for Remove/Edit Buttons-->
-		<div style="float:right ; width:15% ; height:100% ;"> 
-			<button style="background-color:red ; width:100% ; height:50% ; border:none ; border-bottom-left-radius:35px ; font-size:25px;"><b>Remove</b></button>
-			<button style="background-color:rgb(134, 134, 134) ; width:100% ; height:50% ; border:none ;border-top-left-radius:35px ; font-size:25px;"><b>Edit</b></button>
+	</nav>
+
+
+
+	<div>
+
+		<div class="div-base" style="width:60% ; height:94vh; max-height: auto; float: inline-start; display: flex; flex-direction: column; align-items: center; gap:20px">
+			<h1 style="text-align: center ; font-size: 50px;"> Cart</h1>
+			<!-- for-each this for every item in cart-->
+			<div style="background-color:#272727; width:100%; min-height: 20%; color:white; border: solid black 20px; display: flex; flex-direction: row; align-items: center; text-align: center;" >
+				<a style="height:100% ; width:15% ; background-color:red"></a> <!--Replace with movie img-->
+				<h1>Movie Title </h1>
+				<h2> Time</h2>
+				<!--Div for movie total-->
+				<div style="width:15% ; height:auto ;">
+					<p>Total:</p>
+					<p>$XX.XX</p>
+				</div>
+				<!--Div for Seats-->
+				<div style="height:auto ; min-width:25% ; max-width:25% ; flex-wrap:wrap ; display:inline-flex">
+					<h1>Seats: </h1><br>
+					<h2>G6 </h2>
+					<h2>, G7 </h2>
+					<h2>, G7 </h2>
+					<h2>, G7 </h2>
+
+
+
+
+				</div>
+				<!--Div for Remove/Edit Buttons-->
+				<div style="float: inline-end; width:15% ; height:100% ;">
+					<button style="background-color:red ; width:100% ; height:50% ; border:none ; border-bottom-left-radius:35px ; font-size:25px; float: inline-end;"><b>Remove</b>
+					</button>
+					<button style="background-color:rgb(134, 134, 134) ; width:100% ; height:50% ; border:none ;border-top-left-radius:35px ; font-size:25px; float: right;"><b>Edit</b>
+					</button>
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<div class="div-base"
+			style="width:30% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; gap:20px">
+			<h1 style="text-align:center ; font-size: 50px; height:auto ;">Order Total</h1>
+			<h1 >Ticket Price:</h1>
+			<h1 >$ XX.XX</h1>
+			<h1 >Taxation:</h1>
+			<h1 >$ XXX.XX</h1>
+			<h1 style="font-size: 55px;">Total:</h1>
+			<h1 style="font-size: 55px;">$ XXX.XX</h1>
+			<button style="width: 40%; height: 5vh; font-size: 30px; border-radius: 25px; "
+				onclick="location.href='checkout.html'">Checkout</button>
+
+
 		</div>
 	</div>
-	
-	
-	
-  </div>
 
-  <div id="registerDiv" style="width: 35%; float: right ; margin-top:3% ; min-height:75vh ; max-height: auto; display:inline">
-	<h1 style="text-align:center ; font-size: 50px; height:auto ;">Order Total</h1>
-	<h1 style="float:inline-start ;">Ticket Price:</h1>
-	<h1 style="float:right ;">$ XX.XX</h1>
-	<h1 style="float:inline-start ; margin-top: 30% ; margin-left: -31%;">Taxation:</h1>
-	<h1 style="float:right ;margin-top: 30% ; margin-right: -20%;"">$ XXX.XX</h1>
-	<h1 style="float:inline-start ; margin-top: 60% ; margin-left: -31%; font-size: 55px;">Total:</h1>
-	<h1 style="float:right ;margin-top: 60% ; margin-right: -20%; font-size: 55px;">$ XXX.XX</h1>
-	<button style="width: 40%; margin-top: 10%; margin-left: 32%; height: 5vh; font-size: 30px; border-radius: 25px; " onclick="location.href='checkout.html'">Checkout</button>
-	
-	
-  </div>
-</div>
-  
-            </body>
-            </html>
+</body>
+
+</html>

@@ -2,31 +2,31 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>UGA Flix</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="style.css" rel="stylesheet">
-  <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <style>
-  body {
-    margin: 0;
-    font-family: "Lexend Deca";
-    background-color: black;
-  }
-
- 
-  .responsive {
-    width: 100%;
-    height: auto;
-  }
- 
-
-
-  </style>
-</head>
+  <head>
+    <title>UGA Flix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="style.css" rel="stylesheet">
+    <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    body {
+      margin: 0;
+      font-family: "Lexend Deca";
+      background-color: black;
+    }
+  
+   
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
+   
+  
+  
+    </style>
+  </head>
 
 <body style="padding-top:55px ; background-color: black">
   
@@ -57,7 +57,7 @@
 
 <ul class="sidebar"> <!--Unordered List for Side Navbar -->
   <form action="/profile" method="GET">
-    <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+    <li><input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white"></li>
   </form>
   <form action="/usercards.html" method="GET">
     <input class="btn" type="submit" value="Payment" style="background-color:#272727 ; color:white">
@@ -72,13 +72,13 @@
   </form>
 </ul>
 
-<div class="div-base" style="width:80% ; height:auto ; position:absolute ; left:16% ; text-align:center ; padding:1px 16px">
+<div class="div-base" style="width:80% ; height:94vh; float: inline-end; text-align: center; display: flex; flex-direction: column; align-items: center; gap:20px">
   <!--Username Display Div-->
-  <div class="div-base" style="width:60vh ; height:10vh ; background-color:#818181 ; font-size: 20px; margin-left: 30%; text-align: center; border-radius: 35px ;"> 
+  <div class="div-base" style="width:50%; height:max-content ; font-size: 20px;  text-align: center; border: none; overflow: hidden;"> 
     <h1> User's Profile </h1>
   </div>
   <!--User Information Div-->
-  <div style="background-color:#e6e6e6 ; margin-top:3%  ; width:45%; height:auto ; margin-left: 27% ; border-radius: 35px ; color:black" >
+  <div style="background-color:#272727; width:45%; height:auto ; color:white; border: solid black 20px; display: flex; flex-direction: column; align-items: center;" >
     <br>
     <h1>Name:</h1>
     <h2><p id="name"></p></h2>
@@ -91,17 +91,17 @@
     <br>
   </div>
   <!--User Home Adress Div-->
-  <div style="color:black ; background-color:#e6e6e6 ; padding:15px 0px 15px 0px ; width:48% ; height:auto ; margin-left: 26% ; border-radius: 35px; margin-top: 3%;" >
-    <a style="width:55%"><h2>Home/Mailing Address:</h2><p id="street"></p></a>
+  <div style="background-color:#272727; width:45%; height:auto ; color:white; border: solid black 20px; display: flex; flex-direction: column; align-items: center;" >
+    <a style="width:55%; flex-grow: 4;"><h2>Home/Mailing Address:</h2><p id="street"></p></a>
     <br><br>
-    <a style="float:left; width:30%"><h2>City:</h2><p id="city"></p></a>
-    <a style="float:left ; width:30%"><h2>State:</h2><p id="state"></p></a>
-    <a style="float:left; width:30%"><h2>ZIP:</h2><p id="zip"></p></a>
+    <a style=" width:30%"><h2>City:</h2><p id="city"></p></a>
+    <a style=" width:30%"><h2>State:</h2><p id="state"></p></a>
+    <a style="width:30%"><h2>ZIP:</h2><p id="zip"></p></a>
     <br><br><br><br><br>
   </div>
 
   <br>
-  <button style="color:black ; float: center ; background-color:#e6e6e6 ;  width:25% ; height:10vh ; border-radius:35px ; font-size:45px ; border: 15px solid black ;" onclick="location.href='editprofile.html'"> Edit Profile </button>
+  <button style="width: 25%; height: auto; background-color:#e6e6e6;font-size:35px;color:black;border-radius: 45px; border: 8px solid black; text-align: center;" onclick="location.href='editprofile.html'"> Edit Profile </button>
 
   </div>
   </div>

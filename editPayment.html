@@ -1,42 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>UGA Flix</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="style.css" rel="stylesheet">
-  <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <style>
-  body {
-    margin: 0;
-    font-family: "Lexend Deca";
-    background-color: black;
-  }
-
- 
-  .responsive {
-    width: 100%;
-    height: auto;
-  }
- 
-
-
-  </style>
-</head>
+  <head>
+    <title>UGA Flix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="style.css" rel="stylesheet">
+    <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    body {
+      margin: 0;
+      font-family: "Lexend Deca";
+      background-color: black;
+    }
+  
+   
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
+   
+  
+  
+    </style>
+  </head>
 
 <body style="padding-top:55px ; background-color: black">
-  
+
   <!--Navbar-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
     <a class="navbar-brand" href="index.html">UGA Flix</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <form action="/index.html">
@@ -52,7 +52,7 @@
     </div>
   </nav>
 
-   <!-- Side Navbar -->
+  <!-- Side Navbar -->
   <div id="aligncontainer">
     <ul class="sidebar">
       <form action="/profile" method="GET">
@@ -68,40 +68,61 @@
   </div>
 
   <!-- User Payment -->
- <div class="div-base" style="width:50% ; height:auto; border-radius: 25px; position:absolute; left:26%; top: 10%">
+  <div class="div-base" style="width:80% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; gap:20px">
     <h1 style="text-align: center">Edit Payment Info:</h1><br>
 
     <!--Cards Div-->
-    <div style="background-color:#e6e6e6 ; padding-top:3%; padding-bottom: 3%; width:80%; height:auto ; margin-left: 10% ; border-radius: 35px ; color:black; text-align: center" >
-      <!--Add for-each method around div-->  
+    <div style="background-color:#272727; width:80%; height:auto ; color:white; border: solid black 20px; display: flex; flex-direction: column; align-items: center; gap: 5px; float: inline-start; text-align: center;" >
+      <!--Add for-each method around div-->
       <form action="/updateCard" method="POST">
-        <a style="float:center ; width:45%"><h2>Card Type:</h2><p id="cardType">None</p></a>
+        <a style="float:center ; width:45%">
+          <h2>Card Type:</h2>
+          <p id="cardType">None</p>
+        </a>
         <select id="registerField" style="width:70%" id="cardtype" name="cardType">
           <option value="Visa">Visa</option>
           <option value="Mastercard">Mastercard</option>
           <option value="AmericanExpress">American Express</option>
           <option value="Discover">Discover</option>
         </select> <br><br>
-        <a style="float:none ; width:80% ; font-size: 20px;"><h2>Card Number: (#### #### #### ####)</h2><h2><p id="cardNumber">None</p></h2></a>   
-        <input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" required><br><br>
-        <a style="float:center ; width:45%"><h2>Exp. Date:</h2><p id="expirationDate">None</p></a>   
+        <a style="float:none ; width:80% ; font-size: 20px;">
+          <h2>Card Number: (#### #### #### ####)</h2>
+          <h2>
+            <p id="cardNumber">None</p>
+          </h2>
+        </a>
+        <input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####"
+          pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" required><br><br>
+        <a style="float:center ; width:45%">
+          <h2>Exp. Date:</h2>
+          <p id="expirationDate">None</p>
+        </a>
         <br>
-        <input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern="[0-9]{2}/[0-9]{4}" required>
+        <input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern="[0-9]{2}/[0-9]{4}"
+          required>
         <br><br>
-        <a style="float: inline-end ; width:15% ; font-size:20px;"></a>   
-        <input type="submit" style="width: 225px; height: auto; background-color:white; font-size:30px; color:black; border-radius: 45px; border: 4px solid black; text-align: center;" value="Update Card" required>
-      </form>  
-
-  <!--User Home Adress Div-->
-  <div style="background-color:#e6e6e6 ; padding-top:3%; padding-bottom: 3%; width:80%; height:auto ; margin-left: 10% ; border-radius: 35px ; color:black; text-align: center" >
-    <a style="width:55%"><h1>Billing Address</h1></a>
+        <a style="float: inline-end ; width:15% ; font-size:20px;"></a>
+        <input type="submit"
+          style="margin: 5% 0 5% 0; width: 225px; height: auto; background-color:white; font-size:30px; color:black; border-radius: 45px; border: 4px solid black; text-align: center;"
+          value="Update Card" required>
+      </form>
+    </div>
+    <!--User Home Adress Div-->
+    <div style="background-color:#272727; width:80%; height:auto ; color:white; border: solid black 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px" >
+      <a style="width:55%">
+        <h1>Billing Address</h1>
+      </a>
       <form action="/updateBillingAddress" method="POST">
-        <h2>Street Address:</h2><p id="street">None</p>
-        <input class="form-register" type="text" id="street" name="street" placeholder="Street Address" style="width: 250px " required>
+        <h2>Street Address:</h2>
+        <p id="street">None</p>
+        <input class="form-register" type="text" id="street" name="street" placeholder="Street Address"
+          style="width: 250px " required>
         <br><br>
-        <h2>City:</h2><p id="city">None</p>
+        <h2>City:</h2>
+        <p id="city">None</p>
         <input class="form-register" type="text" id="city" name="city" placeholder="City" style="width: 210px" required>
-        <h2>State:</h2><p id="state">None</p>
+        <h2>State:</h2>
+        <p id="state">None</p>
         <select class="form-register" style="width:50%" id="homeState" name="homeState">
           <option value="AL">AL</option>
           <option value="AK">AK</option>
@@ -155,70 +176,76 @@
           <option value="WV">WV</option>
           <option value="WY">WY</option>
         </select><br><br><br>
-        <h2>ZIP:</h2><p id="zip">None</p>
-        <input class="form-register" type="text" id="zip" name="zip" placeholder="ZIP" style="width: 210px ; margin-right: 10px" pattern = [0-9]{5} required>
+        <h2>ZIP:</h2>
+        <p id="zip">None</p>
+        <input class="form-register" type="text" id="zip" name="zip" placeholder="ZIP"
+          style="width: 210px ; margin-right: 10px" pattern=[0-9]{5} required>
         <br><br>
-        <input type="submit" style="width: 225px; height: auto; background-color:white; font-size:30px; color:black; border-radius: 45px; border: 4px solid black; text-align: center;" value="Update Card">
+        <input type="submit"
+          style="margin: 5% 0 5% 0; width: 225px; height: auto; background-color:white; font-size:30px; color:black; border-radius: 45px; border: 4px solid black; text-align: center;"
+          value="Update Card">
       </form>
+
+
+    </div>
+
+
   </div>
-  
-</div>
+  </div>
 
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-</div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-crossorigin="anonymous"></script>
-
-<script> // CARD CREDENTIALS
-  $(document).ready(function() {
-    $.ajax( {
-      url: "/getCard",
-      type: "GET",
-      success: function(result) {
-        if (result.status == false) console.log('no cards');
-        else {
-          console.log(result);
-          $("#cardType").html(result.type);
-          $("#expirationDate").html(result.expiration_month + '/' + result.expiration_year);
-          $("#cardNumber").html(result.card_num);
+  <script> // CARD CREDENTIALS
+    $(document).ready(function () {
+      $.ajax({
+        url: "/getCard",
+        type: "GET",
+        success: function (result) {
+          if (result.status == false) console.log('no cards');
+          else {
+            console.log(result);
+            $("#cardType").html(result.type);
+            $("#expirationDate").html(result.expiration_month + '/' + result.expiration_year);
+            $("#cardNumber").html(result.card_num);
+          }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
         }
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        console.log('failure');
-      }
+      });
     });
-  });
-</script>
+  </script>
 
-<script> // BILLING ADDRESS
-  $(document).ready(function() {
-    $.ajax( {
-      url: "/getCard",
-      type: "GET",
-      success: function(result) {
-        if (result.address_id != '') {
-          $.ajax( {
-            url: "/getAddress",
-            dataType: 'json',
-            type: "POST",
-            contentType: 'application/x-www-form-urlencoded',
-            data: $.param({id: result.address_id}),
-            processData: false,
-            success: function(result2) {
-              if (result.status == false) console.log('no billing');
-              else {
-                $("#street").html(result2.street);
-                $("#city").html(result2.city);
-                $("#state").html(result2.state);
-                $("#zip").html(result2.zipcode);
+  <script> // BILLING ADDRESS
+    $(document).ready(function () {
+      $.ajax({
+        url: "/getCard",
+        type: "GET",
+        success: function (result) {
+          if (result.address_id != '') {
+            $.ajax({
+              url: "/getAddress",
+              dataType: 'json',
+              type: "POST",
+              contentType: 'application/x-www-form-urlencoded',
+              data: $.param({ id: result.address_id }),
+              processData: false,
+              success: function (result2) {
+                if (result.status == false) console.log('no billing');
+                else {
+                  $("#street").html(result2.street);
+                  $("#city").html(result2.city);
+                  $("#state").html(result2.state);
+                  $("#zip").html(result2.zipcode);
+                }
               }
-          }});
+            });
+          }
         }
-    }});
-  });
-</script>
+      });
+    });
+  </script>
 </body>
+
 </html>
