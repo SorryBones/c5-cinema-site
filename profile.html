@@ -28,67 +28,151 @@
   </style>
 </head>
 
-<body style="background-color: #870500">
-
+<body style="padding-top:55px ; background-color: black">
+  
   <!--Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #272727;">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
     <a class="navbar-brand" href="index.html">UGA Flix</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="browse.html">Browse</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="profile.html">Profile</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link text-warning" href="adminMain.html">Admin</a>
-        </li>
-      </ul>
+        <ul class="navbar-nav mr-auto">
+          <form action="/index.html">
+            <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/browse.html">
+            <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/profile.html">
+            <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/login.html">
+            <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
+          </form>
+        </ul>
     </div>
   </nav>
 
-<div id="stripedbg" id="pageheader">
-	
-</div>
+
 <div id="aligncontainer"> <!--Wrapper div-->
 
 <ul class="sidebar"> <!--Unordered List for Side Navbar -->
-  <li><a class="active">Profile</a></li>
-  <li><a href="usercards.html">Payment</a></li>
-  <li><a href="login.html">Logout</a></li>
+  <form action="/profile.html" method="GET">
+    <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+  </form>
+  <form action="/usercards.html" method="GET">
+    <input class="btn" type="submit" value="Payment" style="background-color:#272727 ; color:white">
+  </form>
+  <div id="adminControlsButton">
+    <form action="/adminMain.html" method="GET">
+      <input class="btn" type="submit" id="adminControls" value="Admin Controls" style="background-color:#272727 ; color:gold">
+    </form>
+  </div>
+  <form action="/logout" method="GET">
+    <input class="btn" type="submit" value="Logout" style="background-color:#272727 ; color:white">
+  </form>
 </ul>
 
-<div id="registerDiv" style="width:80% ; height:84vh ; border-radius:25px ; position:absolute ; left:16% ; text-align:center ; padding:1px 16px ; margin-top:0">
+<div class="div-base" style="width:80% ; height:auto ; position:absolute ; left:16% ; text-align:center ; padding:1px 16px">
   <!--Username Display Div-->
-  <div style="width:55vh ; height:10vh ; background-color:#818181 ; border-radius:15px ; font-size: 20px" id="center"> 
-    <h1> (Username)'s Profile </hi>
+  <div class="div-base" style="width:60vh ; height:10vh ; background-color:#818181 ; font-size: 20px; margin-left: 30%; text-align: center; border-radius: 35px ;"> 
+    <h1> User's Profile </h1>
   </div>
   <!--User Information Div-->
-  <div style="float:inline-start ; background-color:#e6e6e6 ; margin-top:7%  ; width:40em; height:auto ; border-radius: 35px ; color:black" >
-    <br><h1>Name:</h1><h2>(Retrieve from Database)</h2>
-    <br><h1>Phone Number:</h1><h2>(Retrieve from Database)</h2>
-    <br><h1>Email:</h1><h2>(Retrieve from Database)</h2>
-    <br><h1 onclick="location.href='forgotpassword.html'" style="color:red">Forgot Password</h1>
+  <div style="background-color:#e6e6e6 ; margin-top:3%  ; width:45%; height:auto ; margin-left: 27% ; border-radius: 35px ; color:black" >
+    <br>
+    <h1>Name:</h1>
+    <h2><p id="name">None</p></h2>
+    <br>
+    <h1>Phone Number:</h1>
+    <h2><p id="phone">None</p></h2>
+    <br>
+    <h1>Email:</h1>
+    <h2><p id="email">None</p></h2>
+    <br>
   </div>
   <!--User Home Adress Div-->
-  <div style="color:black ; float: right; background-color:#e6e6e6 ; padding:15px 0px 15px 0px ; margin-top: -32% ; width:50% ; height:auto ; border-radius: 35px;" >
-    <a style="width:55%"><h2>Street Address:</h2><p>1234 Exampleroad Street</p></a><br><br>
-    <a style="float:left; width:30%"><h2>City:</h2><p>Athens</p></a>
-    <a style="float:left ; width:30%"><h2>State:</h2><p>Ga</p></a>
-    <a style="float:left; width:30%"><h2>ZIP:</h2><p>30605</p></a>
+  <div style="color:black ; background-color:#e6e6e6 ; padding:15px 0px 15px 0px ; width:48% ; height:auto ; margin-left: 26% ; border-radius: 35px; margin-top: 3%;" >
+    <a style="width:55%"><h2>Home/Mailing Address:</h2><p id="street">None</p></a>
+    <br><br>
+    <a style="float:left; width:30%">
+      <h2>City:</h2>
+      <p id="city">None</p>
+    </a>
+    <a style="float:left ; width:30%">
+      <h2>State:</h2>
+      <p id="state">None</p>
+    </a>
+    <a style="float:left; width:30%">
+      <h2>ZIP:</h2>
+      <p id="zip">None</p>
+    </a>
+    <br><br><br><br><br>
   </div>
 
-  <button style="color:black ; float: right; background-color:#e6e6e6 ; margin-top: -13% ; width:50% ; height:17vh ; border-radius:35px ; font-size:55px ; border: 15px solid #818181 ;" onclick="location.href='editprofile.html'"> Edit Profile </button>
+  <br>
+  <button style="color:black ; float: center ; background-color:#e6e6e6 ;  width:25% ; height:10vh ; border-radius:35px ; font-size:45px ; border: 15px solid black ;" onclick="location.href='editprofile.html'"> Edit Profile </button>
 
-</div>
-</div>
+  </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/isLoggedIn",
+        type: "GET",
+        success: function(result) {
+          if (result.status == true) $('#loginButton').remove();
+          else $('#profileButton').remove();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/userInfo",
+        type: "GET",
+        success: function(result) {
+          if (result.utype_id == 2) $('#adminControlsButton').remove();
+          $("#name").html(result.first_name + ' ' + result.last_name);
+          $("#phone").html(result.phone_num);
+          $("#email").html(result.email);
+      }});
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/userInfo",
+        type: "GET",
+        success: function(result) {
+          $.ajax( {
+            url: "/getAddress",
+            dataType: 'json',
+            type: "POST",
+            contentType: 'application/x-www-form-urlencoded',
+            data: $.param({id: result.home_address_id}),
+            processData: false,
+            success: function(result2) {
+              $("#street").html(result2.street);
+              $("#city").html(result2.city);
+              $("#state").html(result2.state);
+              $("#zip").html(result2.zipcode);
+          }});
+      }});
+    });
+  </script>
 </body>
 </html>
