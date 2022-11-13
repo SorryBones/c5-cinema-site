@@ -360,6 +360,7 @@ li a:hover:not(.active) {
   	text-decoration: none;
   	display: inline-block;
   	font-size: 16px;
+	margin-top: 10px;
 }
 
 .button-book-admin {

@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<body style="padding-top:55px ; background-color: black">
+<body style="padding-top:55px ; background-color: #870500">
   
   <!--Navbar-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
-    <a class="navbar-brand" href="index.html">UGA Flix</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <a class="navbar-brand" href="index.html">UGA Flix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <form action="/index.html">
             <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
@@ -26,44 +26,41 @@
           <form action="/browse.html">
             <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
           </form>
-          <form action="/profile.html">
-            <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/login.html">
-            <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
+          <form action="/profile" method="GET">
+            <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
           </form>
         </ul>
-    </div>
-  </nav>
+      </div>
+    </nav>
 
           <!--Search Fields-->
           <div class="div-browse-search">              
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Title</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" placeholder="title" aria-label="Default" aria-describedby="inputGroup-sizing-default">
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Genre</span>
+                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Genre</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" placeholder="genre1, genre2..." aria-label="Default" aria-describedby="inputGroup-sizing-default">
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Rating</span>
+                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Rating</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" placeholder="PG13, R..." aria-label="Default" aria-describedby="inputGroup-sizing-default">
               </div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Actors</span>
+                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Actors</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" placeholder="actor one, actor 2..." aria-label="Default" aria-describedby="inputGroup-sizing-default">
               </div>
               <!--Filter/Admin Buttons-->
               <button type="button" class="button-book-now">Filter</button>
@@ -153,28 +150,6 @@
                 <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
             </div>
           </div>
-          
-
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-  crossorigin="anonymous"></script>
-
-  <script>
-    $(document).ready(function() {
-      $.ajax( {
-        url: "/isLoggedIn",
-        type: "GET",
-        success: function(result) {
-          if (result.status == true) $('#loginButton').remove();
-          else $('#profileButton').remove();
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          console.log('failure');
-        }
-      });
-    });
-  </script>
-
 </body>
 
 </html>
