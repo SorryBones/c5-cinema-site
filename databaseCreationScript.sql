@@ -26,7 +26,9 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_ratings` (
   PRIMARY KEY (`ratings_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
-
+INSERT INTO ENUM_ratings(ratings_id, ratings_name) VALUES (1, "PG-13");
+INSERT INTO ENUM_ratings(ratings_id, ratings_name) VALUES (2, "PG");
+INSERT INTO ENUM_ratings(ratings_id, ratings_name) VALUES (3, "R");
 
 -- -----------------------------------------------------
 -- Table `NewCES`.`ENUM_status`
@@ -38,6 +40,9 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_status` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
+INSERT INTO ENUM_status(status_id, status_name) VALUES (1, "active");
+INSERT INTO ENUM_status(status_id, status_name) VALUES (2, "inactive");
+INSERT INTO ENUM_status(status_id, status_name) VALUES (3, "suspended");
 
 
 -- -----------------------------------------------------
@@ -50,6 +55,9 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_ticketType` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
+INSERT INTO ENUM_ticketType(tickettype_id, tickettyoe_name) VALUES (1, "adult");
+INSERT INTO ENUM_ticketType(tickettype_id, tickettyoe_name) VALUES (2, "child");
+INSERT INTO ENUM_ticketType(tickettype_id, tickettyoe_name) VALUES (3, "senior");
 
 
 -- -----------------------------------------------------
