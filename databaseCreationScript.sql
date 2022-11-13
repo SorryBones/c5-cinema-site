@@ -62,6 +62,8 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_userType` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
+INSERT INTO ENUM_userType(utype_id, utype_name) VALUES (1, "admin");
+INSERT INTO ENUM_userType(utype_id, utype_name) VALUES (2, "customer");
 
 
 -- -----------------------------------------------------
