@@ -177,7 +177,15 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`promotions` (
   `start_date` DATE NULL DEFAULT NULL,
   `end_date` DATE NULL DEFAULT NULL,
   `promo_code` VARCHAR(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`promo_id`))
+  `movie_id` INT NOT NULL,
+  `discount` INT NULL,
+  PRIMARY KEY (`promo_id`,`movie_id`),
+  INDEX `fk_promotions_movie1_idx` (`movie_id` ASC) VISIBLE,
+  CONSTRAINT `fk_promotions_movie1`
+    FOREIGN KEY (`movie_id`)
+    REFERENCES `newces`.`movie` (`id_movie`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
