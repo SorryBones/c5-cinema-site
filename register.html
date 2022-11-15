@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,81 +8,98 @@
 	<link href="style.css" rel="stylesheet">
 	<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
 	<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<style>
-	body {
-		margin: 0;
-		font-family: "Lexend Deca";
-		background-color: black;
-	}
+		body {
+			margin: 0;
+			font-family: "Lexend Deca";
+			background-color: black;
+		}
 
-	
-	.responsive {
-		width: 100%;
-		height: auto;
-	}
- 
-  	</style>
+
+		.responsive {
+			width: 100%;
+			height: auto;
+		}
+	</style>
 </head>
 
 <body style="padding-top:55px ; background-color: black">
-  
+
 	<!--Navbar-->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
 		<a class="navbar-brand" href="index.html">UGA Flix</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
 		</button>
-  
+
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-			  <form action="/index.html">
-				<input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
-			  </form>
-			  <form action="/browse.html">
-				<input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
-			  </form>
-			  <form action="/profile.html">
-				<input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
-			  </form>
-			  <form action="/login.html">
-				<input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
-			  </form>
+				<form action="/index.html">
+					<input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+				</form>
+				<form action="/browse.html">
+					<input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+				</form>
+				<form action="/profile.html">
+					<input class="btn" id="profileButton" type="submit" value="Profile"
+						style="background-color:#272727 ; color:white">
+				</form>
+				<form action="/login.html">
+					<input class="btn" id="loginButton" type="submit" value="Login"
+						style="background-color:#272727 ; color:white">
+				</form>
 			</ul>
 		</div>
-	  </nav>
+	</nav>
 
-  	<div class="div-base" style="width: 48%; float: left">
-		<h2 style="text-align: center"> Personal Information*</h2>
-		<form action="/register" method="POST" text-align="center">
-			<Label for="fname"> First Name:</Label><br>
-			<input class="form-register" type="text" id="fname" name="fname" placeholder="First Name..." required><br><br>
-			<Label for="lname"> Last Name:</Label><br>
-			<input class="form-register" type="text" id="lname" name="lname" placeholder="Last Name..." required>  <br><br>
-			<Label for="phone"> Phone Number: (###-###-####)</Label><br>
-			<input class="form-register" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
-			<Label for ="email"> Email Address: (example@mail.com)</Label><br>
-			<input class="form-register" type="text" id="email" name="email" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
-			<Label for="confemail"> Confirm Email Address: (example@mail.com)</Label><br>
-			<input class="form-register" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>  <br><br>
-			<Label for="fname"> Subscribe for Promotional Emails:</Label><br>
-			<input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh; margin-left: 10px" id="promotions" name="promotions">
-			<br><br><br>
-			<Label for ="password"> Password:</Label><br>
-			<input class="form-register" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
-			<Label for="confpassword"> Confirm Password:</Label><br>
-			<input class="form-register" type="password" id="confpassword" name="confpassword" placeholder="Confirm Password..." required>  <br><br>
+	<div class="div-base"
+		style="width:100% ; height:auto; max-height: auto; display: flex; flex-direction: row; align-items: flex-start; text-align: center; background-color: black; justify-content: space-between;">
+		<div class="div-base" style="width: 50%;">
+			<h2 style="text-align: center"> Personal Information*</h2>
+			<form action="/register" method="POST" text-align="center">
+				<Label for="fname"> First Name:</Label><br>
+				<input class="form-register" type="text" id="fname" name="fname" placeholder="First Name..."
+					required><br><br>
+				<Label for="lname"> Last Name:</Label><br>
+				<input class="form-register" type="text" id="lname" name="lname" placeholder="Last Name..." required>
+				<br><br>
+				<Label for="phone"> Phone Number: (###-###-####)</Label><br>
+				<input class="form-register" type="tel" id="phone" name="phone" placeholder="123-456-7890"
+					pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
+				<Label for="email"> Email Address: (example@mail.com)</Label><br>
+				<input class="form-register" type="text" id="email" name="email" placeholder="Example@mail.com"
+					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
+				<Label for="confemail"> Confirm Email Address: (example@mail.com)</Label><br>
+				<input class="form-register" type="text" id="confemail" name="confemail" placeholder="Example@mail.com"
+					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required> <br><br>
+				<Label for="fname"> Subscribe for Promotional Emails:</Label><br>
+				<input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh; margin-left: 10px"
+					id="promotions" name="promotions">
+				<br><br><br>
+				<Label for="password"> Password:</Label><br>
+				<input class="form-register" type="password" id="password" name="password" placeholder="Password..."
+					required> <br><br>
+				<Label for="confpassword"> Confirm Password:</Label><br>
+				<input class="form-register" type="password" id="confpassword" name="confpassword"
+					placeholder="Confirm Password..." required> <br><br>
 
-			<input type="submit" class="div-base" style="width:48%;height:13vh;float:left; border: 10px solid black; text-align: center; font-size: 45px;" value="Submit">
-  	</div>
+				<input type="submit" class="div-base"
+					style="width:48%;height:13vh;float:left; border: 10px solid black; text-align: center; font-size: 45px;"
+					value="Submit">
+		</div>
 
-  	<div class="div-base" style="width: 48%; float:right">
-		<h2 style="text-align: center">Home Address (Optional)</h2><br>
+		<div class="div-base" style="width: 48%;">
+			<h2 style="text-align: center">Home Address (Optional)</h2><br>
 			<Label for="homeStreet">Street Address:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="homeStreet" name="homeStreet" placeholder="123 example street"><br><br>
+			<input class="form-register" style="width:70%" type="text" id="homeStreet" name="homeStreet"
+				placeholder="123 example street"><br><br>
 
 			<Label for="homeCity">City:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="homeCity" name="homeCity" placeholder="Athens"><br><br>
+			<input class="form-register" style="width:70%" type="text" id="homeCity" name="homeCity"
+				placeholder="Athens"><br><br>
 
 			<Label for="homeState">State:</Label><br>
 			<select class="form-register" style="width:70%" id="homeState" name="homeState">
@@ -141,27 +157,33 @@
 			</select> <br><br>
 
 			<Label for="homeZip">Zip Code: (#####)</Label><br>
-			<input id="registerField" style="width:70%" type="text" id="homeZip" name="homeZip" placeholder="12345"><br><br>
-		<h2 style="text-align: center">Payment Information (Optional)</h2>
+			<input id="registerField" style="width:70%" type="text" id="homeZip" name="homeZip"
+				placeholder="12345"><br><br>
+			<h2 style="text-align: center">Payment Information (Optional)</h2>
 			<Label for="cardtype"> Card Type:</Label><br>
 			<select id="registerField" style="width:70%" id="cardtype" name="cardType">
 				<option value="Visa">Visa</option>
 				<option value="Mastercard">Mastercard</option>
 				<option value="AmericanExpress">American Express</option>
-				<option value="Discover">Discover</option></select> <br><br>
-			
+				<option value="Discover">Discover</option>
+			</select> <br><br>
+
 			<Label for="cardnumb"> Card Number: (#### #### #### ####)</Label><br>
-			<input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"><br><br>
-		
+			<input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####"
+				pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"><br><br>
+
 			<Label for="expDate"> Expiration Date: (##/####)</Label><br>
-			<input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern="[0-1]{1}[0-9]{1}/[0-9]{4}"><br><br>
+			<input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY"
+				pattern="[0-1]{1}[0-9]{1}/[0-9]{4}"><br><br>
 			<br>
 			<h4> Billing Address </h4>
 			<Label for="billingStreet"> Street Address:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="billingStreet" name="billingStreet" placeholder="123 example street"><br><br>
+			<input class="form-register" style="width:70%" type="text" id="billingStreet" name="billingStreet"
+				placeholder="123 example street"><br><br>
 
 			<Label for="billingCity"> City:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="billingCity" name="billingCity" placeholder="Athens"><br><br>
+			<input class="form-register" style="width:70%" type="text" id="billingCity" name="billingCity"
+				placeholder="Athens"><br><br>
 
 			<Label for="billingState"> State:</Label><br>
 			<select class="form-register" style="width:70%" id="billingState" name="billingState">
@@ -217,32 +239,33 @@
 				<option value="WV">WV</option>
 				<option value="WY">WY</option>
 			</select> <br><br>
-			
-			<Label for="billingZip"> Zip Code: (#####)</Label><br>
-			<input id="registerField" style="width:70%" type="text" id="billingZip" name="billingZip" placeholder="12345" pattern="[0-9]{5}"><br><br>
-		</form>
-  	</div>
-	
 
-	  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-	  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-	  crossorigin="anonymous"></script>
-	
-	  <script>
-		$(document).ready(function() {
-		  $.ajax( {
-			url: "/isLoggedIn",
-			type: "GET",
-			success: function(result) {
-			  if (result.status == true) $('#loginButton').remove();
-			  else $('#profileButton').remove();
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-			  console.log('failure');
-			}
-		  });
+			<Label for="billingZip"> Zip Code: (#####)</Label><br>
+			<input id="registerField" style="width:70%" type="text" id="billingZip" name="billingZip"
+				placeholder="12345" pattern="[0-9]{5}"><br><br>
+			</form>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+	<script>
+		$(document).ready(function () {
+			$.ajax({
+				url: "/isLoggedIn",
+				type: "GET",
+				success: function (result) {
+					if (result.status == true) $('#loginButton').remove();
+					else $('#profileButton').remove();
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					console.log('failure');
+				}
+			});
 		});
-	  </script>
-	
+	</script>
+
 </body>
+
 </html>
