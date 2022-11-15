@@ -90,8 +90,7 @@
       <input class="btn" type="submit" value="Update" style="background-color:red">
     </form>
     <br>
-    <h1>Subscribe for Promotions:</h1>
-    <h2><p id="promotion"></p></h2>
+    <h1>Subscribed for Promotions:</h1>
     <form action="/updatePromotion" method="POST">
         <input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh;" id="promotions" name="promotions">
         <input class="btn" type="submit" value="Update" style="background-color:red ; margin-left: 35px ; margin-top: 6px">
@@ -210,18 +209,8 @@
           $("#name").html(result.first_name + ' ' + result.last_name);
           $("#phone").html(result.phone_num);
           $("#email").html(result.email);
-          if (result.promo_subs == 'Y') $("#promotion").html("Currently Subscribed");
-          else $("#promotion").html("Currently Unsubscribed");
-      }});
-    });
-  </script>-
-
-  <script>
-    $(document).ready(function() {
-      $.ajax( {
-        url: "/userInfo",
-        type: "GET",
-        success: function(result) {
+          if (result.promo_subs == 'Y') $("#promotions").prop("checked", 1);
+          else $("#promotions").prop("checked", 0);
           $.ajax( {
             url: "/getAddress",
             dataType: 'json',

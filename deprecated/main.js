@@ -1,22 +1,21 @@
-/*
-* CMD + K + 1 to collapse level 1
-* CMD + K + J to uncollapse level 1
-*/
-
-const mysql = require('mysql');
 const express = require('express');
+const app = express();
+const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const encoder = bodyParser.urlencoded();
-const app = express();
 const nodemailer = require('nodemailer');
-const e = require('express');
+// const e = require('express');
 const crypto = require('crypto');
 
 app.use(express.static('.'));
 
+const utilRoutes = require('./util');
+app.use('', utilRoutes);
+
 var adminUserProfileId;
 var loggedIn = false;
 var currentUserID = -1;
+var currentCardID = -1;
 
 var verificationCode;
 
@@ -28,6 +27,22 @@ var isIncorrectPassword = false;
 const algorithm = "aes-256-cbc";
 const key ="12345678123456781234567812345678";
 const iv = "zAvR2NI87bBx746n";
+
+
+function encrypt(message) {
+    const encrypter = crypto.createCipheriv(algorithm, key, iv);
+    let encryptedMsg = encrypter.update(message, "utf8", "hex");
+    encryptedMsg += encrypter.final("hex");
+    return encryptedMsg;
+}
+
+function decrypt(encryptedMsg) {
+    const decrypter = crypto.createDecipheriv(algorithm, key, iv);
+    let decryptedMsg = decrypter.update(encryptedMsg, "hex", "utf8");
+    decryptedMsg += decrypter.final("utf8");
+    console.log(decryptedMsg)
+    return decryptedMsg;
+}
 
 // connect to database
 const connection = mysql.createConnection({
@@ -41,157 +56,13 @@ connection.connect(function(error) {
     else console.log("connected to database")
 })
 
-// set up database encryption
-function encrypt(message) {
-    const encrypter = crypto.createCipheriv(algorithm, key, iv);
-    let encryptedMsg = encrypter.update(message, "utf8", "hex");
-    encryptedMsg += encrypter.final("hex");
-    return encryptedMsg;
-}
-function decrypt(encryptedMsg) {
-    const decrypter = crypto.createDecipheriv(algorithm, key, iv);
-    let decryptedMsg = decrypter.update(encryptedMsg, "hex", "utf8");
-    decryptedMsg += decrypter.final("utf8");
-    console.log(decryptedMsg)
-    return decryptedMsg;
-}
-
-/* --------- UTIL --------- */
-
-app.post('/login', encoder, function(req,res) {
-    let email = req.body.email;
-    let password = req.body.password;
-
-    connection.query('SELECT * FROM user WHERE email = ? AND password = ?',[email, encrypt(password)],function(error,results,fields){
-        if (results.length > 0) {
-            isIncorrectPassword = false;
-            console.log('logged in');
-            loggedIn = true;
-            currentUserID = results[0].user_id;
-            res.redirect('/index.html');
-        } else {
-            isIncorrectPassword = true;
-            console.log('failed to log in');
-            res.redirect('/login.html');
-        }
-    })
+// ADMIN EDIT USER PROFILE
+app.post('/adminEditUserProfile', encoder, function(req,res) {
+    adminUserProfileId = req.body.user_id;
+    res.redirect('/adminEditUserProfile.html');
 })
 
-app.post('/forgotPassword', encoder, function(req,res) {
-    forgotPasswordEmail = req.body.email;
-    verificationCode = Math.floor(100000 + Math.random() * 900000);
-    let message = 'Return to the cinema site and enter this code to reset your password: ' + verificationCode;
-    sendEmail(forgotPasswordEmail, message);
-
-    res.redirect('/resetPassword.html')
-})
-
-app.post('/forgotUpdatePassword', encoder, function(req,res) {
-    let newPassword = req.body.newPassword;
-    let confirmNewPassword = req.body.confirmNewPassword;
-
-    if (req.body.regCode != verificationCode) {
-        console.log('wrong code');
-    }
-    else {
-        if (newPassword != confirmNewPassword) {
-            console.log('passwords dont match');
-        }
-        else {
-            connection.query('SELECT * FROM user WHERE email = ?;',[forgotPasswordEmail],function(error,results,fields) {
-                let user_id = results[0].user_id;
-                connection.query('UPDATE user SET password = ? WHERE user_id = ?',[encrypt(newPassword), user_id],function(error,results,fields) {
-                    console.log('password updated');
-                    res.redirect('/login.html');
-                });
-            });
-        }
-    }
-})
-
-app.post('/getAddress', encoder, function(req,res) {
-    let address_id = req.body.id;
-    const query = 'SELECT * FROM address WHERE address_id = ?';
-    connection.query(query,[address_id],function(error,results,fields) {
-        if (results.length > 0) {
-            res.json(results[0]);
-        } else {
-            res.json({status: false});
-        }
-    });
-})
-
-app.get("/userInfo", function(req,res) {
-    if (currentUserID != -1) { // if non-null
-        const query = 'SELECT * FROM user WHERE user_id = ?';
-        connection.query(query,[currentUserID],function(error,results,fields) {
-            if (results.length > 0) {
-                res.json(results[0]);
-            } else {
-                res.json({status: false});
-            }
-        });
-    }
-})
-
-app.get('/isLoggedIn', function(req,res) {
-    if (loggedIn) res.json({status: true});
-    else res.json({status: false});
-})
-
-app.get('/logout', function(req,res) {
-    console.log('logged out')
-    loggedIn = false;
-    currentUserID = -1;
-    res.redirect('/login.html');
-})
-
-function sendEmail(email, message) {
-    let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'flixuga@gmail.com',
-        pass: 'ynnjdiferwibooty'
-      }
-    });
-    
-    let mailOptions = {
-      from: 'flixuga@gmail.com',
-      to: email,
-      subject: 'Cinema Site Automated Message',
-      text: message
-    };
-    
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
-}
-
-/* --------- ADMIN --------- */
-
-app.post('/addPromotion', encoder, function(req,res) {
-    let message = req.body.message;
-    let promotion = 'Y';
-    console.log(message);
-    connection.query('SELECT * FROM user WHERE promo_subs = ?',[promotion],function(error,results,fields) {
-    console.log(results);
-
-    
-    let title = 'Promotion Updated'
-
-    for(let index = 0; index < results.length; index++) {
-        let email = results[index].email;
-       sendEmail(email, message, title);
-    }
-
-    res.redirect('/adminMain.html');
-    });
-})
-
+// GET ALL USERS
 app.get('/getAllUsers', encoder, function(req,res) {
     const query = 'SELECT * FROM user';
     connection.query(query,[],function(error,results,fields) {
@@ -199,144 +70,37 @@ app.get('/getAllUsers', encoder, function(req,res) {
     });
 })
 
-app.post('/adminEditUserProfile', encoder, function(req,res) {
-    adminUserProfileId = req.body.user_id;
-    res.redirect('/adminEditUserProfile.html');
-})
-
-app.get("/adminGetUserInfo", function(req,res) {
-    const query = 'SELECT * FROM user WHERE user_id = ?';
-    connection.query(query,[adminUserProfileId],function(error,results,fields) {
-        if (results.length > 0) {
-            res.json(results[0]);
-        } else {
-            res.json({status: false});
-        }
+// GET ALL USERS
+app.get('/getAllUsers', encoder, function(req,res) {
+    const query = 'SELECT * FROM user';
+    connection.query(query,[],function(error,results,fields) {
+        res.json(results);
     });
 })
 
-app.post('/adminUpdateName', encoder, function(req,res) {
-    let firstName = req.body.fname;
-    let lastName = req.body.lname;
-    const query = 'UPDATE user SET first_name = ?, last_name = ? WHERE user_id = ?';
-    connection.query(query,[firstName, lastName, adminUserProfileId],function(error,results,fields) {
-        console.log('name updated');
-        connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
-            let email = results[0].email;
-            let message = 'Your account name has been updated!'
-            sendEmail(email, message);
-        });
-    });
-    res.redirect('/adminEditUserProfile.html');
-})
+// UPDATE CARD
+app.post('/updateCard', encoder, function(req,res) {
+    let cardType = req.body.cardType;
+    let cardNumb = req.body.cardNumb;
+    let cardExpiration = req.body.expDate;
 
-app.post('/adminUpdatePhone', encoder, function(req,res) {
-    let phone = req.body.phone;
-    const query = 'UPDATE user SET phone_num = ? WHERE user_id = ?';
-    connection.query(query,[phone, adminUserProfileId],function(error,results,fields) {
-        console.log('phone updated');
-        connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
-            let email = results[0].email;
-            let message = 'Your account phone number has been updated!'
-            sendEmail(email, message);
-        });
-    });
-    res.redirect('/adminEditUserProfile.html');
-})
 
-app.post('/adminUpdateUserType', encoder, function(req,res) {
-    let utype;
-    if (req.body.utype == 'on') utype = 1
-    else utype = 2
-    const query = 'UPDATE user SET utype_id = ? WHERE user_id = ?';
-    connection.query(query,[utype, adminUserProfileId],function(error,results,fields) {
-        console.log('utype updated');
-        connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
-            let email = results[0].email;
-            let message = 'Your account type has been updated!'
-            sendEmail(email, message);
-        });
-    });
-    res.redirect('/adminEditUserProfile.html');
-})
-
-app.post('/adminUpdatePromotion', encoder, function(req,res) {
-    let promotions;
-    if (req.body.promotions == 'on') promotions = 'Y'
-    else promotions = 'N'
-    const query = 'UPDATE user SET promo_subs = ? WHERE user_id = ?';
-    connection.query(query,[promotions, adminUserProfileId],function(error,results,fields) {
-        console.log('promotion updated');
-        connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
-            let email = results[0].email;
-            let message = 'Your account promotion settings have been updated!'
-            sendEmail(email, message);
-        });
-    });
-    res.redirect('/adminEditUserProfile.html');
-})
-
-app.post('/adminUpdatePassword', encoder, function(req,res) {
-    let newPassword = req.body.newPassword;
-    let confirmNewPassword = req.body.confirmNewPassword;
-
-    if (newPassword != confirmNewPassword) {
-        console.log('passwords dont match');
-    }
-    else {
-        connection.query('UPDATE user SET password = ? WHERE user_id = ?',[encrypt(newPassword), adminUserProfileId],function(error,results,fields) {
-            console.log('password updated');
-            connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
+    connection.query('SELECT * FROM user WHERE user_id = ?',[currentUserID],function(error,results,fields) {
+        let cardId = results[0].cardId;
+        const query = 'UPDATE address SET cardType = ?, cardNumb = ?, cardExpiration = ?,  WHERE cardId = ?'
+        connection.query(query,[cardType, cardNumb, cardExpiration] ,function(error,results,fields) {
+            console.log('card updated');
+            connection.query('SELECT * FROM user WHERE user_id = ?;',[currentUserID],function(error,results,fields) {
                 let email = results[0].email;
-                let message = 'Your account password has been updated!'
+                let message = 'Your account card has been updated!'
                 sendEmail(email, message);
             });
+            res.redirect('/editProfile.html');
         });
-        res.redirect('/adminEditUserProfile.html');
-    }
-})
-
-app.post('/adminUpdateHomeAddress', encoder, function(req,res) {
-    let street = req.body.street;
-    let city = req.body.city;
-    let state = req.body.state;
-    let zip = req.body.zip;
-
-    connection.query('SELECT * FROM user WHERE user_id = ?',[adminUserProfileId],function(error,results,fields) {
-        let homeAddressId = results[0].home_address_id;
-        if (homeAddressId != null) {
-            const query = 'UPDATE address SET street = ?, city = ?, state = ?, zipcode = ? WHERE address_id = ?'
-            connection.query(query,[street, city, state, zip, homeAddressId],function(error,results,fields) {
-                console.log('address updated');
-                connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
-                    let email = results[0].email;
-                    let message = 'Your account home address has been updated!'
-                    sendEmail(email, message);
-                });
-                res.redirect('/adminEditUserProfile.html');
-            });
-        }
-        else { // EXCEPTION: home address not assigned yet
-            connection.query('INSERT INTO address (street, city, state, country, zipcode) VALUES (?, ?, ?, ?, ?);',[street, city, state, 'United States', zip],function(error,results,fields) {
-            });
-            connection.query('SELECT * FROM address WHERE street = ? AND city = ? AND state = ? AND country = ? AND zipcode = ?;',[street, city, state, 'United States', zip],function(error,results,fields) {
-                let address_id = results[0].address_id;
-                connection.query('UPDATE user SET home_address_id = ? WHERE user_id = ?;',[address_id, adminUserProfileId],function(error,results,fields) {
-                    console.log('created address');
-                    connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
-                        let email = results[0].email;
-                        let message = 'Your account home address has been updated!'
-                        sendEmail(email, message);
-                    });
-                    res.redirect('/adminEditUserProfile.html');
-                });
-            });
-        }
     });
 })
 
-/* --------- USER --------- */
-
+// VERIFY PASSWORD
 app.get("/isIncorrectPassword", function(req,res) {
     if (isIncorrectPassword) res.json({status: true});
     else res.json({status: false});
@@ -344,6 +108,27 @@ app.get("/isIncorrectPassword", function(req,res) {
     isIncorrectPassword = false;
 })
 
+// LOGIN
+// app.post('/login', encoder, function(req,res) {
+//     let email = req.body.email;
+//     let password = req.body.password;
+
+//     connection.query('SELECT * FROM user WHERE email = ? AND password = ?',[email, encrypt(password)],function(error,results,fields){
+//         if (results.length > 0) {
+//             isIncorrectPassword = false;
+//             console.log('logged in');
+//             loggedIn = true;
+//             currentUserID = results[0].user_id;
+//             res.redirect('/index.html');
+//         } else {
+//             isIncorrectPassword = true;
+//             console.log('failed to log in');
+//             res.redirect('/login.html');
+//         }
+//     })
+// })
+
+// REGISTER
 app.post('/register', encoder, function(req,res) {
     registerBody = req.body;
     if (req.body.email != req.body.confemail) {
@@ -363,6 +148,7 @@ app.post('/register', encoder, function(req,res) {
     }
 })
 
+// VERIFY & CREATE USER
 app.post('/verify', encoder, function(req,res) {
     if (req.body.regCode != verificationCode) {
         console.log('wrong code');
@@ -459,6 +245,63 @@ app.post('/verify', encoder, function(req,res) {
     }
 })
 
+// FORGOT PASSWORD
+app.post('/forgotPassword', encoder, function(req,res) {
+    forgotPasswordEmail = req.body.email;
+    verificationCode = Math.floor(100000 + Math.random() * 900000);
+    let message = 'Return to the cinema site and enter this code to reset your password: ' + verificationCode;
+    sendEmail(forgotPasswordEmail, message);
+
+    res.redirect('/resetPassword.html')
+})
+
+// FORGOT UPDATE PASSWORD
+app.post('/forgotUpdatePassword', encoder, function(req,res) {
+    let newPassword = req.body.newPassword;
+    let confirmNewPassword = req.body.confirmNewPassword;
+
+    if (req.body.regCode != verificationCode) {
+        console.log('wrong code');
+    }
+    else {
+        if (newPassword != confirmNewPassword) {
+            console.log('passwords dont match');
+        }
+        else {
+            connection.query('SELECT * FROM user WHERE email = ?;',[forgotPasswordEmail],function(error,results,fields) {
+                let user_id = results[0].user_id;
+                connection.query('UPDATE user SET password = ? WHERE user_id = ?',[encrypt(newPassword), user_id],function(error,results,fields) {
+                    console.log('password updated');
+                    res.redirect('/login.html');
+                });
+            });
+        }
+    }
+})
+
+// // ADD CARD
+// app.post('/updateCard', encoder, function(req,res) {
+//     let cardType = req.body.cardType;
+//     let cardNumber = req.body.cardNumb;
+//     let cardExpiration = req.body.expDate;
+
+//     const cardExpirationArray = cardExpiration.split('');
+
+//     // create & add payment to user
+//     connection.query('INSERT INTO address (street, city, state, country, zipcode) VALUES (?, ?, ?, ?, ?);',[billingStreet, billingCity, billingState, 'United States', billingZip],function(error,results,fields) {
+//         console.log('successfully added address');
+//     });
+//     connection.query('SELECT * FROM address WHERE street = ? AND city = ? AND state = ? AND country = ? AND zipcode = ?;',[billingStreet, billingCity, billingState, 'United States', billingZip],function(error,results,fields) {
+//         let paymentCard_id = results[0].address_id;
+//         connection.query('INSERT INTO paymentCard (card_num, type, expiration_month, expiration_year, user_id, address_id) VALUES (?, ?, ?, ?, ?, ?);',[encrypt(cardNumber), encrypt(cardType), encrypt(cardExpirationArray[0] + cardExpirationArray[1]), encrypt(cardExpirationArray[3] + cardExpirationArray[4] + cardExpirationArray[5] + cardExpirationArray[6]), currentUserID, address_id],function(error,results,fields) {
+//                 console.log('created card');
+//         });
+//     });
+
+//     res.redirect('/usercards.html');
+// })
+
+// ADD CARD
 app.post('/addCard', encoder, function(req,res) {
     let cardType = req.body.cardType;
     let cardNumber = req.body.cardNumb;
@@ -484,21 +327,25 @@ app.post('/addCard', encoder, function(req,res) {
     res.redirect('/usercards.html');
 })
 
+// GET CARD
 app.get('/getCard', function(req,res) {
-    const query = 'SELECT * FROM paymentCard WHERE user_id = ?';
-    connection.query(query,[currentUserID],function(error,results,fields) {
-        if (results.length > 0) {
-            results[0].card_num = decrypt(results[0].card_num);
-            results[0].type = decrypt(results[0].type);
-            results[0].expiration_month = decrypt(results[0].expiration_month);
-            results[0].expiration_year = decrypt(results[0].expiration_year);
-            res.json(results[0]);
-        } else {
-            res.json({status: false});
-        }
-    });
+    if (currentUserID != -1) { // if non-null
+        const query = 'SELECT * FROM paymentCard WHERE user_id = ?';
+        connection.query(query,[currentUserID],function(error,results,fields) {
+            if (results.length > 0) {
+                results[0].card_num = decrypt(results[0].card_num);
+                results[0].type = decrypt(results[0].type);
+                results[0].expiration_month = decrypt(results[0].expiration_month);
+                results[0].expiration_year = decrypt(results[0].expiration_year);
+                res.json(results[0]);
+            } else {
+                res.json({status: false});
+            }
+        });
+    }
 })
 
+// DELETE CARD
 app.post('/deleteCard', encoder, function(req,res) {
     // delete billing address
     connection.query('SELECT * FROM paymentCard WHERE paymentCard_id = ?',[req.body.id],function(error,results,fields) {
@@ -515,6 +362,7 @@ app.post('/deleteCard', encoder, function(req,res) {
     res.redirect('/userCards.html');
 })
 
+// UPDATE NAME
 app.post('/updateName', encoder, function(req,res) {
     let firstName = req.body.fname;
     let lastName = req.body.lname;
@@ -530,6 +378,7 @@ app.post('/updateName', encoder, function(req,res) {
     res.redirect('/editProfile.html');
 })
 
+// UPDATE PHONE
 app.post('/updatePhone', encoder, function(req,res) {
     let phone = req.body.phone;
     const query = 'UPDATE user SET phone_num = ? WHERE user_id = ?';
@@ -544,6 +393,7 @@ app.post('/updatePhone', encoder, function(req,res) {
     res.redirect('/editProfile.html');
 })
 
+// UPDATE PROMOTION
 app.post('/updatePromotion', encoder, function(req,res) {
     let promotions;
     if (req.body.promotions == 'on') promotions = 'Y'
@@ -560,6 +410,7 @@ app.post('/updatePromotion', encoder, function(req,res) {
     res.redirect('/editProfile.html');
 })
 
+// UPDATE PASSWORD
 app.post('/updatePassword', encoder, function(req,res) {
     let currentPassword = req.body.currentPassword;
     let newPassword = req.body.newPassword;
@@ -588,6 +439,7 @@ app.post('/updatePassword', encoder, function(req,res) {
     }
 })
 
+// UPDATE ADDRESS
 app.post('/updateHomeAddress', encoder, function(req,res) {
     let street = req.body.street;
     let city = req.body.city;
@@ -627,46 +479,76 @@ app.post('/updateHomeAddress', encoder, function(req,res) {
     });
 })
 
-app.post('/updateCard', encoder, function(req,res) {
-    registerBody = req.body;
-    cardType = registerBody.cardType;
-    cardNumber = registerBody.cardNumb;
-    cardExpiration = registerBody.expDate;
-    const cardExpirationArray = cardExpiration.split('');
-
-    connection.query('SELECT * FROM paymentcard WHERE user_id = ?',[currentUserID],function(error,results,fields) {
-        const query = 'UPDATE paymentcard SET type = ?, card_Num = ?, expiration_month = ?, expiration_year = ?  WHERE user_id = ?'
-        connection.query(query,[encrypt(cardType), encrypt(cardNumber), encrypt(cardExpirationArray[0] + cardExpirationArray[1]), encrypt(cardExpirationArray[3] + cardExpirationArray[4] + cardExpirationArray[5] + cardExpirationArray[6]), currentUserID] ,function(error,results,fields) {
-            connection.query('SELECT * FROM user WHERE user_id = ?;',[currentUserID],function(error,results,fields) {
-                let email = results[0].email;
-                let message = 'Your account card has been updated!'
-                sendEmail(email, message);
-            });
-            res.redirect('/editPayment.html');
-        });
+// GET ADDRESS
+app.post('/getAddress', encoder, function(req,res) {
+    let address_id = req.body.id;
+    const query = 'SELECT * FROM address WHERE address_id = ?';
+    connection.query(query,[address_id],function(error,results,fields) {
+        if (results.length > 0) {
+            res.json(results[0]);
+        } else {
+            res.json({status: false});
+        }
     });
 })
 
-app.post('/updateBillingAddress', encoder, function(req,res) {
-    let street = req.body.street;
-    let city = req.body.city;
-    let state = req.body.state;
-    let zip = req.body.zip;
-
-    const query = 'SELECT * FROM paymentCard WHERE user_id = ?';
-    connection.query(query,[currentUserID],function(error,results,fields) {
-        let billingAddressId = results[0].address_id;
-        const query = 'UPDATE address SET street = ?, city = ?, state = ?, zipcode = ? WHERE address_id = ?'
-        connection.query(query,[street, city, state, zip, billingAddressId],function(error,results,fields) {
-            console.log('address updated');
-            connection.query('SELECT * FROM user WHERE user_id = ?;',[currentUserID],function(error,results,fields) {
-                let email = results[0].email;
-                let message = 'Your account billing address has been updated!'
-                sendEmail(email, message);
-            });
-            res.redirect('/editPayment.html');
+// GET USER
+app.get("/userInfo", function(req,res) {
+    if (currentUserID != -1) { // if non-null
+        const query = 'SELECT * FROM user WHERE user_id = ?';
+        connection.query(query,[currentUserID],function(error,results,fields) {
+            if (results.length > 0) {
+                res.json(results[0]);
+            } else {
+                res.json({status: false});
+            }
         });
-    });
+    }
 })
+
+// UPDATE TOP BAR (show Profile or Login button)
+app.get('/isLoggedIn', function(req,res) {
+    if (loggedIn) res.json({status: true});
+    else res.json({status: false});
+})
+
+// LOGOUT
+app.get('/logout', function(req,res) {
+    console.log('logged out')
+    loggedIn = false;
+    currentUserID = -1;
+    res.redirect('/login.html');
+})
+
+// SEND EMAIL
+function sendEmail(email, message) {
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'kofireevesmiller@gmail.com',
+        pass: 'kqpxvcknnzlqquhi'
+      }
+    });
+    
+    let mailOptions = {
+      from: 'kofireevesmiller@gmail.com',
+      to: email,
+      subject: 'Verify Your Account',
+      text: message
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+}
 
 app.listen(4000);
+
+// module.exports = {
+//     currentUserID: currentUserID,
+// };
+module.exports.currentUserID = currentUserID;

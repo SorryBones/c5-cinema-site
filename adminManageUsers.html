@@ -36,78 +36,21 @@
     </div>
   </nav>
 
-          <!--Movie List-->
-          <div class="div-browse-entry">
-            <div class="div-browse-text">
-                <p>NAME:            Rusty Shackleford</p>
-                <p>ID:              74921</p>
-                <p>PHONE:           4047185028</p>
-                <p>EMAIL:           rshack@yahoo.com</p>
-                <a><button type="button" class="button-book-now">Suspend</button></a>
-                <a><button type="button" class="button-book-now">Edit Information</button></a>
-            </div>
-          </div>
+	<div class="div-browse-entry" style="text-align:center">
+		<form action="/adminEditUserProfile" method="POST" text-align="center">
+			<Label for="email" style="font-size: 25px"> User ID: </Label>
+			<input class="form-register" type="text" id="user_id" name="user_id" placeholder="id" style="width: 10%" required><br><br>
+      <input type="submit" class="button-book-admin" value="Edit Information"><br><br>
+		</form>
+	</div>
 
-          <div class="div-browse-entry">
-            <div class="div-browse-text">
-                <p>NAME:            McLovin</p>
-                <p>ID:              95748</p>
-                <p>PHONE:           4042649077</p>
-                <p>EMAIL:           mcbadboy@gmail.com</p>
-                <a><button type="button" class="button-book-now">Suspend</button></a>
-                <a><button type="button" class="button-book-now">Edit Information</button></a>
-            </div>
-          </div>
-
-          <div class="div-browse-entry">
-            <div class="div-browse-text">
-                <p>NAME:            Harry Callahan</p>
-                <p>ID:              61547</p>
-                <p>PHONE:           4049275002</p>
-                <p>EMAIL:           lilfriend@gmail.com</p>
-                <a><button type="button" class="button-book-now">Suspend</button></a>
-                <a><button type="button" class="button-book-now">Edit Information</button></a>
-            </div>
-          </div>
-
-          <div class="div-browse-entry">
-            <div class="div-browse-text">
-                <p>NAME:            Winston Smith</p>
-                <p>ID:              01984</p>
-                <p>PHONE:           8061949001</p>
-                <p>EMAIL:           bbSmith@gmail.com</p>
-                <a><button type="button" class="button-book-now">Suspend</button></a>
-                <a><button type="button" class="button-book-now">Edit Information</button></a>
-            </div>
-          </div>
-
-          <div class="div-browse-entry">
-            <div class="div-browse-text">
-                <p>NAME:            Yudo Rama</p>
-                <p>ID:              75849</p>
-                <p>PHONE:           4048874620</p>
-                <p>EMAIL:           yud0r4m4@gmail.com</p>
-                <a><button type="button" class="button-book-now">Suspend</button></a>
-                <a><button type="button" class="button-book-now">Edit Information</button></a>
-            </div>
-          </div>
-
-          <div class="div-browse-entry">
-            <div class="div-browse-text">
-                <p>NAME:            Charles Dodgson</p>
-                <p>ID:              11370</p>
-                <p>PHONE:           1234567890</p>
-                <p>EMAIL:           charlesdodg@gmail.com</p>
-                <a><button type="button" class="button-book-now">Suspend</button></a>
-                <a><button type="button" class="button-book-now">Edit Information</button></a>
-            </div>
-          </div>
-          
+  <div class="div-browse-entry" id="browseEntry"></div>
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>
 
+  <!-- TOP BAR -->
   <script>
     $(document).ready(function() {
       $.ajax( {
@@ -122,6 +65,60 @@
         }
       });
     });
+  </script>
+
+  <!-- LIST USERS -->
+  <script>
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/getAllUsers",
+        type: "GET",
+        success: function(result1) {
+          result1.forEach(createUserRow);
+          function createUserRow(result) {
+            var newDiv = document.createElement('div');
+            console.log(result);
+
+            var userType;
+            if (result.utype_id == 1) userType = "Admin";
+            else userType = "User";
+
+            var isSubscribed;
+            if (result.promo_subs == "Y") isSubscribed = "Subscribed";
+            else isSubscribed = "Unsubscribed";
+
+            let i = 1;
+
+            newDiv.innerHTML = "ID: " + result.user_id + "<br>" 
+                            + "Name: " + result.first_name + ' ' + result.last_name + "<br>"
+                            + "Phone: " + result.phone_num + "<br>"
+                            + "Email: " + result.email + "<br>"
+                            + "Promotions: " + isSubscribed + "<br>"
+                            + "User Type: " + userType + "<br>" + "<br>";
+
+            newDiv.className = 'div-browse-text';
+            document.getElementById('browseEntry').appendChild(newDiv);
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
+  <script> // EDIT INFORMATION OF USER
+    function editInformation(id) {
+      console.log(id);
+      //$.ajax( {
+      //  url: "/adminEditUserProfile",
+      //  type: "POST",
+      //  dataType: 'json',
+      //  contentType: 'application/x-www-form-urlencoded',
+      //  data: $.param({user_id: id}),
+      //  processData: false
+      //});
+    }
   </script>
 
 </body>

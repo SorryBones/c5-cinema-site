@@ -247,13 +247,16 @@ li a:hover:not(.active) {
 }
 
 .div-browse-entry {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
 	color: whitesmoke;
 	background-color: #272727;
 	position: left;
 	height: 100%;
 	text-align: left;
 	vertical-align: middle;
-	border: 16px solid #cc0800;
+	border: 16px solid black;
     overflow: auto;
 	padding: .5em;
 }
@@ -360,7 +363,6 @@ li a:hover:not(.active) {
   	text-decoration: none;
   	display: inline-block;
   	font-size: 16px;
-	margin-top: 10px;
 }
 
 .button-book-admin {
