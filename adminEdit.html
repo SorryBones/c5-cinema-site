@@ -1,152 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>UGA Flix</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="Home page" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>UGA Flix</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Home page" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body style="padding-top:55px ; background-color: black">
-  
+
   <!--Navbar-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
     <a class="navbar-brand" href="index.html">UGA Flix</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <form action="/index.html">
-            <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/browse.html">
-            <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/profile.html">
-            <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/login.html">
-            <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
-          </form>
-        </ul>
+      <ul class="navbar-nav mr-auto">
+        <form action="/index.html">
+          <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/browse.html">
+          <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/profile.html">
+          <input class="btn" id="profileButton" type="submit" value="Profile"
+            style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/login.html">
+          <input class="btn" id="loginButton" type="submit" value="Login"
+            style="background-color:#272727 ; color:white">
+        </form>
+      </ul>
     </div>
   </nav>
 
-          <!--Movie List-->
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster1Indemnity.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           Indemnity</p>
-                <p>GENRE:           Action, Crime, Thriller</p>
-                <p>AGE RATING:      R</p>
-                <p>RELEASE DATE:    February 13, 2022</p>
-                <p>RUN TIME:        2h 3m</p>
-                <p>CAST:            Jared Geduld, Gail Mabalane, Andre Jacobs</p>
-                <p>DESCRIPTION:     An ex-Cape Town fireman's world is rocked when he wakes up next to his wife's body with no recollection of what transpired and all evidence pointing to him as the killer.</p>
-                <a href="adminEditEntry.html"><button type="button" class="button-book-now">Edit Info/Prices</button></a>
-                <a href="book.html"><button type="button" class="button-book-now">Remove</button></a>
-            </div>
-          </div>
+  <!--Many examples given, take one and make a loop that draws from db-->
+  <!--Entry1-->
+  <div class="flex-entry-container">
+    <img class="img-browse-entry" style="margin: 5px;" src="images/poster1Indemnity.png" />
+    <div class="flex-entry-content">
+      <div class="flex-entry-content-line">
+        <p>TITLE: Indemnity</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>GENRE: Action, Crime, Thriller</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>AGE RATING: R</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RELEASE DATE: February 13, 2022</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RUN TIME: 2h 3m</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>CAST: Jared Geduld, Gail Mabalane, Andre Jacobs</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>DESCRIPTION: An ex-Cape Town fireman's world is rocked when he wakes up next to his wife's body with no
+          recollection of what transpired and all evidence pointing to him as the killer.</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <a href="adminEditEntry.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Info</button></a>
+        <a href="adminEditShowtimes.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Showtimes</button></a>
+        <a href="browse.html"><button type="button" style="margin: 5px;" class="button-book-now">Remove</button></a>
+      </div>
+    </div>
+  </div>
 
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster2Morbius.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           Morbius the Musical</p>
-                <p>GENRE:           Action, Adventure, Horror</p>
-                <p>AGE RATING:      PG-13</p>
-                <p>RELEASE DATE:    March 23, 2022</p>
-                <p>RUN TIME:        1h 44m</p>
-                <p>CAST:            Jared Leto, Matt Smith, Adria Arjona</p>
-                <p>DESCRIPTION:     Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead.</p>
-                <a href="adminEditEntry.html"><button type="button" class="button-book-now">Edit Info/Prices</button></a>
-                <a href="book.html"><button type="button" class="button-book-now">Remove</button></a>
-            </div>
-          </div>
+  <!--Entry2-->
+  <div class="flex-entry-container">
+    <img class="img-browse-entry" style="margin: 5px;" src="images/poster2Morbius.png" />
+    <div class="flex-entry-content">
+      <div class="flex-entry-content-line">
+        <p>TITLE: Morbius the Musical</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>GENRE: Action, Adventure, Horror</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>AGE RATING: PG-13</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RELEASE DATE: March 11, 2022</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RUN TIME: 1h 44m</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>CAST: Jared Leto, Matt Smith, Adria Arjona</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>DESCRIPTION: Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently
+          infects himself with a form of vampirism instead.</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <a href="adminEditEntry.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Info</button></a>
+        <a href="adminEditShowtimes.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Showtimes</button></a>
+        <a href="browse.html"><button type="button" style="margin: 5px;" class="button-book-now">Remove</button></a>
+      </div>
+    </div>
+  </div>
 
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster3AdamProject.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           The Adam Project</p>
-                <p>GENRE:           Action, Adventure, Comedy</p>
-                <p>AGE RATING:      PG-13</p>
-                <p>RELEASE DATE:    March 11, 2022</p>
-                <p>RUN TIME:        1h 46m</p>
-                <p>CAST:            Ryan Reynolds, Walker Scobell, Mark Ruffalo</p>
-                <p>DESCRIPTION:     After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with his 12-year-old self for a mission to save the future.</p>
-                <a href="adminEditEntry.html"><button type="button" class="button-book-now">Edit Info/Prices</button></a>
-                <a href="book.html"><button type="button" class="button-book-now">Remove</button></a>
-            </div>
-          </div>
+  <!--Entry3-->
+  <div class="flex-entry-container">
+    <img class="img-browse-entry" style="margin: 5px;" src="images/poster3AdamProject.png" />
+    <div class="flex-entry-content">
+      <div class="flex-entry-content-line">
+        <p>TITLE: The Adam Project</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>GENRE: Action, Adventure, Comedy</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>AGE RATING: PG-13</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RELEASE DATE: March 11, 2022</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RUN TIME: 1h 46m</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>CAST: Ryan Reynolds, Walker Scobell, Mark Ruffalo</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>DESCRIPTION: After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with
+          his
+          12-year-old self for a mission to save the future.</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <a href="adminEditEntry.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Info</button></a>
+        <a href="adminEditShowtimes.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Showtimes</button></a>
+        <a href="browse.html"><button type="button" style="margin: 5px;" class="button-book-now">Remove</button></a>
+      </div>
+    </div>
+  </div>
 
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster4FantasticFour.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           The Fabulous Four</p>
-                <p>GENRE:           Drama, Comedy, Romance, Crime, Horror, Action, Adventure</p>
-                <p>AGE RATING:      TV-Y</p>
-                <p>RELEASE DATE:    October 13, 2022</p>
-                <p>RUN TIME:        4h 4m</p>
-                <p>CAST:            John Krasinski, Samuel L. Jackson, Scarlett Johansson</p>
-                <p>DESCRIPTION:     A flexible scientist, a hotheaded youth, a shy woman, and a rock walk into a bar. Samuel L. Jackson is there.</p>
-                <a href="adminEditEntry.html"><button type="button" class="button-book-now">Edit Info/Prices</button></a>
-                <a href="book.html"><button type="button" class="button-book-now">Remove</button></a>
-            </div>
-          </div>
+  <!--Entry4-->
+  <div class="flex-entry-container">
+    <img class="img-browse-entry" style="margin: 5px;" src="images/poster5ICareALot.png" />
+    <div class="flex-entry-content">
+      <div class="flex-entry-content-line">
+        <p>TITLE: I Care A Lot</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>GENRE: Comedy, Crime, Drama</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>AGE RATING: R</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RELEASE DATE: February 19, 2021</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RUN TIME: 1h 58m</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>CAST: Rosamund Pike, Peter Dinklage, Eiza González</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>DESCRIPTION: A crooked legal guardian who drains the savings of her elderly wards meets her match when a
+          woman
+          she tries to swindle turns out to be more than she first appears.</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <a href="adminEditEntry.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Info</button></a>
+        <a href="adminEditShowtimes.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Showtimes</button></a>
+        <a href="browse.html"><button type="button" style="margin: 5px;" class="button-book-now">Remove</button></a>
+      </div>
+    </div>
+  </div>
 
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster5ICareALot.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           I Care A Lot</p>
-                <p>GENRE:           Comedy, Crime, Drama</p>
-                <p>AGE RATING:      R</p>
-                <p>RELEASE DATE:    February 19, 2021</p>
-                <p>RUN TIME:        1h 58m</p>
-                <p>CAST:            Rosamund Pike, Peter Dinklage, Eiza González</p>
-                <p>DESCRIPTION:     A crooked legal guardian who drains the savings of her elderly wards meets her match when a woman she tries to swindle turns out to be more than she first appears.</p>
-                <a href="adminEditEntry.html"><button type="button" class="button-book-now">Edit Info/Prices</button></a>
-                <a href="book.html"><button type="button" class="button-book-now">Remove</button></a>
-            </div>
-          </div>
+  <!--Entry5-->
+  <div class="flex-entry-container">
+    <img class="img-browse-entry" style="margin: 5px;" src="images/poster6Fall.png" />
+    <div class="flex-entry-content">
+      <div class="flex-entry-content-line">
+        <p>TITLE: Fall</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>GENRE: Thriller</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>AGE RATING: PG-13</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RELEASE DATE: August 12, 2022</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>RUN TIME: 1h 47m</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>CAST: Grace Caroline Currey, Virginia Gardner, Mason Gooding</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <p>DESCRIPTION: Best friends Becky and Hunter find themselves at the top of a 2,000-foot radio tower.</p>
+      </div>
+      <div class="flex-entry-content-line">
+        <a href="adminEditEntry.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Info</button></a>
+        <a href="adminEditShowtimes.html"><button type="button" style="margin: 5px;" class="button-book-now">Edit
+            Showtimes</button></a>
+        <a href="browse.html"><button type="button" style="margin: 5px;" class="button-book-now">Remove</button></a>
+      </div>
+    </div>
+  </div>
 
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster6Fall.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           Fall</p>
-                <p>GENRE:           Thriller</p>
-                <p>AGE RATING:      PG-13</p>
-                <p>RELEASE DATE:    August 12, 2022</p>
-                <p>RUN TIME:        1h 47m</p>
-                <p>CAST:            Grace Caroline Currey, Virginia Gardner, Mason Gooding</p>
-                <p>DESCRIPTION:     Best friends Becky and Hunter find themselves at the top of a 2,000-foot radio tower.</p>
-                <a href="adminEditEntry.html"><button type="button" class="button-book-now">Edit Info/Prices</button></a>
-                <a href="book.html"><button type="button" class="button-book-now">Remove</button></a>
-            </div>
-          </div>
+  <!--Scripts-->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-          <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-          integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-          crossorigin="anonymous"></script>
-        
-          <script>
-            $(document).ready(function() {
-              $.ajax( {
-                url: "/isLoggedIn",
-                type: "GET",
-                success: function(result) {
-                  if (result.status == true) $('#loginButton').remove();
-                  else $('#profileButton').remove();
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                  console.log('failure');
-                }
-              });
-            });
-          </script>
-        
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: "/isLoggedIn",
+        type: "GET",
+        success: function (result) {
+          if (result.status == true) $('#loginButton').remove();
+          else $('#profileButton').remove();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
 </body>
 
 </html>

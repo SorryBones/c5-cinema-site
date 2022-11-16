@@ -1,201 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>UGA Flix</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="Home page" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>UGA Flix</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Home page" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body style="padding-top:55px ; background-color: #870500">
-  
+
   <!--Navbar-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
-      <a class="navbar-brand" href="index.html">UGA Flix</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <form action="index.html">
-            <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/browse.html">
-            <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/profile" method="GET">
-            <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
-          </form>
-        </ul>
-      </div>
-    </nav>
+    <a class="navbar-brand" href="index.html">UGA Flix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<!--NEW CODE-->
-        <div class="flex-container-homepage">
-          <!--Make New Promotion-->
-          <div class="div-promo-fields h-50 w-100 p-3">
-            <h1>Create New Promotion</h1>
-            <div class="div-browse-search">              
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">MOVIE TITLE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="title" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-  
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-  
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="XX%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-  
-              <div class="form-group">
-                  <label for="comment">MESSAGE:</label>
-                  <textarea class="form-control" rows="5" id="comment"></textarea>
-              </div>
-  
-              <a href="adminMain.html"><button type="button" class="button-book-admin">Send</button></a>
-              <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
-            </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <form action="index.html">
+          <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/browse.html">
+          <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/profile" method="GET">
+          <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+        </form>
+      </ul>
+    </div>
+  </nav>
+
+  <!--NEW CODE-->
+  <div class="flex-container-homepage">
+    <!--Make New Promotion-->
+    <div class="div-promo-fields h-50 w-100 p-3">
+      <h1>Create New Promotion</h1>
+      <div class="div-browse-search">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">MOVIE TITLE:</span>
           </div>
+          <input type="text" class="form-control" placeholder="title" id="basic-title" aria-describedby="basic-addon3">
         </div>
 
-        <!--Edit existing promotion-->
-        <div class="flex-container-homepage">
-          <div class="flex-container-row">
-            <h1>Edit Existing Promotions</h1>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">DATE:</span>
           </div>
+          <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
 
-          <div class="flex-container-row">
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster1Indemnity.png"/>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">PERCENT OFF:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="XX%" id="basic-title" aria-describedby="basic-addon3">
+        </div>
 
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
+        <div class="form-group">
+          <label for="comment">MESSAGE:</label>
+          <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
 
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster2Morbius.png"/>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster3AdamProject.png"/>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster4FantasticFour.png"/>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-          </div> <!--End of flex row-->
-        </div> <!--End of flex homepage-->
-
-
-
+        <a href="adminMain.html"><button type="button" class="button-book-admin">Send</button></a>
+        <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
       </div>
+    </div>
+  </div>
+
+  <!--Edit existing promotion-->
+  <div class="flex-container-homepage">
+    <div class="flex-container-row">
+      <h1>Edit Existing Promotions</h1>
+    </div>
+
+    <div class="flex-container-row">
+      <!--Entry-->
+      <div class="flex-homepage-latest-movie">
+        <img class="img-movie-poster" src="images/poster1Indemnity.png" />
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">START DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/17/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">END DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/30/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">PERCENT OFF:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
+      </div>
+
+      <!--Entry-->
+      <div class="flex-homepage-latest-movie">
+        <img class="img-movie-poster" src="images/poster2Morbius.png" />
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">START DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/17/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">END DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/30/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">PERCENT OFF:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
+      </div>
+
+      <!--Entry-->
+      <div class="flex-homepage-latest-movie">
+        <img class="img-movie-poster" src="images/poster3AdamProject.png" />
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">START DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/17/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">END DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/30/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">PERCENT OFF:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
+      </div>
+
+      <!--Entry-->
+      <div class="flex-homepage-latest-movie">
+        <img class="img-movie-poster" src="images/poster4FantasticFour.png" />
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">START DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/17/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">END DATE:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="11/30/22" id="basic-title"
+            aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
+              id="basic-addon3">PERCENT OFF:</span>
+          </div>
+          <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
+        </div>
+
+        <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
+      </div>
+
+    </div>
+    <!--End of flex row-->
+  </div>
+  <!--End of flex homepage-->
+
+
+
+  </div>
 </body>
 
 </html>

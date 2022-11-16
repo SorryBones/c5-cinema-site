@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>UGA Flix</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Home page" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body style="padding-top:55px ; background-color: black">
+
+    <!--Navbar-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+        <a class="navbar-brand" href="index.html">UGA Flix</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <form action="/index.html">
+                    <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+                </form>
+                <form action="/browse.html">
+                    <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+                </form>
+                <form action="/profile.html">
+                    <input class="btn" id="profileButton" type="submit" value="Profile"
+                        style="background-color:#272727 ; color:white">
+                </form>
+                <form action="/login.html">
+                    <input class="btn" id="loginButton" type="submit" value="Login"
+                        style="background-color:#272727 ; color:white">
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Containers-->
+    <div class="flex-entry-container" style="height: 94vh;">
+        <img class="img-browse-entry" style="margin: 5px;" src="images/poster1Indemnity.png" /> <!--Draw poster value here-->
+        <div class="flex-entry-content">
+            <div class="flex-entry-content-line">
+                <p class="text-sub">Showtimes</p>
+            </div>
+            <!--Forms-->
+            <!--Several filler examples, turn this into a single entry that loops for db values-->
+            <!--Placeholder values should be current db value, w/e anyone puts in will become db value-->
+
+            <!--Form1 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form2 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form3 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form4 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form5 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form6 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form7 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form8 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Draw current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+            <!--Form9 start-->
+            <div class="flex-entry-content-line">
+                <div class="input-group mb-3 p-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">DATE:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Draw current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">START TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-light border border-danger"
+                            style="background-color: #272727;" id="basic-addon3">END TIME:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="XX:XX" id="basic-title"
+                        aria-describedby="basic-addon3"> <!--Current value as placeholder-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
