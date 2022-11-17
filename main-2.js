@@ -1,5 +1,7 @@
-// CMD + K + 1 to collapse level 1
-// CMD + K + J to uncollapse level 1
+/*
+* CMD + K + 1 to collapse level 1
+* CMD + K + J to uncollapse level 1
+*/
 
 const mysql = require('mysql');
 const express = require('express');
@@ -13,7 +15,6 @@ const crypto = require('crypto');
 app.use(express.static('.'));
 
 var adminUserProfileId;
-var movieId;
 var loggedIn = false;
 var currentUserID = -1;
 
@@ -26,6 +27,7 @@ var isIncorrectPassword = false;
 
 var isInvalidMovie = false;
 var promoMovieId;
+
 var promoHeader;
 var promoBody;
 var promoDiscount;
@@ -127,189 +129,47 @@ app.post('/getAddress', encoder, function(req,res) {
     });
 })
 
-app.get('/getAllMovies', encoder, function(req,res) {
-    const query = 'SELECT * FROM movie';
-    connection.query(query,[],function(error,results,fields) {
-        results.forEach(result => {
-            // result.img = "<img class='img-browse-entry' src='images/poster-default.png'/>";
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-        }) // set image
-        res.json(results);
-    });
-})
-
-app.get('/getUpcomingMovies', encoder, function(req,res) {
-    const query = 'SELECT * FROM movie';
-    connection.query(query,[],function(error,results,fields) {
-        results.forEach(result => {
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-        }) // set image
-        res.json(results);
-    });
-})
-
-app.get('/getNewestReleases', encoder, function(req,res) {
-    const query = 'SELECT * FROM movie';
-    connection.query(query,[],function(error,results,fields) {
-        results.forEach(result => {
-            result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-        }) // set image
-        res.json(results);
-    });
-})
-
-app.post('/book', encoder, function(req,res) {
-    console.log(req.body.movie_id);
-    movieId = req.body.movie_id;
-    res.redirect('/book.html');
-})
-
-app.post("/searchMovie", encoder, function(req,res) {
-    console.log(req.body);
-    let isTitle, isGenre, isRating = false;
-    if (req.body.title != '') isTitle = true;
-    if (req.body.rating != '') isRating = true;
-    if (req.body.genre != '') isGenre = true;
-
-    let query;
-
-    if (isTitle && isGenre && isRating) {
-        let rating;
-        if (req.body.rating == 'PG') rating = 2;
-        else if (req.body.rating == 'PG-13') rating = 1;
-        else if (req.body.rating == 'R') rating = 3;
-        query = 'SELECT * FROM movie WHERE title = ? and genre = ? and ratings_id = ?';
-        connection.query(query,[req.body.title, req.body.genre, rating],function(error,results,fields) {
-            if (results.length > 0) {
-                results.forEach(result => {
-                    result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-                }) // set image
-                res.json(results);
-            } else {
-                res.json({status: false});
-            }
-        });
-    } else if (isTitle && isGenre) {
-        query = 'SELECT * FROM movie WHERE title = ? and genre = ?';
-        connection.query(query,[req.body.title, req.body.genre],function(error,results,fields) {
-            if (results.length > 0) {
-                results.forEach(result => {
-                    result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-                }) // set image
-                res.json(results);
-            } else {
-                res.json({status: false});
-            }
-        });
-    } else if (isTitle && isRating) {
-        let rating;
-        if (req.body.rating == 'PG') rating = 2;
-        else if (req.body.rating == 'PG-13') rating = 1;
-        else if (req.body.rating == 'R') rating = 3;
-        query = 'SELECT * FROM movie WHERE title = ? and ratings_id = ?';
-        connection.query(query,[req.body.title, rating],function(error,results,fields) {
-            if (results.length > 0) {
-                results.forEach(result => {
-                    result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-                }) // set image
-                res.json(results);
-            } else {
-                res.json({status: false});
-            }
-        });
-    } else if (isGenre && isRating) {
-        let rating;
-        if (req.body.rating == 'PG') rating = 2;
-        else if (req.body.rating == 'PG-13') rating = 1;
-        else if (req.body.rating == 'R') rating = 3;
-        query = 'SELECT * FROM movie WHERE genre = ? and ratings_id = ?';
-        connection.query(query,[req.body.genre, rating],function(error,results,fields) {
-            if (results.length > 0) {
-                results.forEach(result => {
-                    result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-                }) // set image
-                res.json(results);
-            } else {
-                res.json({status: false});
-            }
-        });
-    } else if (isTitle) {
-        query = 'SELECT * FROM movie WHERE title = ?';
-        connection.query(query,[req.body.title],function(error,results,fields) {
-            if (results.length > 0) {
-                results.forEach(result => {
-                    result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-                }) // set image
-                res.json(results);
-            } else {
-                res.json({status: false});
-            }
-        });
-    } else if (isGenre) {
-        query = 'SELECT * FROM movie WHERE genre = ?';
-        connection.query(query,[req.body.genre],function(error,results,fields) {
-            if (results.length > 0) {
-                results.forEach(result => {
-                    result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-                }) // set image
-                res.json(results);
-            } else {
-                res.json({status: false});
-            }
-        });
-    } else if (isRating) {
-        let rating;
-        if (req.body.rating == 'PG') rating = 2;
-        else if (req.body.rating == 'PG-13') rating = 1;
-        else if (req.body.rating == 'R') rating = 3;
-        query = 'SELECT * FROM movie WHERE ratings_id = ?';
-        connection.query(query,[rating],function(error,results,fields) {
-            if (results.length > 0) {
-                results.forEach(result => {
-                    result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-                }) // set image
-                res.json(results);
-            } else {
-                res.json({status: false});
-            }
-        });
-    } else {
-        res.json({status: false});
-    }
-})
-
-app.get("/getMovie", function(req,res) {
-    const query = 'SELECT * FROM movie WHERE movie_id = ?';
-    connection.query(query,[movieId],function(error,results,fields) {
-        if (results.length > 0) {
-            results[0].img = "images/poster1Indemnity.png";
-            res.json(results[0]);
-        } else {
-            res.json({status: false});
-        }
-    });
-})
-
 app.get("/userInfo", function(req,res) {
     if (currentUserID != -1) { // if non-null
         const query = 'SELECT * FROM user WHERE user_id = ?';
         connection.query(query,[currentUserID],function(error,results,fields) {
             if (results.length > 0) {
                 res.json(results[0]);
+                console.log("user info");
             } else {
                 res.json({status: false});
             }
         });
     }
 })
+
+app.get("/getPromo", function(req, res) {
+    
+    const query = 'SELECT * FROM promotions WHERE promo_id = ?';
+    connection.query(query,[promoId],function(error,results,fields) {
+        if (results.length > 0) {
+            res.json(results[0]);
+           // console.log("get promo");
+        } else {
+            res.json({status: false});
+        }
+        
+    })
+});
+
+
+app.get("/getPromoMovieTitle", function(req, res) {
+   //console.log("movie id is " + promoMovieId);
+    const query = 'SELECT * FROM movie WHERE id_movie = ?';
+    connection.query(query,[promoMovieId],function(error,results,fields) {
+        if (results.length > 0) {
+            res.json(results[0]);
+        } else {
+            res.json({status: false});
+        }
+        
+    })
+});
 
 app.get('/isLoggedIn', function(req,res) {
     if (loggedIn) res.json({status: true});
@@ -348,32 +208,6 @@ function sendEmail(email, message) {
     });
 }
 
-app.get("/getPromo", function(req, res) {
-    
-    const query = 'SELECT * FROM promotions WHERE promo_id = ?';
-    connection.query(query,[promoId],function(error,results,fields) {
-        if (results.length > 0) {
-            res.json(results[0]);
-           // console.log("get promo");
-        } else {
-            res.json({status: false});
-        }
-        
-    })
-});
-
-app.get("/getPromoMovieTitle", function(req, res) {
-   //console.log("movie id is " + promoMovieId);
-    const query = 'SELECT * FROM movie WHERE movie_id = ?';
-    connection.query(query,[promoMovieId],function(error,results,fields) {
-        if (results.length > 0) {
-            res.json(results[0]);
-        } else {
-            res.json({status: false});
-        }
-        
-    })
-});
 
 app.get("/isInvalidMovie", function(req,res) {
     if (!isInvalidMovie) {
@@ -385,167 +219,62 @@ console.log("no movie found");
     }
     //isValidMovie = false;
 })
-
 /* --------- ADMIN --------- */
 
-app.get('/adminManageMovies', encoder, function(req,res) {
-    const query = 'SELECT * FROM movie';
-    connection.query(query,[],function(error,results,fields) {
-        results.forEach(result => {
-            result.informationButton = '<form action="/adminEditMovie" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-admin" type="submit" value="Edit Information"></form>'
-            result.showtimesButton = '<form action="/adminEditShowtimes" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-admin" type="submit" value="Manage Showtimes"></form>'
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
-        }) // set image
-        res.json(results);
-    });
-})
-
-app.post('/addShowtime', encoder, function(req,res) {
-    console.log(req.body);
-    const query = 'INSERT INTO showTime (movie_id, room_id, date, time, seat_id) VALUES (?, ?, ?, ?, ?);';
-    connection.query(query,[1, 1, '12/12/1234', '3:01pm', 0],function(error,results,fields) {
-        console.log(results)
-        console.log(error)
-        console.log(fields)
-        console.log('showtime added');
-    });
-    res.redirect('/adminEditShowtimes.html');
-})
-
-app.post('/addMovie', encoder, function(req,res) {
-    let title = req.body.title;
-    let rating;
-    if (req.body.rating == 'PG') rating = 2;
-    else if (req.body.rating == 'PG-13') rating = 1;
-    else if (req.body.rating == 'R') rating = 3;
-    let genre = req.body.genre;
-    let releaseDate = req.body.releaseDate;
-    let duration = req.body.duration;
-    let cast = req.body.cast;
-    let description = req.body.description;
-    const query = 'INSERT INTO movie (title, ratings_id, genre, release_date, duration, cast, description) VALUES (?, ?, ?, ?, ?, ?, ?);';
-    connection.query(query,[title, rating, genre, releaseDate, duration, cast, description],function(error,results,fields) {
-        console.log('movie added');
-    });
-    res.redirect('/adminMain.html');
-})
-
-app.post('/editMovie', encoder, function(req,res) {
-    if (req.body.title != '') {
-        let title = req.body.title;
-        const query = 'UPDATE movie SET title = ? WHERE movie_id = ?';
-        connection.query(query,[title, movieId],function(error,results,fields) {
-            console.log('title updated');
-        });
-    }
-    if (req.body.rating != '') {
-        let rating;
-        if (req.body.rating == 'PG') rating = 2;
-        else if (req.body.rating == 'PG-13') rating = 1;
-        else if (req.body.rating == 'R') rating = 3;
-        const query = 'UPDATE movie SET ratings_id = ? WHERE movie_id = ?';
-        connection.query(query,[rating, movieId],function(error,results,fields) {
-            console.log('rating updated');
-        });
-    }
-    if (req.body.genre != '') {
-        let genre = req.body.genre;
-        const query = 'UPDATE movie SET genre = ? WHERE movie_id = ?';
-        connection.query(query,[genre, movieId],function(error,results,fields) {
-            console.log('genre updated');
-        });
-    }
-    if (req.body.releaseDate != '') {
-        let releaseDate = req.body.releaseDate;
-        const query = 'UPDATE movie SET release_date = ? WHERE movie_id = ?';
-        connection.query(query,[releaseDate, movieId],function(error,results,fields) {
-            console.log('releaseDate updated');
-        });
-    }
-    if (req.body.duration != '') {
-        let duration = req.body.duration;
-        const query = 'UPDATE movie SET duration = ? WHERE movie_id = ?';
-        connection.query(query,[duration, movieId],function(error,results,fields) {
-            console.log('duration updated');
-        });
-    }
-    if (req.body.cast != '') {
-        let cast = req.body.cast;
-        const query = 'UPDATE movie SET cast = ? WHERE movie_id = ?';
-        connection.query(query,[cast, movieId],function(error,results,fields) {
-            console.log('cast updated');
-        });
-    }
-    if (req.body.description != '') {
-        let description = req.body.description;
-        const query = 'UPDATE movie SET description = ? WHERE movie_id = ?';
-        connection.query(query,[description, movieId],function(error,results,fields) {
-            console.log('description updated');
-        });
-    }
-    res.redirect('/adminEditMovie.html');
-})
-
-app.post('/adminEditShowtimes', encoder, function(req,res) {
-    movieId = req.body.movie_id;
-    res.redirect('/adminEditShowtimes.html');
-})
-
-app.post('/adminEditMovie', encoder, function(req,res) {
-    movieId = req.body.movie_id;
-    res.redirect('/adminEditMovie.html');
-})
-
 app.post('/addPromotion', encoder, function(req,res) {
-    promoBody = req.body.message;
-    promoHeader = req.body.heading;
-    promoDiscount = req.body.percent;
-    let promocode = req.body.promocode;
-    let startdate = req.body.startdate;
-    let enddate = req.body.enddate;
-    let movietitle = req.body.movietitle;
-    
-      let promotion = 'Y';
-      let sent = 0;
-      let found = false;
+  promoBody = req.body.message;
+  promoHeader = req.body.heading;
+  promoDiscount = req.body.percent;
+  let promocode = req.body.promocode;
+  let startdate = req.body.startdate;
+  let enddate = req.body.enddate;
+  let movietitle = req.body.movietitle;
   
-      connection.query('SELECT * FROM movie' , function(error,results,fields) {
-        isInvalidMovie = false;
-        
-          for(let index = 0; index < results.length; index++) {
-              let title = results[index].title;
-              console.log(title);
-             if (title == movietitle) {
-              found = true;
-              console.log("movie found");
-              if (found) {
-                  promoMovieId = results[index].movie_id;
-                  console.log("movieid is " + promoMovieId);
-                  connection.query('INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);',[startdate, enddate, promocode, promoMovieId, promoDiscount, sent, promoBody],function(error,results,fields) {
-                      console.log("insert to promotions");
-                      });
-  
-                      connection.query('SELECT * FROM promotions WHERE start_date = ? AND end_date = ? AND promo_code = ? AND discount = ? AND movie_id = ? AND message = ?;', [startdate, enddate, promocode, promoDiscount, promoMovieId, promoBody], function(error,results,fields) {
-                          promoId = results[0].promo_id;
-                         // console.log("here pls");
-                      } );
-  
-             }
-          } else { 
-              console.log("invalid");
-              isInvalidMovie = true;
-      }
-  
-      }
-  
-      if (found) {
-          res.redirect('/adminSendPromo.html');
-      } else {
-          res.redirect('/adminPromotions.html'); 
-      }
+    let promotion = 'Y';
+    let sent = 0;
+    let found = false;
+
+    connection.query('SELECT * FROM movie' , function(error,results,fields) {
+      isInvalidMovie = false;
+      
+        for(let index = 0; index < results.length; index++) {
+            let title = results[index].title;
+            
+           if (title == movietitle) {
+            found = true;
+            console.log("movie found");
+            if (found) {
+                promoMovieId = results[index].id_movie;
+                console.log("movieid is " + promoMovieId);
+                connection.query('INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);',[startdate, enddate, promocode, promoMovieId, promoDiscount, sent, promoBody],function(error,results,fields) {
+                    console.log("insert to promotions");
+                    });
+
+                    connection.query('SELECT * FROM promotions WHERE start_date = ? AND end_date = ? AND promo_code = ? AND discount = ? AND movie_id = ? AND message = ?;', [startdate, enddate, promocode, promoDiscount, promoMovieId, promoBody], function(error,results,fields) {
+                        promoId = results[0].promo_id;
+                       // console.log("here pls");
+                    } );
+
+           }
+        } else { 
+            console.log("invalid");
+            isInvalidMovie = true;
+    }
+
+    }
+
+    if (found) {
+        res.redirect('/adminSendPromo.html');
+    } else {
+        res.redirect('/adminPromotions.html'); 
+    }
     });
 });
+   
+  
 
+
+// SEND PROMOTION
 app.post('/sendPromotion', encoder, function(req,res) {
    
     let promotion = 'Y';
@@ -575,38 +304,6 @@ app.post('/removePromotion', function(req,res) {
         console.log("promo removed");
     }) 
     res.redirect('/adminPromotions.html');
-})
-
-app.post('/adminUpdatePromotion', encoder, function(req,res) {
-    let promotions;
-    if (req.body.promotions == 'on') promotions = 'Y'
-    else promotions = 'N'
-    const query = 'UPDATE user SET promo_subs = ? WHERE user_id = ?';
-    connection.query(query,[promotions, adminUserProfileId],function(error,results,fields) {
-        console.log('promotion updated');
-        connection.query('SELECT * FROM user WHERE user_id = ?;',[adminUserProfileId],function(error,results,fields) {
-            let email = results[0].email;
-            let message = 'Your account promotion settings have been updated!'
-            sendEmail(email, message);
-        });
-    });
-    res.redirect('/adminEditUserProfile.html');
-})
-
-app.post('/updatePromotion', encoder, function(req,res) {
-    let promotions;
-    if (req.body.promotions == 'on') promotions = 'Y'
-    else promotions = 'N'
-    const query = 'UPDATE user SET promo_subs = ? WHERE user_id = ?';
-    connection.query(query,[promotions, currentUserID],function(error,results,fields) {
-        console.log('promotion updated');
-        connection.query('SELECT * FROM user WHERE user_id = ?;',[currentUserID],function(error,results,fields) {
-            let email = results[0].email;
-            let message = 'Your account promotion settings have been updated!'
-            sendEmail(email, message);
-        });
-    });
-    res.redirect('/editProfile.html');
 })
 
 app.get('/getAllUsers', encoder, function(req,res) {
@@ -955,6 +652,22 @@ app.post('/updatePhone', encoder, function(req,res) {
         connection.query('SELECT * FROM user WHERE user_id = ?;',[currentUserID],function(error,results,fields) {
             let email = results[0].email;
             let message = 'Your account phone number has been updated!'
+            sendEmail(email, message);
+        });
+    });
+    res.redirect('/editProfile.html');
+})
+
+app.post('/updatePromotion', encoder, function(req,res) {
+    let promotions;
+    if (req.body.promotions == 'on') promotions = 'Y'
+    else promotions = 'N'
+    const query = 'UPDATE user SET promo_subs = ? WHERE user_id = ?';
+    connection.query(query,[promotions, currentUserID],function(error,results,fields) {
+        console.log('promotion updated');
+        connection.query('SELECT * FROM user WHERE user_id = ?;',[currentUserID],function(error,results,fields) {
+            let email = results[0].email;
+            let message = 'Your account promotion settings have been updated!'
             sendEmail(email, message);
         });
     });

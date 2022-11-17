@@ -87,8 +87,6 @@
             if (result.promo_subs == "Y") isSubscribed = "Subscribed";
             else isSubscribed = "Unsubscribed";
 
-            let i = 1;
-
             newDiv.innerHTML = "ID: " + result.user_id + "<br>" 
                             + "Name: " + result.first_name + ' ' + result.last_name + "<br>"
                             + "Phone: " + result.phone_num + "<br>"
@@ -105,20 +103,6 @@
         }
       });
     });
-  </script>
-
-  <script> // EDIT INFORMATION OF USER
-    function editInformation(id) {
-      console.log(id);
-      //$.ajax( {
-      //  url: "/adminEditUserProfile",
-      //  type: "POST",
-      //  dataType: 'json',
-      //  contentType: 'application/x-www-form-urlencoded',
-      //  data: $.param({user_id: id}),
-      //  processData: false
-      //});
-    }
   </script>
 
 </body>

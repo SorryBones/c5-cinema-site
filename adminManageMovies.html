@@ -36,18 +36,19 @@
     </div>
   </nav>
 
-  <div class="flex-container-homepage" style="height: 94vh;">
-    <h1 class="text-main"> Welcome, admin!</h1>
-    <a href="adminAddMovie.html"><button type="button" class="button-book-now">Add Movie</button></a>
-    <a href="adminManageMovies.html"><button type="button" class="button-book-now">Manage Movies</button></a>
-    <a href="adminManageUsers.html"><button type="button" class="button-book-now">Manage User Accounts</button></a>
-    <a href="adminPromotions.html"><button type="button" class="button-book-now">Manage Promotions</button></a>
+  <!-- MOVIES -->
+  <div class="flex-container-homepage">
+    <div class="flex-container-row">
+      <h1 class="text-sub">ALL MOVIES:</h1>
+    </div>
+    <div class="flex-container-row" id="movies"></div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>
-      
+
+  <!-- TOP BAR -->
   <script>
     $(document).ready(function() {
       $.ajax( {
@@ -63,7 +64,40 @@
       });
     });
   </script>
-      
+
+
+  <script> // NEWEST RELEASES
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/adminManageMovies",
+        type: "GET",
+        success: function(result1) {
+          result1.forEach(createUserRow);
+          function createUserRow(result) {
+            var newDiv = document.createElement('div');
+            newDiv.className = "flex-homepage-latest-movie";
+
+            var rating;
+            if (result.ratings_id == 2) rating = 'PG';
+            else if (result.ratings_id == 1) rating = 'PG-13';
+            else if (result.ratings_id == 3) rating = 'R';
+
+            newDiv.innerHTML = result.img
+                            + "<h3> ID: " + result.movie_id + "<br>"
+                            + "Title: " + result.title + "<br></h3>"
+                            + result.informationButton
+                            + result.showtimesButton
+
+            document.getElementById('movies').appendChild(newDiv);
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
 </body>
 
 </html>

@@ -43,17 +43,54 @@
       <div class="flex-container-row">
         <h1 class="text-sub">NEWEST RELEASES</h1>
       </div>
-      <div class="flex-container-row" id="newestReleases"></div>
+      <div class="flex-container-row">
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster1Indemnity.png"/><br>
+          <h3>Fantastic Four - Action - PG</h3><br>
+          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
+        </div>
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster2Morbius.png"/><br>
+          <h3>Fantastic Four - Action - PG</h3><br>
+          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
+        </div>
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster3AdamProject.png"/><br>
+          <h3>Fantastic Four - Action - PG</h3><br>
+          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
+        </div>
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster4FantasticFour.png"/><br>
+          <h3>Fantastic Four - Action - PG</h3><br>
+          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
+        </div>
+      </div>
     </div>
-
+    
     <!--UPCOMING MOVIES-->
     <div class="flex-container-homepage">
       <div class="flex-container-row">
         <h1 class="text-sub">UPCOMING MOVIES</h1>
       </div>
-      <div class="flex-container-row" id="upcomingMovies"></div>
+      <div class="flex-container-row">
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster6Fall.png"/>
+          <p class="text-sub">10/29/22</p>
+        </div>
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster5ICareALot.png"/>
+          <p class="text-sub">11/01/22</p>
+        </div>
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster4FantasticFour.png"/>
+          <p class="text-sub">11/14/22</p>
+        </div>
+        <div class="flex-homepage-latest-movie">
+          <img class="img-movie-poster" src="images/poster3AdamProject.png"/>
+          <p class="text-sub">11/24/22</p>
+        </div>
+      </div>
     </div>
-
     <!--TRAILERS-->
     <div class="flex-container-homepage">
       <div class="flex-container-row">
@@ -90,60 +127,6 @@
         success: function(result) {
           if (result.status == true) $('#loginButton').remove();
           else $('#profileButton').remove();
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          console.log('failure');
-        }
-      });
-    });
-  </script>
-
-  <script> // NEWEST RELEASES
-    $(document).ready(function() {
-      $.ajax( {
-        url: "/getNewestReleases",
-        type: "GET",
-        success: function(result1) {
-          result1.forEach(createUserRow);
-          function createUserRow(result) {
-            var newDiv = document.createElement('div');
-            newDiv.className = "flex-homepage-latest-movie";
-
-            var rating;
-            if (result.ratings_id == 2) rating = 'PG';
-            else if (result.ratings_id == 1) rating = 'PG-13';
-            else if (result.ratings_id == 3) rating = 'R';
-
-            newDiv.innerHTML = result.img
-                            + "<h3>" + result.title + " - " + result.genre + " - " + rating + "</h3>"
-                            + result.button
-
-            document.getElementById('newestReleases').appendChild(newDiv);
-          }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          console.log('failure');
-        }
-      });
-    });
-  </script>
-
-  <script> // UPCOMING MOVIES
-    $(document).ready(function() {
-      $.ajax( {
-        url: "/getUpcomingMovies",
-        type: "GET",
-        success: function(result1) {
-          result1.forEach(createUserRow);
-          function createUserRow(result) {
-            var newDiv = document.createElement('div');
-            newDiv.className = "flex-homepage-latest-movie";
-
-            newDiv.innerHTML = result.img
-                            + "<h3>" + result.release_date + "</h3>"
-
-            document.getElementById('upcomingMovies').appendChild(newDiv);
-          }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           console.log('failure');

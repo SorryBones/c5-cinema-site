@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_ratings` (
   PRIMARY KEY (`ratings_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
-INSERT INTO ENUM_ratings(ratings_id, ratings_name) VALUES (1, "PG-13");
-INSERT INTO ENUM_ratings(ratings_id, ratings_name) VALUES (2, "PG");
-INSERT INTO ENUM_ratings(ratings_id, ratings_name) VALUES (3, "R");
+INSERT IGNORE INTO ENUM_ratings SET ratings_id = 1, ratings_name = "PG-13";
+INSERT IGNORE INTO ENUM_ratings SET ratings_id = 2, ratings_name = "PG";
+INSERT IGNORE INTO ENUM_ratings SET ratings_id = 3, ratings_name = "R";
 
 -- -----------------------------------------------------
 -- Table `NewCES`.`ENUM_status`
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_status` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
-INSERT INTO ENUM_status(status_id, status_name) VALUES (1, "active");
-INSERT INTO ENUM_status(status_id, status_name) VALUES (2, "inactive");
-INSERT INTO ENUM_status(status_id, status_name) VALUES (3, "suspended");
+INSERT IGNORE INTO ENUM_status SET status_id = 1, status_name = "active";
+INSERT IGNORE INTO ENUM_status SET status_id = 2, status_name = "inactive";
+INSERT IGNORE INTO ENUM_status SET status_id = 3, status_name = "suspended";
 
 
 -- -----------------------------------------------------
@@ -55,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_ticketType` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
-INSERT INTO ENUM_ticketType(tickettype_id, tickettyoe_name) VALUES (1, "adult");
-INSERT INTO ENUM_ticketType(tickettype_id, tickettyoe_name) VALUES (2, "child");
-INSERT INTO ENUM_ticketType(tickettype_id, tickettyoe_name) VALUES (3, "senior");
+INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 1, tickettyoe_name = "adult";
+INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 2, tickettyoe_name = "child";
+INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 3, tickettyoe_name = "senior";
 
 
 -- -----------------------------------------------------
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_userType` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
-INSERT INTO ENUM_userType(utype_id, utype_name) VALUES (1, "admin");
-INSERT INTO ENUM_userType(utype_id, utype_name) VALUES (2, "customer");
+INSERT IGNORE INTO ENUM_userType SET utype_id = 1, utype_name = "admin";
+INSERT IGNORE INTO ENUM_userType SET utype_id = 2, utype_name = "customer";
 
 
 -- -----------------------------------------------------
@@ -94,10 +94,16 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `NewCES`.`movie`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`movie` (
-  `id_movie` INT NOT NULL AUTO_INCREMENT,
+  `movie_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NULL DEFAULT NULL,
   `ratings_id` INT NOT NULL,
-  PRIMARY KEY (`id_movie`, `ratings_id`),
+  `genre` VARCHAR(45) NULL DEFAULT NULL,
+  `release_date` VARCHAR(10) NULL DEFAULT NULL,
+  `duration` VARCHAR(4) NULL DEFAULT NULL,
+  `cast` VARCHAR(100) NULL DEFAULT NULL,
+  `description` VARCHAR(1000) NULL DEFAULT NULL,
+  `img` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`movie_id`, `ratings_id`),
   INDEX `fk_movie_ENUM_ratings1_idx` (`ratings_id` ASC) VISIBLE,
   CONSTRAINT `fk_movie_ENUM_ratings1`
     FOREIGN KEY (`ratings_id`)
@@ -177,7 +183,17 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`promotions` (
   `start_date` DATE NULL DEFAULT NULL,
   `end_date` DATE NULL DEFAULT NULL,
   `promo_code` VARCHAR(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`promo_id`))
+  `movie_id` INT NOT NULL,
+  `discount` INT NULL,
+  `sent` INT NULL,
+  `message` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`promo_id`,`movie_id`),
+  INDEX `fk_promotions_movie1_idx` (`movie_id` ASC) VISIBLE,
+  CONSTRAINT `fk_promotions_movie1`
+    FOREIGN KEY (`movie_id`)
+    REFERENCES `newces`.`movie` (`movie_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -191,6 +207,7 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`room` (
   PRIMARY KEY (`room_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+INSERT IGNORE INTO room SET room_id = 1, numofseats = 66;
 
 
 -- -----------------------------------------------------
@@ -240,13 +257,14 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `NewCES`.`show`
+-- Table `NewCES`.`showTime`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `NewCES`.`show` (
+CREATE TABLE IF NOT EXISTS `NewCES`.`showTime` (
   `show_id` INT NOT NULL AUTO_INCREMENT,
   `movie_id` INT NOT NULL,
   `room_id` INT NOT NULL,
-  `datetime` DATETIME NULL DEFAULT NULL,
+  `date` VARCHAR(10) NULL DEFAULT NULL,
+  `time` VARCHAR(7) NULL DEFAULT NULL,
   `seat_id` INT NOT NULL,
   PRIMARY KEY (`show_id`, `movie_id`, `room_id`, `seat_id`),
   INDEX `fk_show_movie_idx` (`movie_id` ASC) VISIBLE,
@@ -254,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`show` (
   INDEX `fk_show_showSeat1_idx` (`seat_id` ASC) VISIBLE,
   CONSTRAINT `fk_show_movie`
     FOREIGN KEY (`movie_id`)
-    REFERENCES `NewCES`.`movie` (`id_movie`)
+    REFERENCES `NewCES`.`movie` (`movie_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_show_room1`
@@ -290,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`booking` (
   INDEX `fk_booking_promotions1_idx` (`promo_id` ASC) VISIBLE,
   CONSTRAINT `fk_booking_movie1`
     FOREIGN KEY (`movie_id`)
-    REFERENCES `NewCES`.`movie` (`id_movie`)
+    REFERENCES `NewCES`.`movie` (`movie_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_booking_paymentCard1`
@@ -305,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`booking` (
     ON UPDATE CASCADE,
   CONSTRAINT `fk_booking_show1`
     FOREIGN KEY (`show_id`)
-    REFERENCES `NewCES`.`show` (`show_id`)
+    REFERENCES `NewCES`.`showTime` (`show_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_booking_user1`

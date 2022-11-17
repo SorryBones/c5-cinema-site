@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<body style="padding-top:55px ; background-color: #870500">
+<body style="padding-top:55px ; background-color: black">
   
   <!--Navbar-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
-      <a class="navbar-brand" href="index.html">UGA Flix</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <a class="navbar-brand" href="index.html">UGA Flix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <form action="/index.html">
             <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
@@ -26,130 +26,140 @@
           <form action="/browse.html">
             <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
           </form>
-          <form action="/profile" method="GET">
-            <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+          <form action="/profile.html">
+            <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/login.html">
+            <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
           </form>
         </ul>
+    </div>
+  </nav>
+
+  <!-- Search Fields -->
+  <div class="div-browse-search">      
+    <form action="/searchMovie" method="POST">   
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Title:</span>
+        </div>
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="basic-addon3">
       </div>
-    </nav>
 
-          <!--Search Fields-->
-          <div class="div-browse-search">              
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Title</span>
-                </div>
-                <input type="text" class="form-control" placeholder="title" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-              </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Genre:</span>
+        </div>
+        <select class="form-control" id="genre" name="genre">
+          <option value=""></option>
+          <option value="Action">Action</option>
+          <option value="Animation">Animation</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Horror">Horror</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+        </select>
+      </div>
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Genre</span>
-                </div>
-                <input type="text" class="form-control" placeholder="genre1, genre2..." aria-label="Default" aria-describedby="inputGroup-sizing-default">
-              </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Rating:</span>
+        </div>
+        <select class="form-control" id="rating" name="rating">
+          <option value=""></option>
+          <option value="PG">PG</option>
+          <option value="PG-13">PG-13</option>
+          <option value="R">R</option>
+        </select>
+      </div>
+    </form>
+    <button class="button-book-now" id="search">Search</button>
+  </div>
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Rating</span>
-                </div>
-                <input type="text" class="form-control" placeholder="PG13, R..." aria-label="Default" aria-describedby="inputGroup-sizing-default">
-              </div>
+  <!-- MOVIES -->
+  <div class="flex-container-homepage">
+    <div class="flex-container-row">
+      <h1 class="text-sub">RESULTS:</h1>
+    </div>
+    <div class="flex-container-row" id="searchResults"></div>
+  </div>
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="inputGroup-sizing-default">Actors</span>
-                </div>
-                <input type="text" class="form-control" placeholder="actor one, actor 2..." aria-label="Default" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <!--Filter/Admin Buttons-->
-              <button type="button" class="button-book-now">Filter</button>
-          </div>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
 
-          <!--Movie List-->
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster1Indemnity.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           Indemnity</p>
-                <p>GENRE:           Action, Crime, Thriller</p>
-                <p>AGE RATING:      R</p>
-                <p>RELEASE DATE:    February 13, 2022</p>
-                <p>RUN TIME:        2h 3m</p>
-                <p>CAST:            Jared Geduld, Gail Mabalane, Andre Jacobs</p>
-                <p>DESCRIPTION:     An ex-Cape Town fireman's world is rocked when he wakes up next to his wife's body with no recollection of what transpired and all evidence pointing to him as the killer.</p>
-                <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-            </div>
-          </div>
+  <script> // TOP BAR
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/isLoggedIn",
+        type: "GET",
+        success: function(result) {
+          if (result.status == true) $('#loginButton').remove();
+          else $('#profileButton').remove();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
 
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster2Morbius.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           Morbius the Musical</p>
-                <p>GENRE:           Action, Adventure, Horror</p>
-                <p>AGE RATING:      PG-13</p>
-                <p>RELEASE DATE:    March 23, 2022</p>
-                <p>RUN TIME:        1h 44m</p>
-                <p>CAST:            Jared Leto, Matt Smith, Adria Arjona</p>
-                <p>DESCRIPTION:     Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead.</p>
-                <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-            </div>
-          </div>
+  <script> // INITIALIZE
+    $(document).ready(function() {
+      var newDiv = document.createElement('div');
+      newDiv.className = "flex-homepage-latest-movie";
+      newDiv.style = "height: 70vh";
+      newDiv.innerHTML = "<h3>" + "No Movies Found" + "</h3>"
+      document.getElementById('searchResults').appendChild(newDiv);
+    });
+  </script>
 
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster3AdamProject.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           The Adam Project</p>
-                <p>GENRE:           Action, Adventure, Comedy</p>
-                <p>AGE RATING:      PG-13</p>
-                <p>RELEASE DATE:    March 11, 2022</p>
-                <p>RUN TIME:        1h 46m</p>
-                <p>CAST:            Ryan Reynolds, Walker Scobell, Mark Ruffalo</p>
-                <p>DESCRIPTION:     After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with his 12-year-old self for a mission to save the future.</p>
-                <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-            </div>
-          </div>
-
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster4FantasticFour.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           The Fabulous Four</p>
-                <p>GENRE:           Drama, Comedy, Romance, Crime, Horror, Action, Adventure</p>
-                <p>AGE RATING:      TV-Y</p>
-                <p>RELEASE DATE:    October 13, 2022</p>
-                <p>RUN TIME:        4h 4m</p>
-                <p>CAST:            John Krasinski, Samuel L. Jackson, Scarlett Johansson</p>
-                <p>DESCRIPTION:     A flexible scientist, a hotheaded youth, a shy woman, and a rock walk into a bar. Samuel L. Jackson is there.</p>
-                <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-            </div>
-          </div>
-
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster5ICareALot.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           I Care A Lot</p>
-                <p>GENRE:           Comedy, Crime, Drama</p>
-                <p>AGE RATING:      R</p>
-                <p>RELEASE DATE:    February 19, 2021</p>
-                <p>RUN TIME:        1h 58m</p>
-                <p>CAST:            Rosamund Pike, Peter Dinklage, Eiza González</p>
-                <p>DESCRIPTION:     A crooked legal guardian who drains the savings of her elderly wards meets her match when a woman she tries to swindle turns out to be more than she first appears.</p>
-                <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-            </div>
-          </div>
-
-          <div class="div-browse-entry">
-            <img class="img-browse-entry" src="images/poster6Fall.png"/>
-            <div class="div-browse-text">
-                <p>TITLE:           Fall</p>
-                <p>GENRE:           Thriller</p>
-                <p>AGE RATING:      PG-13</p>
-                <p>RELEASE DATE:    August 12, 2022</p>
-                <p>RUN TIME:        1h 47m</p>
-                <p>CAST:            Grace Caroline Currey, Virginia Gardner, Mason Gooding</p>
-                <p>DESCRIPTION:     Best friends Becky and Hunter find themselves at the top of a 2,000-foot radio tower.</p>
-                <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-            </div>
-          </div>
+  <script> // SEARCH MOVIE
+    $(document).ready(function() {
+      $("#search").click(function(){
+        $.ajax( {
+          url: "/searchMovie",
+          type: "POST",
+          dataType: 'json',
+          contentType: 'application/x-www-form-urlencoded',
+          data: $.param({title: document.getElementById("title").value, genre: document.getElementById("genre").value, rating: document.getElementById("rating").value}),
+          processData: false,
+          success: function(result1) {
+            if (result1.status == false) {
+              document.getElementById('searchResults').innerHTML = ''; // clear old
+              var newDiv = document.createElement('div');
+              newDiv.className = "flex-homepage-latest-movie";
+              newDiv.style = "height: 70vh";
+              newDiv.innerHTML = "<h3>" + "No Movies Found" + "</h3>"
+              document.getElementById('searchResults').appendChild(newDiv);
+            } else {
+              document.getElementById('searchResults').innerHTML = ''; // clear old
+              result1.forEach(createUserRow);
+              function createUserRow(result) {
+                var newDiv = document.createElement('div');
+                newDiv.className = "flex-homepage-latest-movie";
+    
+                var rating;
+                if (result.ratings_id == 2) rating = 'PG';
+                else if (result.ratings_id == 1) rating = 'PG-13';
+                else if (result.ratings_id == 3) rating = 'R';
+    
+                newDiv.innerHTML = result.img
+                                + "<h3>" + result.title + " - " + result.genre + " - " + rating + "</h3>"
+                                + result.button
+    
+                document.getElementById('searchResults').appendChild(newDiv);
+              }
+            }
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log('failure');
+          }
+        });
+      });
+    });
+  </script>
+        
 </body>
 
 </html>

@@ -34,38 +34,64 @@
     </nav>
 
 <!--NEW CODE-->
-        <div class="flex-container-homepage">
-          <!--Make New Promotion-->
-          <div class="div-promo-fields h-50 w-100 p-3">
-            <h1>Create New Promotion</h1>
-            <div class="div-browse-search">              
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">MOVIE TITLE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="title" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-  
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="XX/XX/XX" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-  
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="XX%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-  
-              <div class="form-group">
-                  <label for="comment">MESSAGE:</label>
-                  <textarea class="form-control" rows="5" id="comment"></textarea>
-              </div>
-  
-              <a href="adminMain.html"><button type="button" class="button-book-admin">Send</button></a>
+
+<div class="flex-container-homepage">
+  <!--Make New Promotion-->
+ 
+  <div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px" id="banner">Please Enter a Valid Movie</div> 
+ 
+  <div class="div-promo-fields h-50 w-100 p-3">
+    <h1>Create New Promotion</h1>
+    <div class="div-browse-search">              
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">MOVIE TITLE:</span>
+        </div>
+        <form action="/addPromotion" name = "addPromotion" id = "addPromotion" method="POST">
+        <input type="text" class="form-control" placeholder="title" name = "movietitle" id="movietitle" aria-describedby="basic-addon3">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
+        </div>
+        <input type="date" class="form-control" placeholder="XX/XX/XX" name = "startdate" id="startdate" aria-describedby="basic-addon3">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
+        </div>
+        <input type="date" class="form-control" placeholder="XX/XX/XX" name = "enddate" id="enddate" aria-describedby="basic-addon3">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="XX%" name = "percent" id="percent" aria-describedby="basic-addon3">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Promo Code:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" name = "promocode" id="promocode" aria-describedby="basic-addon3">
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Email Heading</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" name = "heading" id="heading" aria-describedby="basic-addon3">
+      </div>
+      <!-- -->
+      <div class="form-group">
+        
+          <label for="message">MESSAGE:</label>
+          <textarea class="form-control" class = "text" rows="5" id="message" name = "message" form = "addPromotion" required></textarea>
+          
+
+          <input type="submit" class="button-book-admin" value="Create">
+        </form>
               <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
             </div>
           </div>
@@ -198,4 +224,23 @@
       </div>
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+crossorigin="anonymous"></script>
+
+<script> // PROMOTION CHECK VALID MOVIE
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/isInvalidMovie",
+      type: "GET",
+      success: function(result) {
+        if (result.status == false) $('#banner').remove();
+        console.log(result);
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script>
 </html>
