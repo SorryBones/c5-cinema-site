@@ -100,6 +100,8 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`movie` (
   `genre` VARCHAR(45) NULL DEFAULT NULL,
   `release_date` VARCHAR(10) NULL DEFAULT NULL,
   `duration` VARCHAR(4) NULL DEFAULT NULL,
+  `director` VARCHAR(100) NULL DEFAULT NULL,
+  `producer` VARCHAR(100) NULL DEFAULT NULL,
   `cast` VARCHAR(100) NULL DEFAULT NULL,
   `description` VARCHAR(1000) NULL DEFAULT NULL,
   `img` VARCHAR(255) NULL DEFAULT NULL,
@@ -112,7 +114,10 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`movie` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
-
+INSERT IGNORE INTO movie SET title = 'Indemnity', ratings_id = '1', genre = 'Action', release_date = '2022-02-11', duration = '2:04', 
+director = 'Travis Taute', producer = 'Benjamin Overmeyer', cast = 'Jarrid Geduld, Gail Nkoane, Grant Powell, Nicole Fortuin', 
+description = 'An ex-firefighter, falsely accused of killing his wife, must fight for survival when connections are revealed between his past and a wide-ranging government conspiracy with terrifying implications.', 
+img = 'images/poster1Indemnity.png';
 
 -- -----------------------------------------------------
 -- Table `NewCES`.`user`
@@ -259,17 +264,43 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `NewCES`.`showTime`
 -- -----------------------------------------------------
+-- CREATE TABLE IF NOT EXISTS `NewCES`.`showTime` (
+--   `show_id` INT NOT NULL AUTO_INCREMENT,
+--   `movie_id` INT NOT NULL,
+--   `room_id` INT NOT NULL,
+--   `date` VARCHAR(10) NULL DEFAULT NULL,
+--   `time` VARCHAR(7) NULL DEFAULT NULL,
+--   `seat_id` INT NOT NULL,
+--   PRIMARY KEY (`show_id`, `movie_id`, `room_id`, `seat_id`),
+--   INDEX `fk_show_movie_idx` (`movie_id` ASC) VISIBLE,
+--   INDEX `fk_show_room1_idx` (`room_id` ASC) VISIBLE,
+--   INDEX `fk_show_showSeat1_idx` (`seat_id` ASC) VISIBLE,
+--   CONSTRAINT `fk_show_movie`
+--     FOREIGN KEY (`movie_id`)
+--     REFERENCES `NewCES`.`movie` (`movie_id`)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE,
+--   CONSTRAINT `fk_show_room1`
+--     FOREIGN KEY (`room_id`)
+--     REFERENCES `NewCES`.`room` (`room_id`)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE,
+--   CONSTRAINT `fk_show_showSeat1`
+--     FOREIGN KEY (`seat_id`)
+--     REFERENCES `NewCES`.`showSeat` (`seat_id`)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE)
+-- ENGINE = InnoDB
+-- DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `NewCES`.`showTime` (
   `show_id` INT NOT NULL AUTO_INCREMENT,
   `movie_id` INT NOT NULL,
   `room_id` INT NOT NULL,
-  `date` VARCHAR(10) NULL DEFAULT NULL,
-  `time` VARCHAR(7) NULL DEFAULT NULL,
-  `seat_id` INT NOT NULL,
-  PRIMARY KEY (`show_id`, `movie_id`, `room_id`, `seat_id`),
+  `date` DATE NULL DEFAULT NULL,
+  `time` TIME NULL DEFAULT NULL,
+  PRIMARY KEY (`show_id`, `movie_id`, `room_id`),
   INDEX `fk_show_movie_idx` (`movie_id` ASC) VISIBLE,
   INDEX `fk_show_room1_idx` (`room_id` ASC) VISIBLE,
-  INDEX `fk_show_showSeat1_idx` (`seat_id` ASC) VISIBLE,
   CONSTRAINT `fk_show_movie`
     FOREIGN KEY (`movie_id`)
     REFERENCES `NewCES`.`movie` (`movie_id`)
@@ -278,11 +309,6 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`showTime` (
   CONSTRAINT `fk_show_room1`
     FOREIGN KEY (`room_id`)
     REFERENCES `NewCES`.`room` (`room_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_show_showSeat1`
-    FOREIGN KEY (`seat_id`)
-    REFERENCES `NewCES`.`showSeat` (`seat_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB

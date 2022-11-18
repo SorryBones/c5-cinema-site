@@ -114,7 +114,9 @@
             else if (result.ratings_id == 1) rating = 'PG-13';
             else if (result.ratings_id == 3) rating = 'R';
 
-            newDiv.innerHTML = result.img
+            console.log(result.image);
+
+            newDiv.innerHTML = result.image
                             + "<h3>" + result.title + " - " + result.genre + " - " + rating + "</h3>"
                             + result.button
 
@@ -139,7 +141,7 @@
             var newDiv = document.createElement('div');
             newDiv.className = "flex-homepage-latest-movie";
 
-            newDiv.innerHTML = result.img
+            newDiv.innerHTML = result.image
                             + "<h3>" + result.release_date + "</h3>"
 
             document.getElementById('upcomingMovies').appendChild(newDiv);

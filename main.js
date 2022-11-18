@@ -23,6 +23,7 @@ var registerBody;
 var forgotPasswordEmail;
 
 var isIncorrectPassword = false;
+var isIncorrectShowtime = false;
 
 var isInvalidMovie = false;
 var promoMovieId;
@@ -131,8 +132,7 @@ app.get('/getAllMovies', encoder, function(req,res) {
     const query = 'SELECT * FROM movie';
     connection.query(query,[],function(error,results,fields) {
         results.forEach(result => {
-            // result.img = "<img class='img-browse-entry' src='images/poster-default.png'/>";
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+            result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
         }) // set image
         res.json(results);
     });
@@ -142,7 +142,7 @@ app.get('/getUpcomingMovies', encoder, function(req,res) {
     const query = 'SELECT * FROM movie';
     connection.query(query,[],function(error,results,fields) {
         results.forEach(result => {
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+            result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
         }) // set image
         res.json(results);
     });
@@ -153,7 +153,7 @@ app.get('/getNewestReleases', encoder, function(req,res) {
     connection.query(query,[],function(error,results,fields) {
         results.forEach(result => {
             result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+            result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
         }) // set image
         res.json(results);
     });
@@ -386,6 +386,29 @@ console.log("no movie found");
     //isValidMovie = false;
 })
 
+app.get("/isIncorrectPassword", function(req,res) {
+    if (isIncorrectPassword) res.json({status: true});
+    else res.json({status: false});
+
+    isIncorrectPassword = false;
+})
+
+app.get("/isIncorrectShowtime", function(req,res) {
+    if (isIncorrectShowtime) res.json({status: true});
+    else res.json({status: false});
+})
+
+app.get('/getAllShowtimes', encoder, function(req,res) {
+    const query = 'SELECT * FROM showTime WHERE movie_id = ?';
+    connection.query(query,[movieId],function(error,results,fields) {
+        if (results.length > 0) {
+            res.json(results);
+        } else {
+            res.json({status: false});
+        }
+    });
+})
+
 /* --------- ADMIN --------- */
 
 app.get('/adminManageMovies', encoder, function(req,res) {
@@ -401,16 +424,105 @@ app.get('/adminManageMovies', encoder, function(req,res) {
 })
 
 app.post('/addShowtime', encoder, function(req,res) {
-    console.log(req.body);
-    const query = 'INSERT INTO showTime (movie_id, room_id, date, time, seat_id) VALUES (?, ?, ?, ?, ?);';
-    connection.query(query,[1, 1, '12/12/1234', '3:01pm', 0],function(error,results,fields) {
-        console.log(results)
-        console.log(error)
-        console.log(fields)
-        console.log('showtime added');
+    connection.query('select * from showTime where date = ? and time = ?;',[req.body.date, req.body.showtime],function(error,results,fields) {
+        if (results[0] == null) {
+            const query = 'INSERT INTO showTime (movie_id, room_id, date, time) VALUES (?, ?, ?, ?);';
+            connection.query(query,[movieId, 1, req.body.date, req.body.showtime],function(error,results,fields) {
+                console.log('showtime added');
+            });
+            isIncorrectShowtime = false;
+        } else {
+            isIncorrectShowtime = true;
+        }
     });
+
     res.redirect('/adminEditShowtimes.html');
 })
+
+app.post('/editShowtime', encoder, function(req,res) {
+    if (req.body.date != '') {
+        const query = 'UPDATE showTime SET date = ? WHERE show_id = ?';
+        connection.query(query,[req.body.date, req.body.id],function(error,results,fields) {
+            console.log('date updated');
+        });
+    }
+    if (req.body.time != '') {
+        const query = 'UPDATE showTime SET time = ? WHERE show_id = ?';
+        connection.query(query,[req.body.time, req.body.id],function(error,results,fields) {
+            console.log('date updated');
+        });
+    }
+    res.redirect('/adminEditShowtimes.html');
+})
+
+// NOT WORKING?
+// app.post('/editShowtime', encoder, function(req,res) {
+//     connection.query('select * from showTime where show_id = ?',[req.body.id],function(error,results1,fields) { // IS ALREADY TAKEN?
+//         console.log(req.body);
+//         if (req.body.date != '' && req.body.time != '') {
+//             connection.query('select * from showTime where date = ? and time = ?;',[req.body.date, req.body.time],function(error,results,fields) {
+//                 if (results[0] != null) {
+//                     isIncorrectShowtime = true;
+//                 } else {
+//                     isIncorrectShowtime = false;
+//                     if (req.body.date != '') {
+//                         const query = 'UPDATE showTime SET date = ? WHERE show_id = ?';
+//                         connection.query(query,[req.body.date, req.body.id],function(error,results,fields) {
+//                             console.log('date updated');
+//                         });
+//                     }
+//                     if (req.body.time != '') {
+//                         const query = 'UPDATE showTime SET time = ? WHERE show_id = ?';
+//                         connection.query(query,[req.body.time, req.body.id],function(error,results,fields) {
+//                             console.log('date updated');
+//                         });
+//                     }
+//                 }
+//             });
+//         } else if (req.body.date != '') {
+//             connection.query('select * from showTime where date = ? and time = ?;',[req.body.date, results1.time],function(error,results,fields) {
+//                 if (results[0] != null) {
+//                     isIncorrectShowtime = true;
+//                 } else {
+//                     isIncorrectShowtime = false;
+//                     if (req.body.date != '') {
+//                         const query = 'UPDATE showTime SET date = ? WHERE show_id = ?';
+//                         connection.query(query,[req.body.date, req.body.id],function(error,results,fields) {
+//                             console.log('date updated');
+//                         });
+//                     }
+//                     if (req.body.time != '') {
+//                         const query = 'UPDATE showTime SET time = ? WHERE show_id = ?';
+//                         connection.query(query,[req.body.time, req.body.id],function(error,results,fields) {
+//                             console.log('date updated');
+//                         });
+//                     }
+//                 }
+//             });
+//         } else if (req.body.time != '') {
+//             connection.query('select * from showTime where date = ? and time = ?;',[results1.date, req.body.time],function(error,results,fields) {
+//                 if (results[0] != null) {
+//                     isIncorrectShowtime = true;
+//                 } else {
+//                     isIncorrectShowtime = false;
+//                     if (req.body.date != '') {
+//                         const query = 'UPDATE showTime SET date = ? WHERE show_id = ?';
+//                         connection.query(query,[req.body.date, req.body.id],function(error,results,fields) {
+//                             console.log('date updated');
+//                         });
+//                     }
+//                     if (req.body.time != '') {
+//                         const query = 'UPDATE showTime SET time = ? WHERE show_id = ?';
+//                         connection.query(query,[req.body.time, req.body.id],function(error,results,fields) {
+//                             console.log('date updated');
+//                         });
+//                     }
+//                 }
+//             });
+//         }
+//     });
+//     res.redirect('/adminEditShowtimes.html');
+// })
 
 app.post('/addMovie', encoder, function(req,res) {
     let title = req.body.title;
@@ -421,10 +533,13 @@ app.post('/addMovie', encoder, function(req,res) {
     let genre = req.body.genre;
     let releaseDate = req.body.releaseDate;
     let duration = req.body.duration;
+    let director = req.body.director;
+    let producer = req.body.producer;
     let cast = req.body.cast;
     let description = req.body.description;
-    const query = 'INSERT INTO movie (title, ratings_id, genre, release_date, duration, cast, description) VALUES (?, ?, ?, ?, ?, ?, ?);';
-    connection.query(query,[title, rating, genre, releaseDate, duration, cast, description],function(error,results,fields) {
+    let img = req.body.img;
+    const query = 'INSERT INTO movie (title, ratings_id, genre, release_date, duration, director, producer, cast, description, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    connection.query(query,[title, rating, genre, releaseDate, duration, director, producer, cast, description, img],function(error,results,fields) {
         console.log('movie added');
     });
     res.redirect('/adminMain.html');
@@ -753,13 +868,6 @@ app.post('/adminUpdateHomeAddress', encoder, function(req,res) {
 })
 
 /* --------- USER --------- */
-
-app.get("/isIncorrectPassword", function(req,res) {
-    if (isIncorrectPassword) res.json({status: true});
-    else res.json({status: false});
-
-    isIncorrectPassword = false;
-})
 
 app.post('/register', encoder, function(req,res) {
     registerBody = req.body;
