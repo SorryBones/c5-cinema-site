@@ -4,13 +4,14 @@
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
-const encoder = bodyParser.urlencoded();
-const app = express();
 const nodemailer = require('nodemailer');
-const e = require('express');
 const crypto = require('crypto');
 
+const app = express();
 app.use(express.static('.'));
+app.use(require('./routes'));
+
+const encoder = bodyParser.urlencoded();
 
 var adminUserProfileId;
 var movieId;
@@ -34,6 +35,12 @@ var promoId;
 const algorithm = "aes-256-cbc";
 const key ="12345678123456781234567812345678";
 const iv = "zAvR2NI87bBx746n";
+
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  });  
 
 // connect to database
 const connection = mysql.createConnection({
@@ -227,11 +234,11 @@ app.get('/getNewestReleases', encoder, function(req,res) {
     });
 })
 
-app.post('/book', encoder, function(req,res) {
-    console.log(req.body.movie_id);
-    movieId = req.body.movie_id;
-    res.redirect('/book.html');
-})
+// app.post('/book', encoder, function(req,res) {
+//     console.log(req.body.movie_id);
+//     movieId = req.body.movie_id;
+//     res.redirect('/book.html');
+// })
 
 app.post("/searchMovie", encoder, function(req,res) {
     console.log(req.body);
@@ -1158,4 +1165,5 @@ app.post('/updateBillingAddress', encoder, function(req,res) {
     });
 })
 
+module.exports = {encoder, movieId};
 app.listen(4000);
