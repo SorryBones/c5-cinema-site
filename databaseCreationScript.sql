@@ -104,7 +104,9 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`movie` (
   `producer` VARCHAR(100) NULL DEFAULT NULL,
   `cast` VARCHAR(100) NULL DEFAULT NULL,
   `description` VARCHAR(1000) NULL DEFAULT NULL,
+  `audience_rating` INT NOT NULL,
   `img` VARCHAR(255) NULL DEFAULT NULL,
+  `video_url` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`movie_id`, `ratings_id`),
   INDEX `fk_movie_ENUM_ratings1_idx` (`ratings_id` ASC) VISIBLE,
   CONSTRAINT `fk_movie_ENUM_ratings1`
@@ -114,10 +116,26 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`movie` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
 INSERT IGNORE INTO movie SET title = 'Indemnity', ratings_id = '1', genre = 'Action', release_date = '2022-02-11', duration = '2:04', 
-director = 'Travis Taute', producer = 'Benjamin Overmeyer', cast = 'Jarrid Geduld, Gail Nkoane, Grant Powell, Nicole Fortuin', 
+director = 'Daniel Espinosa', producer = 'Matt Tolmach', cast = 'Jarrid Geduld, Gail Nkoane, Grant Powell, Nicole Fortuin', 
 description = 'An ex-firefighter, falsely accused of killing his wife, must fight for survival when connections are revealed between his past and a wide-ranging government conspiracy with terrifying implications.', 
-img = 'images/poster1Indemnity.png';
+audience_rating = '3', img = 'images/poster1Indemnity.png', video_url = 'https://www.youtube.com/embed/Tm1Mm-4P_-s';
+
+INSERT IGNORE INTO movie SET title = 'Morbius', ratings_id = '1', genre = 'Action', release_date = '2021-07-21', duration = '2:10', 
+director = 'Travis Taute', producer = 'Benjamin Overmeyer', cast = 'Jared Leto, Matt Smith, Adria Arjona, Michael Keaton', 
+description = 'Dangerously ill with a rare blood disorder and determined to save others from the same fate, Dr. Morbius attempts a desperate gamble. While at first it seems to be a radical success, a darkness inside of him is soon unleashed.', 
+audience_rating = '1', img = 'images/poster2Morbius.png', video_url = 'https://www.youtube.com/embed/oZ6iiRrz1SY';
+
+INSERT IGNORE INTO movie SET title = 'Adam Project', ratings_id = '3', genre = 'Sci-Fi', release_date = '2022-02-28', duration = '1:48', 
+director = 'Shawn Levy', producer = 'John Smith', cast = 'Ryan Reynolds, Walker Scobell, Zeo Saldana, Jennifer Garner', 
+description = 'After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with his 12-year-old self for a mission to save the future.', 
+audience_rating = '5', img = 'images/poster3AdamProject.png', video_url = 'https://www.youtube.com/embed/IE8HIsIrq4o';
+
+INSERT IGNORE INTO movie SET title = 'I Care A Lot', ratings_id = '2', genre = 'Drama', release_date = '2023-01-11', duration = '2:12', 
+director = 'J Blakeson', producer = 'Teddy Schwarzman', cast = 'Rosamund Pike, Eiza Gonzalez, Peter Dinklage, Dianne Wiest', 
+description = 'A shady legal guardian lands in hot water when she tries to bilk a woman who has ties to a powerful gangster.', 
+audience_rating = '4', img = 'images/poster5ICareALot.png', video_url = 'https://www.youtube.com/embed/D40uHmTSPew';
 
 -- -----------------------------------------------------
 -- Table `NewCES`.`user`

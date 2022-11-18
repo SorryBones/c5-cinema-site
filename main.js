@@ -26,7 +26,6 @@ var isIncorrectPassword = false;
 var isIncorrectShowtime = false;
 
 var isInvalidMovie = false;
-var promoMovieId;
 var promoHeader;
 var promoBody;
 var promoDiscount;
@@ -138,10 +137,78 @@ app.get('/getAllMovies', encoder, function(req,res) {
     });
 })
 
+app.get('/getAllPromotions', encoder, function(req,res) {
+    
+    const promotionsQuery = 'SELECT * FROM promotions WHERE sent = ?';
+    const movieQuery = 'SELECT * FROM movie WHERE title = ?';
+
+    
+    queryPromise1 = (send) =>{
+        return new Promise((resolve, reject)=>{
+            connection.query(promotionsQuery,[send],(error, results, fields)=>{
+                if(error){
+                    return reject(error);
+                }
+               
+                return resolve(results);
+            });
+        });
+    };
+    queryPromise2 = (title) =>{
+        return new Promise((resolve, reject)=>{
+            connection.query(movieQuery,[title],(error, results)=>{
+                if(error){
+                    return reject(error);
+                }
+                return resolve(results);
+            });
+        });
+    };
+
+    async function runQueries () {
+        
+        try{
+        let sent = 0;
+     promoResults = await queryPromise1(sent);
+     console.log(promoResults);
+
+     for(let index = 0; index < promoResults.length; index++) {
+    console.log(promoResults[index].title)
+     result = await queryPromise2(promoResults[index].title)
+console.log(result)
+
+        // GET IMAGE SOURCE FROM MOVIE QUERY (index for promo because their are multiple; Zeros for movie because on every loop result will always be at index 0)
+     promoResults[index].image = "<img class='img-movie-poster' src='" + result[0].img + "'/>";
+
+
+ // ADDS PLACEHOLDER VALUES FOR EDIT PROMOTIONS
+    
+ promoResults[index].editButton = '<form action="/adminEditPromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Edit Promotion"></form>'
+ promoResults[index].removeButton = '<form action="/removePromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Remove Promotion"></form>'
+   
+  
+     }
+ 
+        res.json(promoResults);
+      
+        console.log(promoResults);
+         
+        } catch(error){
+        console.log(error)
+        }
+    }
+runQueries();
+})
+
 app.get('/getUpcomingMovies', encoder, function(req,res) {
-    const query = 'SELECT * FROM movie';
-    connection.query(query,[],function(error,results,fields) {
+    let tomorrowDate = new Date();
+    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+    let tomorrow = tomorrowDate.toISOString().slice(0, 10);
+    console.log("today: " + tomorrow);
+    const query = 'SELECT * FROM movie WHERE release_date BETWEEN ? AND "9999-99-99" ORDER BY release_date DESC LIMIT 4;'; 
+    connection.query(query,[tomorrow],function(error,results,fields) {
         results.forEach(result => {
+            result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
             result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
         }) // set image
         res.json(results);
@@ -149,8 +216,9 @@ app.get('/getUpcomingMovies', encoder, function(req,res) {
 })
 
 app.get('/getNewestReleases', encoder, function(req,res) {
-    const query = 'SELECT * FROM movie';
-    connection.query(query,[],function(error,results,fields) {
+    let today = new Date().toISOString().slice(0, 10);
+    const query = 'SELECT * FROM movie WHERE release_date BETWEEN "0000-00-00" AND ? ORDER BY release_date DESC LIMIT 4;'; 
+    connection.query(query,[today],function(error,results,fields) {
         results.forEach(result => {
             result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
             result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
@@ -184,7 +252,7 @@ app.post("/searchMovie", encoder, function(req,res) {
             if (results.length > 0) {
                 results.forEach(result => {
                     result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+                    result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
                 }) // set image
                 res.json(results);
             } else {
@@ -197,7 +265,7 @@ app.post("/searchMovie", encoder, function(req,res) {
             if (results.length > 0) {
                 results.forEach(result => {
                     result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+                    result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
                 }) // set image
                 res.json(results);
             } else {
@@ -214,7 +282,7 @@ app.post("/searchMovie", encoder, function(req,res) {
             if (results.length > 0) {
                 results.forEach(result => {
                     result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+                    result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
                 }) // set image
                 res.json(results);
             } else {
@@ -231,7 +299,7 @@ app.post("/searchMovie", encoder, function(req,res) {
             if (results.length > 0) {
                 results.forEach(result => {
                     result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+                    result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
                 }) // set image
                 res.json(results);
             } else {
@@ -244,7 +312,7 @@ app.post("/searchMovie", encoder, function(req,res) {
             if (results.length > 0) {
                 results.forEach(result => {
                     result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+                    result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
                 }) // set image
                 res.json(results);
             } else {
@@ -257,7 +325,7 @@ app.post("/searchMovie", encoder, function(req,res) {
             if (results.length > 0) {
                 results.forEach(result => {
                     result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+                    result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
                 }) // set image
                 res.json(results);
             } else {
@@ -274,7 +342,7 @@ app.post("/searchMovie", encoder, function(req,res) {
             if (results.length > 0) {
                 results.forEach(result => {
                     result.button = '<form action="/book" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-now" type="submit" value="Book Tickets"></form>'
-                    result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+                    result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
                 }) // set image
                 res.json(results);
             } else {
@@ -290,7 +358,6 @@ app.get("/getMovie", function(req,res) {
     const query = 'SELECT * FROM movie WHERE movie_id = ?';
     connection.query(query,[movieId],function(error,results,fields) {
         if (results.length > 0) {
-            results[0].img = "images/poster1Indemnity.png";
             res.json(results[0]);
         } else {
             res.json({status: false});
@@ -349,25 +416,11 @@ function sendEmail(email, message) {
 }
 
 app.get("/getPromo", function(req, res) {
-    
     const query = 'SELECT * FROM promotions WHERE promo_id = ?';
     connection.query(query,[promoId],function(error,results,fields) {
         if (results.length > 0) {
             res.json(results[0]);
            // console.log("get promo");
-        } else {
-            res.json({status: false});
-        }
-        
-    })
-});
-
-app.get("/getPromoMovieTitle", function(req, res) {
-   //console.log("movie id is " + promoMovieId);
-    const query = 'SELECT * FROM movie WHERE movie_id = ?';
-    connection.query(query,[promoMovieId],function(error,results,fields) {
-        if (results.length > 0) {
-            res.json(results[0]);
         } else {
             res.json({status: false});
         }
@@ -417,7 +470,8 @@ app.get('/adminManageMovies', encoder, function(req,res) {
         results.forEach(result => {
             result.informationButton = '<form action="/adminEditMovie" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-admin" type="submit" value="Edit Information"></form>'
             result.showtimesButton = '<form action="/adminEditShowtimes" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-admin" type="submit" value="Manage Showtimes"></form>'
-            result.img = "<img class='img-movie-poster' src='images/poster-default.png'/>";
+            result.promotionsButton = '<form action="/adminPromotions" method="POST"><input style="display: none" type="text" id="movie_id" name="movie_id" value=' + result.movie_id + '><input class="button-book-admin" type="submit" value="Manage Promotions"></form>'
+            result.image = "<img class='img-movie-poster' src='" + result.img + "'/>";
         }) // set image
         res.json(results);
     });
@@ -455,75 +509,6 @@ app.post('/editShowtime', encoder, function(req,res) {
     res.redirect('/adminEditShowtimes.html');
 })
 
-// NOT WORKING?
-// app.post('/editShowtime', encoder, function(req,res) {
-//     connection.query('select * from showTime where show_id = ?',[req.body.id],function(error,results1,fields) { // IS ALREADY TAKEN?
-//         console.log(req.body);
-//         if (req.body.date != '' && req.body.time != '') {
-//             connection.query('select * from showTime where date = ? and time = ?;',[req.body.date, req.body.time],function(error,results,fields) {
-//                 if (results[0] != null) {
-//                     isIncorrectShowtime = true;
-//                 } else {
-//                     isIncorrectShowtime = false;
-//                     if (req.body.date != '') {
-//                         const query = 'UPDATE showTime SET date = ? WHERE show_id = ?';
-//                         connection.query(query,[req.body.date, req.body.id],function(error,results,fields) {
-//                             console.log('date updated');
-//                         });
-//                     }
-//                     if (req.body.time != '') {
-//                         const query = 'UPDATE showTime SET time = ? WHERE show_id = ?';
-//                         connection.query(query,[req.body.time, req.body.id],function(error,results,fields) {
-//                             console.log('date updated');
-//                         });
-//                     }
-//                 }
-//             });
-//         } else if (req.body.date != '') {
-//             connection.query('select * from showTime where date = ? and time = ?;',[req.body.date, results1.time],function(error,results,fields) {
-//                 if (results[0] != null) {
-//                     isIncorrectShowtime = true;
-//                 } else {
-//                     isIncorrectShowtime = false;
-//                     if (req.body.date != '') {
-//                         const query = 'UPDATE showTime SET date = ? WHERE show_id = ?';
-//                         connection.query(query,[req.body.date, req.body.id],function(error,results,fields) {
-//                             console.log('date updated');
-//                         });
-//                     }
-//                     if (req.body.time != '') {
-//                         const query = 'UPDATE showTime SET time = ? WHERE show_id = ?';
-//                         connection.query(query,[req.body.time, req.body.id],function(error,results,fields) {
-//                             console.log('date updated');
-//                         });
-//                     }
-//                 }
-//             });
-//         } else if (req.body.time != '') {
-//             connection.query('select * from showTime where date = ? and time = ?;',[results1.date, req.body.time],function(error,results,fields) {
-//                 if (results[0] != null) {
-//                     isIncorrectShowtime = true;
-//                 } else {
-//                     isIncorrectShowtime = false;
-//                     if (req.body.date != '') {
-//                         const query = 'UPDATE showTime SET date = ? WHERE show_id = ?';
-//                         connection.query(query,[req.body.date, req.body.id],function(error,results,fields) {
-//                             console.log('date updated');
-//                         });
-//                     }
-//                     if (req.body.time != '') {
-//                         const query = 'UPDATE showTime SET time = ? WHERE show_id = ?';
-//                         connection.query(query,[req.body.time, req.body.id],function(error,results,fields) {
-//                             console.log('date updated');
-//                         });
-//                     }
-//                 }
-//             });
-//         }
-//     });
-//     res.redirect('/adminEditShowtimes.html');
-// })
-
 app.post('/addMovie', encoder, function(req,res) {
     let title = req.body.title;
     let rating;
@@ -537,12 +522,22 @@ app.post('/addMovie', encoder, function(req,res) {
     let producer = req.body.producer;
     let cast = req.body.cast;
     let description = req.body.description;
+    let audienceRating = req.body.audienceRating;
     let img = req.body.img;
-    const query = 'INSERT INTO movie (title, ratings_id, genre, release_date, duration, director, producer, cast, description, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-    connection.query(query,[title, rating, genre, releaseDate, duration, director, producer, cast, description, img],function(error,results,fields) {
+    let videoURL = req.body.videoURL;
+    const query = 'INSERT INTO movie (title, ratings_id, genre, release_date, duration, director, producer, cast, description, audience_rating, img, video_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    connection.query(query,[title, rating, genre, releaseDate, duration, director, producer, cast, description, audienceRating, img, videoURL],function(error,results,fields) {
+        console.log(error);
+        console.log(results);
+        console.log(fields);
         console.log('movie added');
     });
     res.redirect('/adminMain.html');
+})
+
+app.post('/adminEditMovie', encoder, function(req,res) {
+    movieId = req.body.movie_id;
+    res.redirect('/adminEditMovie.html');
 })
 
 app.post('/editMovie', encoder, function(req,res) {
@@ -611,79 +606,57 @@ app.post('/adminEditMovie', encoder, function(req,res) {
     res.redirect('/adminEditMovie.html');
 })
 
+app.post('/adminPromotions', encoder, function(req,res) {
+    movieId = req.body.movie_id;
+    res.redirect('/adminPromotions.html');
+})
+
 app.post('/addPromotion', encoder, function(req,res) {
     promoBody = req.body.message;
     promoHeader = req.body.heading;
-    promoDiscount = req.body.percent;
+    let promoDiscount = req.body.percent;
     let promocode = req.body.promocode;
     let startdate = req.body.startdate;
     let enddate = req.body.enddate;
-    let movietitle = req.body.movietitle;
-    
-      let promotion = 'Y';
-      let sent = 0;
-      let found = false;
-  
-      connection.query('SELECT * FROM movie' , function(error,results,fields) {
-        isInvalidMovie = false;
-        
-          for(let index = 0; index < results.length; index++) {
-              let title = results[index].title;
-              console.log(title);
-             if (title == movietitle) {
-              found = true;
-              console.log("movie found");
-              if (found) {
-                  promoMovieId = results[index].movie_id;
-                  console.log("movieid is " + promoMovieId);
-                  connection.query('INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);',[startdate, enddate, promocode, promoMovieId, promoDiscount, sent, promoBody],function(error,results,fields) {
-                      console.log("insert to promotions");
-                      });
-  
-                      connection.query('SELECT * FROM promotions WHERE start_date = ? AND end_date = ? AND promo_code = ? AND discount = ? AND movie_id = ? AND message = ?;', [startdate, enddate, promocode, promoDiscount, promoMovieId, promoBody], function(error,results,fields) {
-                          promoId = results[0].promo_id;
-                         // console.log("here pls");
-                      } );
-  
-             }
-          } else { 
-              console.log("invalid");
-              isInvalidMovie = true;
-      }
-  
-      }
-  
-      if (found) {
-          res.redirect('/adminSendPromo.html');
-      } else {
-          res.redirect('/adminPromotions.html'); 
-      }
+     
+    let sent = 0;
+         
+    connection.query('INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);',[startdate, enddate, promocode, movieId, promoDiscount, sent, promoBody],function(error,results,fields) {
+        console.log(results);
+        console.log(error);
+        console.log(fields);
+        console.log("insert to promotions");
     });
-});
+
+    connection.query('SELECT * FROM promotions WHERE start_date = ? and end_date = ? and promo_code = ? and movie_id = ? and discount = ? and sent = ? and message = ?;',[startdate, enddate, promocode, movieId, promoDiscount, sent, promoBody],function(error,results,fields) {
+        promoId = results[0].promo_id;
+    });
+    res.redirect('/adminSendPromo.html');
+ });
 
 app.post('/sendPromotion', encoder, function(req,res) {
    
     let promotion = 'Y';
    // console.log(message);
     connection.query('SELECT * FROM user WHERE promo_subs = ?',[promotion],function(error,results,fields) {
-    console.log(results);
+        console.log(results);
 
-    // SEND EMAILS
-    for(let index = 0; index < results.length; index++) {
-        let email = results[index].email;
-       sendEmail(email, promoBody, promoHeader);
-    }
+        // SEND EMAILS
+        for(let index = 0; index < results.length; index++) {
+            let email = results[index].email;
+            sendEmail(email, promoBody, promoHeader);
+        }
 
-    // UPDATE PROMO DATABASE (SENT)
-    let sent = 1;
-    connection.query('UPDATE promotions SET sent = ? WHERE promo_id = ?',[sent, promoId],function(error,results,fields) {
-    console.log("updated promo database")
+        // UPDATE PROMO DATABASE (SENT)
+        let sent = 1;
+        connection.query('UPDATE promotions SET sent = ? WHERE promo_id = ?',[sent, promoId],function(error,results,fields) {
+        console.log("updated promo database")
+        });
+
+        console.log("promotion sent");
+        res.redirect('/adminMain.html');
     });
-
-    console.log("promotion sent");
-    res.redirect('/adminMain.html');
-    });
-})
+});
 
 app.post('/removePromotion', function(req,res) {
     connection.query('DELETE from promotions WHERE promo_id = ?',[promoId],function(error,results,fields) {
@@ -691,6 +664,13 @@ app.post('/removePromotion', function(req,res) {
     }) 
     res.redirect('/adminPromotions.html');
 })
+
+app.post('/adminEditPromotion', encoder, function(req,res) {
+    promoId = req.body.promo_id;
+    res.redirect('/adminEditPromotion.html');
+    console.log("edit promo is " + req.body.id);
+              
+ });
 
 app.post('/adminUpdatePromotion', encoder, function(req,res) {
     let promotions;

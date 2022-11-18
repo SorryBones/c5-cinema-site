@@ -26,7 +26,7 @@
           <form action="/browse.html">
             <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
           </form>
-          <form action="/profile" method="GET">
+          <form action="/profile.html" method="GET">
             <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
           </form>
         </ul>
@@ -38,186 +38,64 @@
 <div class="flex-container-homepage">
   <!--Make New Promotion-->
  
-  <div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px" id="banner">Please Enter a Valid Movie</div> 
+  <div class="banner" style="background-color: rgb(20, 20, 20); color:red; text-align: center; font-size:25px" id="banner">Please Enter a Valid Movie</div> 
  
-  <div class="div-promo-fields h-50 w-100 p-3">
-    <h1>Create New Promotion</h1>
-    <div class="div-browse-search">              
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">MOVIE TITLE:</span>
-        </div>
-        <form action="/addPromotion" name = "addPromotion" id = "addPromotion" method="POST">
-        <input type="text" class="form-control" placeholder="title" name = "movietitle" id="movietitle" aria-describedby="basic-addon3">
-      </div>
+    <div class="div-promo-fields h-50 w-100 p-3">
+      <h1>Create New Promotion</h1>
+      <form action="/addPromotion" method="POST">
+        <div class="div-browse-search">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
+            </div>
+            <input type="date" class="form-control" placeholder="XX/XX/XX" name = "startdate" id="startdate" aria-describedby="basic-addon3" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
+            </div>
+            <input type="date" class="form-control" placeholder="XX/XX/XX" name = "enddate" id="enddate" aria-describedby="basic-addon3" required>
+          </div>
 
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-        </div>
-        <input type="date" class="form-control" placeholder="XX/XX/XX" name = "startdate" id="startdate" aria-describedby="basic-addon3">
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-        </div>
-        <input type="date" class="form-control" placeholder="XX/XX/XX" name = "enddate" id="enddate" aria-describedby="basic-addon3">
-      </div>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-        </div>
-        <input type="text" class="form-control" placeholder="XX%" name = "percent" id="percent" aria-describedby="basic-addon3">
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Promo Code:</span>
-        </div>
-        <input type="text" class="form-control" placeholder="" name = "promocode" id="promocode" aria-describedby="basic-addon3">
-      </div>
-      
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Email Heading</span>
-        </div>
-        <input type="text" class="form-control" placeholder="" name = "heading" id="heading" aria-describedby="basic-addon3">
-      </div>
-      <!-- -->
-      <div class="form-group">
-        
-          <label for="message">MESSAGE:</label>
-          <textarea class="form-control" class = "text" rows="5" id="message" name = "message" form = "addPromotion" required></textarea>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="XX%" name = "percent" id="percent" aria-describedby="basic-addon3" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Promo Code:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="" name = "promocode" id="promocode" aria-describedby="basic-addon3" required>
+          </div>
           
-
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Promo Message:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="" name = "message" id="message" aria-describedby="basic-addon3" required>
+          </div>
+          <!-- -->
           <input type="submit" class="button-book-admin" value="Create">
         </form>
-              <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
-            </div>
-          </div>
-        </div>
+        <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
+      </div>
+    </div>
+  </div>
 
-        <!--Edit existing promotion-->
-        <div class="flex-container-homepage">
-          <div class="flex-container-row">
-            <h1>Edit Existing Promotions</h1>
-          </div>
+  <!--Edit existing promotion-->
+  <div class="flex-container-homepage">
+    <div class="flex-container-row">
+      <h1>Edit Existing Promotions</h1>
+    </div>
 
-          <div class="flex-container-row">
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster1Indemnity.png"/>
+    <div class="flex-container-row" name = "existingPromoField" id = "existingPromoField">
+      <!--Entry-->
 
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
 
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster2Morbius.png"/>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster3AdamProject.png"/>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-            <!--Entry-->
-            <div class="flex-homepage-latest-movie">
-              <img class="img-movie-poster" src="images/poster4FantasticFour.png"/>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/17/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="11/30/22" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <div class="input-group mb-3 p-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-                </div>
-                <input type="text" class="form-control" placeholder="10%" id="basic-title" aria-describedby="basic-addon3">
-              </div>
-
-              <a href="#"><button type="button" class="button-book-now">Remove Promotion</button></a>
-            </div>
-
-          </div> <!--End of flex row-->
-        </div> <!--End of flex homepage-->
+    </div> <!--End of flex row-->
+  </div> <!--End of flex homepage-->
 
 
 
@@ -236,6 +114,31 @@ crossorigin="anonymous"></script>
       success: function(result) {
         if (result.status == false) $('#banner').remove();
         console.log(result);
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script>
+
+<script> // EXISTING PROMOTYIONS
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/getAllPromotions",
+      type: "GET",
+      success: function(result1) {
+        result1.forEach(createUserRow);
+        function createUserRow(result) {
+          var newDiv = document.createElement('div');
+          newDiv.className = "existingPromo";
+
+          newDiv.innerHTML = result.image + 
+                             "<h3>" + result.title + "<h3>" + result.editButton + result.removeButton
+                              + "<style>h3 {text-align: center;}</style>"
+
+          document.getElementById('existingPromoField').appendChild(newDiv);
+        }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         console.log('failure');

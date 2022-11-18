@@ -118,9 +118,23 @@
         
         <div class="input-group mb-3">
           <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">AUDIENCE RATING: (input number 1-5)</span>
+          </div>
+          <input type="text" class="form-control" id="audienceRating" name="audienceRating" aria-describedby="basic-addon3" pattern="[1-5]{1}" required>
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">POSTER IMAGE:</span>
           </div>
           <input type="text" class="form-control" id="img" name="img" aria-describedby="basic-addon3" value="images/poster-default.png" required>
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">TRAILER LINK:</span>
+          </div>
+          <input type="text" class="form-control" id="videoURL" name="videoURL" aria-describedby="basic-addon3" value="https://www.youtube.com/embed/_vECE5BJbA0" required>
         </div>
 
         <input class="button-book-now" type="submit" value="Add Movie">

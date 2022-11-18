@@ -43,7 +43,7 @@
   
   <div class="div-promo-fields h-50 w-100 p-3">
     <h1>Are You Sure You Want to Send This Promotion?</h1>
-    <div class="div-browse-search">              
+    <div class="div-browse-search">
       <h1>Movie:</h1>
     <h2><p id="title"></p></h2>
       <!-- -->
@@ -62,20 +62,18 @@
     <h1><h1>Message:</h1>
     <h2><p id="message"></p></h2></h1>
     
-    
-    
       <div class="form-group">
         
           
          <!-- <textarea class="form-control" class = "text" rows="5" id="message" name = "message" form = "addPromotion" ></textarea> -->
           
           <form action="/sendPromotion" name = "sendPromotion" id = "sendPromotion" method="POST">
-          <input type="submit" class="button-book-admin" value="Send Promo">
+          <input type="submit" class="button-book-admin" value="Send Promotion">
           </form>
         </form>
         <form action="/removePromotion" name = "removePromotion" id = "removePromotion" method="POST">
               <!-- <a href="adminPromotions.html"><button type="button" class="button-book-now">Go Back</button></a>-->
-              <input type="submit" class="button-book-now" value="Change Promotion">
+              <input type="submit" class="button-book-now" value="Delete Promotion">
       </form>
               </div>
             </div>
@@ -92,8 +90,7 @@
 
 
       </div>
-</body>
-
+      
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
 integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 crossorigin="anonymous"></script>
@@ -113,15 +110,18 @@ crossorigin="anonymous"></script>
       }})
     });
     </script>
-    <script>
-      $(document).ready(function() {
-        $.ajax( {
-          url: "/getPromoMovieTitle",
-          type: "GET",
-          success: function(result) {
-            $("#title").html(result.title);
-           
-          }})
-        });
-        </script>
+
+<script>
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/getMovie",
+      type: "GET",
+      success: function(result) {
+        $("#title").html(result.title);
+      }})
+    });
+</script>
+
+</body>
+
 </html>

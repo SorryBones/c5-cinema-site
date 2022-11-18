@@ -109,7 +109,7 @@
       var newDiv = document.createElement('div');
       newDiv.className = "flex-homepage-latest-movie";
       newDiv.style = "height: 70vh";
-      newDiv.innerHTML = "<h3>" + "No Movies Found" + "</h3>"
+      newDiv.innerHTML = "<h3>" + "Search for Movies!" + "</h3>"
       document.getElementById('searchResults').appendChild(newDiv);
     });
   </script>
@@ -144,7 +144,7 @@
                 else if (result.ratings_id == 1) rating = 'PG-13';
                 else if (result.ratings_id == 3) rating = 'R';
     
-                newDiv.innerHTML = result.img
+                newDiv.innerHTML = result.image
                                 + "<h3>" + result.title + " - " + result.genre + " - " + rating + "</h3>"
                                 + result.button
     

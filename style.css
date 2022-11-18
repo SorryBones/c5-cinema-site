@@ -40,7 +40,7 @@ input.login-field {
 	border-radius: 8px;
 	width:60%;
 	height: 45px;
-	border:2px solid black;
+	border:2px solid #cc0800;
 	background-color: black;
 	font-size: 20px;
 	font-family: "Lexend Deca";
@@ -182,7 +182,7 @@ li a:hover:not(.active) {
 	justify-content: center;
 	align-items: center;
 	background-color: #272727;
-	border: 5px solid black;
+	border: 5px solid #cc0800;
 }
 
 .flex-container-row {
@@ -211,7 +211,7 @@ li a:hover:not(.active) {
 	justify-content: flex-start;
 	align-items: flex-start;
 	background-color: #272727;
-	border: 5px solid black;
+	border: 5px solid #cc0800;
 }
 
 .flex-entry-content {
@@ -232,7 +232,7 @@ li a:hover:not(.active) {
 
 .div-center-spread {
 	background-color: #272727;
-	border: 5px solid black;
+	border: 5px solid #cc0800;
 	background-image: url(images/cinemaBackground.png);
 	position: top;
 	height: 90%;
@@ -246,7 +246,7 @@ li a:hover:not(.active) {
 
 .div-center-label {
 	background-color: #272727;
-	border: 16px solid black;
+	border: 16px solid #cc0800;
 	position: top;
 	height: 100%;
 	text-align: center;
@@ -291,7 +291,7 @@ li a:hover:not(.active) {
 	height: 100%;
 	text-align: left;
 	vertical-align: middle;
-	border: 16px solid black;
+	border: 2px solid #cc0800;
 	padding: .5em;
 }
 
@@ -304,7 +304,7 @@ li a:hover:not(.active) {
 .div-book-chart {
 	color: whitesmoke;
 	background-color: #272727;
-	border: 16px solid black;
+	border: 2px solid #cc0800;
 	height: auto;
 	width: auto;
 	overflow: auto;
@@ -315,7 +315,7 @@ li a:hover:not(.active) {
 .div-book-fields {
 	color: whitesmoke;
 	background-color: #272727;
-	border: 16px solid black;
+	border: 2px solid #cc0800;
 	height: 37vh;
 	width: auto;
 	overflow: auto;
@@ -326,7 +326,7 @@ li a:hover:not(.active) {
 .div-promo-fields {
 	color: whitesmoke;
 	background-color: #272727;
-	border: 16px solid black;
+	border: 16px solid #cc0800;
 	height: 94.5vh;
 	width: auto;
 	overflow: auto;
@@ -352,7 +352,7 @@ li a:hover:not(.active) {
 .text-sub {
     color: rgb(240, 240, 240);
     text-align: center;
-    text-shadow: 1px 1px black;
+    text-shadow: 1px 1px #cc0800;
 	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
@@ -362,7 +362,7 @@ li a:hover:not(.active) {
 .text-description {
 	color: rgb(240, 240, 240);
     text-align: left;
-    text-shadow: 1px 1px black;
+    text-shadow: 1px 1px #cc0800;
 	vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
@@ -398,13 +398,14 @@ li a:hover:not(.active) {
 
 .button-book-now {
 	background-color: #272727;
-	border: 2px solid black;
+	border: 2px solid #cc0800;
   	color: whitesmoke;
   	padding: 15px 32px;
   	text-align: center;
   	text-decoration: none;
   	display: inline-block;
   	font-size: 16px;
+	margin-top: 10px;
 }
 
 .button-book-admin {

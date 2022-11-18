@@ -38,9 +38,6 @@
 
   <!-- MOVIES -->
   <div class="flex-container-homepage">
-    <div class="flex-container-row">
-      <h1 class="text-sub">ALL MOVIES:</h1>
-    </div>
     <div class="flex-container-row" id="movies"></div>
   </div>
 
@@ -82,11 +79,12 @@
             else if (result.ratings_id == 1) rating = 'PG-13';
             else if (result.ratings_id == 3) rating = 'R';
 
-            newDiv.innerHTML = result.img
+            newDiv.innerHTML = result.image
                             + "<h3> ID: " + result.movie_id + "<br>"
                             + "Title: " + result.title + "<br></h3>"
                             + result.informationButton
                             + result.showtimesButton
+                            + result.promotionsButton
 
             document.getElementById('movies').appendChild(newDiv);
           }
