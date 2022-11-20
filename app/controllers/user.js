@@ -1,24 +1,16 @@
 // PLACE ALL USER FUNCTIONS HERE
 
-const Tutorial = require("../models/tutorial.model.js");
-
 let values = require("../values");
+
+let adminModel = require("../models/admin.js");
+let bookingModel = require("../models/booking.js");
+let pageModel = require("../models/page.js");
+let promotionModel = require("../models/promotion.js");
+let showtimeModel = require("../models/showtime.js");
+let userModel = require("../models/user.js");
+let utilModel = require("../models/util.js");
 
 exports.isLoggedIn = (req, res) => {
   if (values.getLoggedIn()) res.json({status: true});
   else res.json({status: false});
 };
-
-exports.findAll = (req, res) => {
-  const title = req.query.title;
-
-  Tutorial.getAll(title, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
-      });
-    else res.send(data);
-  });
-};
-
