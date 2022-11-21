@@ -2,7 +2,7 @@
 
 let values = require("../values");
 
-let adminModel = require("../models/admin.js");
+let adminModel = require("../models/editUsers.js");
 let bookingModel = require("../models/booking.js");
 let pageModel = require("../models/page.js");
 let promotionModel = require("../models/promotion.js");

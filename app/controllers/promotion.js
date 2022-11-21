@@ -2,10 +2,30 @@
 
 let values = require("../values");
 
-let adminModel = require("../models/admin.js");
-let bookingModel = require("../models/booking.js");
-let pageModel = require("../models/page.js");
-let promotionModel = require("../models/promotion.js");
-let showtimeModel = require("../models/showtime.js");
-let userModel = require("../models/user.js");
-let utilModel = require("../models/util.js");
+let model = require("../models/promotion.js");
+
+exports.addPromotion = (req, res) => {
+    let startDate = req.body.startdate;
+    let endDate = req.body.enddate;
+    let promoCode = req.body.promocode;
+    let promoDiscount = req.body.percent;
+    let promoBody = req.body.message;
+
+    values.setPromoBody(promoBody);
+        
+    model.addPromotion(startDate, endDate, promoCode, promoDiscount, promoBody, res);
+
+    res.redirect('/adminSendPromo.html');
+};
+
+exports.sendPromotion = (req, res) => {
+    model.sendPromotion(res);
+};
+
+exports.removePromotion = (req, res) => {
+    model.removePromotion(res);
+};
+
+exports.getPromo = (req, res) => {
+    model.getPromo(res);
+};

@@ -2,13 +2,7 @@
 
 let values = require("../values");
 
-let adminModel = require("../models/admin.js");
-let bookingModel = require("../models/booking.js");
-let pageModel = require("../models/page.js");
-let promotionModel = require("../models/promotion.js");
-let showtimeModel = require("../models/showtime.js");
-let userModel = require("../models/user.js");
-let utilModel = require("../models/util.js");
+let model = require("../models/util.js");
 
 exports.isIncorrectPassword = (req, res) => {
     if (values.getIsIncorrectPassword()) res.json({status: true});
@@ -21,5 +15,21 @@ exports.login = (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
 
-    utilModel.login(email, password, req, res);
+    model.login(email, password, req, res);
+};
+
+exports.getAddress = (req, res) => {
+    let address_id = req.body.id;
+    model.getAddress(address_id, res);
+};
+
+exports.getAllPromotions = (req, res) => {
+    model.getAllPromotions(req, res);
+};
+
+exports.logout = (req, res) => {
+    console.log('logged out')
+    values.setLoggedIn(false);
+    values.setCurrentUserID(-1);
+    res.redirect('/login.html');
 };

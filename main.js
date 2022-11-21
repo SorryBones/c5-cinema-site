@@ -4,14 +4,13 @@
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
+const encoder = bodyParser.urlencoded();
+const app = express();
 const nodemailer = require('nodemailer');
+const e = require('express');
 const crypto = require('crypto');
 
-const app = express();
 app.use(express.static('.'));
-app.use(require('./routes'));
-
-const encoder = bodyParser.urlencoded();
 
 var adminUserProfileId;
 var movieId;
@@ -35,12 +34,6 @@ var promoId;
 const algorithm = "aes-256-cbc";
 const key ="12345678123456781234567812345678";
 const iv = "zAvR2NI87bBx746n";
-
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-  });  
 
 // connect to database
 const connection = mysql.createConnection({
@@ -174,38 +167,35 @@ app.get('/getAllPromotions', encoder, function(req,res) {
 
     async function runQueries () {
         
-        try{
-        let sent = 0;
-     promoResults = await queryPromise1(sent);
-     console.log(promoResults);
+        try {
+            let sent = 0;
+            promoResults = await queryPromise1(sent);
+            console.log(promoResults);
 
-     for(let index = 0; index < promoResults.length; index++) {
-    console.log(promoResults[index].title)
-     result = await queryPromise2(promoResults[index].title)
-console.log(result)
+            for(let index = 0; index < promoResults.length; index++) {
+                console.log(promoResults[index].title)
+                result = await queryPromise2(promoResults[index].title)
+                console.log(result)
 
-        // GET IMAGE SOURCE FROM MOVIE QUERY (index for promo because their are multiple; Zeros for movie because on every loop result will always be at index 0)
-     promoResults[index].image = "<img class='img-movie-poster' src='" + result[0].img + "'/>";
+                // GET IMAGE SOURCE FROM MOVIE QUERY (index for promo because their are multiple; Zeros for movie because on every loop result will always be at index 0)
+                promoResults[index].image = "<img class='img-movie-poster' src='" + result[0].img + "'/>";
 
 
- // ADDS PLACEHOLDER VALUES FOR EDIT PROMOTIONS
+                // ADDS PLACEHOLDER VALUES FOR EDIT PROMOTIONS
     
- promoResults[index].editButton = '<form action="/adminEditPromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Edit Promotion"></form>'
- promoResults[index].removeButton = '<form action="/removePromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Remove Promotion"></form>'
-   
-  
-     }
+                promoResults[index].editButton = '<form action="/adminEditPromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Edit Promotion"></form>'
+                promoResults[index].removeButton = '<form action="/removePromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Remove Promotion"></form>'
+            }
  
-        res.json(promoResults);
+            res.json(promoResults);
       
-        console.log(promoResults);
-         
+            console.log(promoResults);
         } catch(error){
-        console.log(error)
+            console.log(error)
         }
     }
-runQueries();
-})
+    runQueries();
+});
 
 app.get('/getUpcomingMovies', encoder, function(req,res) {
     let tomorrowDate = new Date();
@@ -234,14 +224,13 @@ app.get('/getNewestReleases', encoder, function(req,res) {
     });
 })
 
-// app.post('/book', encoder, function(req,res) {
-//     console.log(req.body.movie_id);
-//     movieId = req.body.movie_id;
-//     res.redirect('/book.html');
-// })
+app.post('/book', encoder, function(req,res) {
+    console.log(req.body.movie_id);
+    movieId = req.body.movie_id;
+    res.redirect('/book.html');
+})
 
 app.post("/searchMovie", encoder, function(req,res) {
-    console.log(req.body);
     let isTitle, isGenre, isRating = false;
     if (req.body.title != '') isTitle = true;
     if (req.body.rating != '') isRating = true;
@@ -517,29 +506,7 @@ app.post('/editShowtime', encoder, function(req,res) {
 })
 
 app.post('/addMovie', encoder, function(req,res) {
-    let title = req.body.title;
-    let rating;
-    if (req.body.rating == 'PG') rating = 2;
-    else if (req.body.rating == 'PG-13') rating = 1;
-    else if (req.body.rating == 'R') rating = 3;
-    let genre = req.body.genre;
-    let releaseDate = req.body.releaseDate;
-    let duration = req.body.duration;
-    let director = req.body.director;
-    let producer = req.body.producer;
-    let cast = req.body.cast;
-    let description = req.body.description;
-    let audienceRating = req.body.audienceRating;
-    let img = req.body.img;
-    let videoURL = req.body.videoURL;
-    const query = 'INSERT INTO movie (title, ratings_id, genre, release_date, duration, director, producer, cast, description, audience_rating, img, video_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-    connection.query(query,[title, rating, genre, releaseDate, duration, director, producer, cast, description, audienceRating, img, videoURL],function(error,results,fields) {
-        console.log(error);
-        console.log(results);
-        console.log(fields);
-        console.log('movie added');
-    });
-    res.redirect('/adminMain.html');
+    
 })
 
 app.post('/adminEditMovie', encoder, function(req,res) {
@@ -1165,5 +1132,4 @@ app.post('/updateBillingAddress', encoder, function(req,res) {
     });
 })
 
-module.exports = {encoder, movieId};
 app.listen(4000);

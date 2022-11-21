@@ -1,24 +1,18 @@
-const user = require("./app/controllers/user.js");
-const admin = require("./app/controllers/admin.js");
-const showtime = require("./app/controllers/showtime.js");
-const promotion = require("./app/controllers/promotion.js");
-const booking = require("./app/controllers/booking.js");
-const page = require("./app/controllers/page.js");
-const util = require("./app/controllers/util.js");
+const userController = require("./app/controllers/user.js");
+const editUsersController = require("./app/controllers/editUsers.js");
+const showtimeController = require("./app/controllers/showtime.js");
+const promotionController = require("./app/controllers/promotion.js");
+const bookingController = require("./app/controllers/booking.js");
+const pageController = require("./app/controllers/page.js");
+const utilController = require("./app/controllers/util.js");
+const movieController = require("./app/controllers/movie.js");
 
 const express = require("express");
 // const bodyParser = require("body-parser"); /* deprecated */
-const cors = require("cors");
 
 const app = express();
 
 app.use(express.static('.'));
-
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-
-app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json()); /* bodyParser.json() is deprecated */
@@ -26,87 +20,73 @@ app.use(express.json()); /* bodyParser.json() is deprecated */
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is deprecated */
 
-function sendEmail(email, message) {
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'flixuga@gmail.com',
-      pass: 'ynnjdiferwibooty'
-    }
-  });
-  
-  let mailOptions = {
-    from: 'flixuga@gmail.com',
-    to: email,
-    subject: 'Cinema Site Automated Message',
-    text: message
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-          console.log(error);
-      } else {
-          console.log('Email sent: ' + info.response);
-      }
-  });
-}
+// util
+app.post("/getAddress", utilController.getAddress);
+app.get("/getAllPromotions", utilController.getAllPromotions);
+app.get("/logout", utilController.logout);
+app.post("/login", utilController.login);
 
-// simple route
-app.post("/login", util.login);
-// app.post("/forgotPassword", tutorials.isLoggedIn);
-// app.post("/forgotUpdatePassword", tutorials.isLoggedIn);
-// app.post("/getAddress", tutorials.isLoggedIn);
-// app.get("/getAllMovies", tutorials.isLoggedIn);
-// app.get("/getAllPromotions", tutorials.isLoggedIn);
-// app.get("/getUpcomingMovies", tutorials.isLoggedIn);
-// app.get("/getNewestReleases", tutorials.isLoggedIn);
-// app.post("/book", tutorials.isLoggedIn);
-// app.post("/searchMovie", tutorials.isLoggedIn);
-// app.get("/getMovie", tutorials.isLoggedIn);
-// app.get("/userInfo", tutorials.isLoggedIn);
-// app.get("/isLoggedIn", tutorials.isLoggedIn);
-// app.get("/logout", tutorials.isLoggedIn);
-// app.get("/getPromo", tutorials.isLoggedIn);
-// app.get("/isInvalidMovie", tutorials.isLoggedIn);
-app.get("/isIncorrectPassword", page.isIncorrectPassword);
-// app.get("/isIncorrectShowtime", tutorials.isLoggedIn);
-// app.get("/getAllShowtimes", tutorials.isLoggedIn);
-// app.get("/adminManageMovies", tutorials.isLoggedIn);
-// app.post("/addShowtime", tutorials.isLoggedIn);
-// app.post("/editShowtime", tutorials.isLoggedIn);
-// app.post("/addMovie", tutorials.isLoggedIn);
-// app.post("/adminEditMovie", tutorials.isLoggedIn);
-// app.post("/editMovie", tutorials.isLoggedIn);
-// app.post("/adminEditShowtimes", tutorials.isLoggedIn);
-// app.post("/adminPromotions", tutorials.isLoggedIn);
-// app.post("/addPromotion", tutorials.isLoggedIn);
-// app.post("/sendPromotion", tutorials.isLoggedIn);
-// app.post("/removePromotion", tutorials.isLoggedIn);
-// app.post("/adminEditPromotion", tutorials.isLoggedIn);
-// app.post("/adminUpdatePromotion", tutorials.isLoggedIn);
-// app.post("/updatePromotion", tutorials.isLoggedIn);
-// app.get("/getAllUsers", tutorials.isLoggedIn);
-// app.post("/adminEditUserProfile", tutorials.isLoggedIn);
-// app.get("/adminGetUserInfo", tutorials.isLoggedIn);
-// app.post("/adminUpdateName", tutorials.isLoggedIn);
-// app.post("/adminUpdatePhone", tutorials.isLoggedIn);
-// app.post("/adminUpdateUserType", tutorials.isLoggedIn);
-// app.post("/adminUpdatePromotion", tutorials.isLoggedIn);
-// app.post("/adminUpdatePassword", tutorials.isLoggedIn);
-// app.post("/adminUpdateHomeAddress", tutorials.isLoggedIn);
-// app.post("/register", tutorials.isLoggedIn);
-// app.post("/verify", tutorials.isLoggedIn);
-// app.post("/addCard", tutorials.isLoggedIn);
-// app.get("/getCard", tutorials.isLoggedIn);
-// app.post("/deleteCard", tutorials.isLoggedIn);
-// app.post("/updateName", tutorials.isLoggedIn);
-// app.post("/updatePhone", tutorials.isLoggedIn);
-// app.post("/updatePassword", tutorials.isLoggedIn);
-// app.post("/updateHomeAddress", tutorials.isLoggedIn);
-// app.post("/updateCard", tutorials.isLoggedIn);
-// app.post("/updateBillingAddress", tutorials.isLoggedIn);
+// showtime
+app.get("/getAllShowtimes", showtimeController.getAllShowtimes);
+app.post("/addShowtime", showtimeController.addShowtime);
+app.post("/editShowtime", showtimeController.editShowtime);
 
-// require("./app/routes/tutorial.routes.js")(app);
+// movie
+app.post("/addMovie", movieController.addMovie);
+app.post("/editMovie", movieController.editMovie);
+app.get("/getAllMovies", movieController.getAllMovies);
+app.get("/getUpcomingMovies", movieController.getUpcomingMovies);
+app.get("/getNewestReleases", movieController.getNewestReleases);
+app.post("/searchMovie", movieController.searchMovie);
+app.get("/getMovie", movieController.getMovie);
+
+// promotion
+app.get("/getPromo", promotionController.getPromo);
+app.post("/addPromotion", promotionController.addPromotion);
+app.post("/sendPromotion", promotionController.sendPromotion);
+app.post("/removePromotion", promotionController.removePromotion);
+
+// pages
+app.get("/isLoggedIn", pageController.isLoggedIn);
+app.get("/getAllUsers", pageController.getAllUsersInfo);
+app.post("/adminEditUserProfile", pageController.adminEditUserProfile);
+app.get("/adminGetUserInfo", pageController.getUserInfo);
+app.post("/adminPromotions", pageController.adminPromotions);
+app.post("/adminEditPromotion", pageController.adminEditPromotion);
+app.post("/adminEditShowtimes", pageController.adminEditShowtimes);
+app.get("/isIncorrectPassword", pageController.isIncorrectPassword);
+app.post("/adminEditMovie", pageController.adminEditMovie);
+app.post("/book", pageController.book);
+app.get("/userInfo", pageController.userInfo);
+app.get("/isInvalidMovie", pageController.isInvalidMovie);
+app.get("/isIncorrectShowtime", pageController.isIncorrectShowtime);
+app.get("/adminManageMovies", pageController.adminManageMovies);
+
+// update users
+app.post("/adminUpdateName", editUsersController.updateName);
+app.post("/adminUpdatePhone", editUsersController.updatePhone);
+app.post("/adminUpdatePassword", editUsersController.updatePassword);
+app.post("/adminUpdateHomeAddress", editUsersController.updateHomeAddress);
+app.post("/adminUpdateUserType", editUsersController.updateUserType);
+app.post("/adminUpdatePromotion", editUsersController.updatePromotion);
+
+// user 
+app.post("/register", userController.register);
+app.post("/verify", userController.verify);
+app.post("/addCard", userController.addCard);
+app.get("/getCard", userController.getCard);
+app.post("/deleteCard", userController.deleteCard);
+app.post("/forgotPassword", userController.forgotPassword);
+app.post("/forgotUpdatePassword", userController.forgotUpdatePassword);
+
+// user 2
+app.post("/updateName", userController.updateName);
+app.post("/updatePhone", userController.updatePhone);
+app.post("/updatePromotion", userController.updatePromotion);
+app.post("/updatePassword", userController.updatePassword);
+app.post("/updateHomeAddress", userController.updateHomeAddress);
+app.post("/updateCard", userController.updateCard);
+app.post("/updateBillingAddress", userController.updateBillingAddress);
 
 // set port, listen for requests
 const PORT = 4000;

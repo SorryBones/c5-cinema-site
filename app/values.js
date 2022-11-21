@@ -1,3 +1,6 @@
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+
 let loggedIn = false;
 let getLoggedIn = function() {
     return loggedIn;
@@ -110,6 +113,50 @@ let setPromoId = function(input) {
     promoId = input;
 }
 
+// database encryption
+const algorithm = "aes-256-cbc";
+const key ="12345678123456781234567812345678";
+const iv = "zAvR2NI87bBx746n";
+let encrypt = function(message) {
+  const encrypter = crypto.createCipheriv(algorithm, key, iv);
+  let encryptedMsg = encrypter.update(message, "utf8", "hex");
+  encryptedMsg += encrypter.final("hex");
+  return encryptedMsg;
+}
+let decrypt = function(encryptedMsg) {
+  const decrypter = crypto.createDecipheriv(algorithm, key, iv);
+  let decryptedMsg = decrypter.update(encryptedMsg, "hex", "utf8");
+  decryptedMsg += decrypter.final("utf8");
+  console.log(decryptedMsg)
+  return decryptedMsg;
+}
+
+let sendEmail = function(email, message) {
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'flixuga@gmail.com',
+        pass: 'ynnjdiferwibooty'
+      }
+    });
+    
+    let mailOptions = {
+      from: 'flixuga@gmail.com',
+      to: email,
+      subject: 'Cinema Site Automated Message',
+      text: message
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+}
+  
+
 module.exports = {
     getLoggedIn, setLoggedIn,
     getAdminUserProfileId, setAdminUserProfileId,
@@ -124,5 +171,7 @@ module.exports = {
     getPromoHeader, setPromoHeader,
     getPromoBody, setPromoBody,
     getPromoDiscount, setPromoDiscount,
-    getPromoId, setPromoId
+    getPromoId, setPromoId,
+    encrypt, decrypt,
+    sendEmail,
 };
