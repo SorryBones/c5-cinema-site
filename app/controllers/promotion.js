@@ -7,6 +7,23 @@ let model = require("../models/promotion.js");
 const connection = require("../models/db");
 
 exports.addPromotion = (req, res) => {
+    let movieId;
+    queryPromise = (title) =>{
+        return new Promise((resolve, reject)=>{
+            const promotionsQuery = 'SELECT * FROM movie WHERE title = ?';
+            connection.query(promotionsQuery,[title],(error, results, fields)=>{
+               // console.log(results);
+        movieId = results[0].movie_id;
+        values.setMovieId(movieId);
+                if(error){
+                    return reject(error);
+                }
+              
+                return resolve(results);
+            });
+        });
+      };
+async function addPromo () {
     let startDate = req.body.startdate;
     let endDate = req.body.enddate;
     let promoCode = req.body.promocode;
@@ -14,20 +31,14 @@ exports.addPromotion = (req, res) => {
     let promoBody = req.body.message;
     let title = req.body.title;
 
-    let movieId;
-    console.log("title " +title);
 
-    let s = req.body.promo_id;
+  //movieId
+    let movieResult = await queryPromise(title);
 
-    values.setPromoBody(promoBody);
-
-    connection.query('SELECT * FROM movie WHERE title = ?', [title], function(error, results, fields) {
+   /* connection.query('SELECT * FROM movie WHERE title = ?', [title], function(error, results, fields) {
        console.log(results);
         movieId = results[0].movie_id;
-        //console.log(results[0].movie_id);
-        values.setMovieId(movieId);
-        console.log("movid " + values.getMovieId());
-    });
+    }); */
 
 
    
@@ -38,6 +49,8 @@ exports.addPromotion = (req, res) => {
     model.addPromotion(startDate, endDate, promoCode, promoDiscount, promoBody, title, res);
 
     res.redirect('/adminSendPromo.html');
+}
+addPromo();
 };
 
 exports.sendPromotion = (req, res) => {
