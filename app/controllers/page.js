@@ -1,6 +1,7 @@
 // PLACE ALL PAGE LOADING FUNCTIONS HERE
 
 let values = require("../values");
+const connection = require("../models/db");
 
 let adminModel = require("../models/editUsers.js");
 let userModel = require("../models/user.js");
@@ -43,6 +44,13 @@ exports.adminPromotions = (req, res) => {
 
 exports.adminEditPromotion = (req, res) => {
     values.setPromoId(req.body.promo_id);
+    console.log("edit promoid " + values.getPromoId());
+
+    connection.query('SELECT * FROM promotions WHERE promo_id = ?', [values.getPromoId()], function(error, results, fields) {
+        console.log(results);
+        values.setMovieId(results[0].movie_id);
+    });
+
     res.redirect('/adminEditPromotion.html');
 };
 

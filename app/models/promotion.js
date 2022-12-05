@@ -2,11 +2,18 @@ const connection = require("./db.js");
 let values = require("../values");
 let {encrypt, decrypt, sendEmail} = require("../values");
 
-exports.addPromotion = (startDate, endDate, promoCode, promoDiscount, promoBody, res) => {
+exports.addPromotion = (startDate, endDate, promoCode, promoDiscount, promoBody, title, res) => {
     let query = 'INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);';
-    connection.query(query,[startDate, endDate, promoCode, values.getMovieId(), promoDiscount, 0, promoBody],function(error,results,fields) {
+    connection.query(query,[startDate, endDate, promoCode, 1, promoDiscount, values.getMovieId(), promoBody],function(error,results,fields) {
         console.log("insert to promotions");
-        values.setPromoId(results.insertId);
+        console.log(results);
+
+        connection.query('SELECT * FROM promotions WHERE start_date = ? AND end_date = ? AND promo_code = ? AND discount = ? AND message = ?;', [startDate, endDate, promoCode, promoDiscount, promoBody], function(error,results,fields) {
+            promoId = results[0].promo_id;
+           // console.log("here pls");
+            values.setPromoId(promoId);
+        }); 
+       
     });
 };
 
@@ -30,6 +37,8 @@ exports.sendPromotion = (res) => {
 
 
 exports.removePromotion = (res) => {
+    
+  
     connection.query('DELETE from promotions WHERE promo_id = ?',[values.getPromoId()],function(error,results,fields) {
         console.log("promo removed");
     }) 

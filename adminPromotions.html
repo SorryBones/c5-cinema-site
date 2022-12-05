@@ -46,6 +46,12 @@
         <div class="div-browse-search">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
+              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">MOVIE:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="" name = "title" id="title" aria-describedby="basic-addon3" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
               <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
             </div>
             <input type="date" class="form-control" placeholder="XX/XX/XX" name = "startdate" id="startdate" aria-describedby="basic-addon3" required>
@@ -134,7 +140,7 @@ crossorigin="anonymous"></script>
           newDiv.className = "existingPromo";
 
           newDiv.innerHTML = result.image + 
-                             "<h3>" + result.title + "<h3>" + result.editButton + result.removeButton
+                             "<h3>"  + "<h3>" + result.editButton + result.removeButton
                               + "<style>h3 {text-align: center;}</style>"
 
           document.getElementById('existingPromoField').appendChild(newDiv);

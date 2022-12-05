@@ -205,8 +205,10 @@ exports.searchMovie = (isTitle, isGenre, isRating, req, res) => {
 
 exports.getMovie = (res) => {
     const query = 'SELECT * FROM movie WHERE movie_id = ?';
+    console.log(values.getMovieId());
     connection.query(query,[values.getMovieId()],function(error,results,fields) {
       if (results.length > 0) {
+        console.log(console.log(results[0]));
           res.json(results[0]);
       } else {
           res.json({status: false});

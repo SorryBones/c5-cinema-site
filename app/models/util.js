@@ -1,6 +1,7 @@
 const connection = require("./db.js");
 let values = require("../values");
 let {encrypt, decrypt, sendEmail} = require("../values");
+let movie = require("../models/movie.js");
 
 exports.login = (email, password, req, res) => {
   connection.query('SELECT * FROM user WHERE email = ? AND password = ?',[email, values.encrypt(password)],function(error,results,fields){
@@ -58,13 +59,17 @@ exports.getAllPromotions = (req, res) => {
       try {
           let sent = 1;
           let promoResults = await queryPromise1(sent);
+     
           for(let index = 0; index < promoResults.length; index++) {
+     
               result = await queryPromise2(promoResults[index].movie_id)
-              promoResults[index] = result[index];
-              // GET IMAGE SOURCE FROM MOVIE QUERY (index for promo because their are multiple; Zeros for movie because on every loop result will always be at index 0)
-              promoResults[index].image = "<img class='img-movie-poster' src='" + result[0].img + "'/>";
 
+              // GET IMAGE SOURCE FROM MOVIE QUERY (index for promo because their are multiple; Zeros for movie because on every loop result will always be at index 0)
+             
+              promoResults[index].image = "<img class='img-movie-poster' src='" + result[0].img + "'/>";
+            
               // ADDS PLACEHOLDER VALUES FOR EDIT PROMOTIONS
+              
               promoResults[index].editButton = '<form action="/adminEditPromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Edit Promotion"></form>'
               promoResults[index].removeButton = '<form action="/removePromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Remove Promotion"></form>'
           }
