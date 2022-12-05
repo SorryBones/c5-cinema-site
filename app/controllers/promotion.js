@@ -67,3 +67,8 @@ exports.removePromotion = (req, res) => {
 exports.getPromo = (req, res) => {
     model.getPromo(res);
 };
+
+exports.editPromotion = (req, res) => {
+    
+model.editPromotion(req, res);
+}
