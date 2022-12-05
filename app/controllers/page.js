@@ -52,7 +52,7 @@ exports.adminEditShowtimes = (req, res) => {
 };
 
 exports.book = (req, res) => {
-    //values.setMovieId(req.body.movie_id);
+    values.setMovieId(req.body.movie_id);
     res.redirect('/book.html');
 };
 
@@ -84,6 +84,6 @@ exports.getAllUsersInfo = (req, res) => {
     pageModel.getAllUsersInfo(res);
 };
 
-exports.adminEditPromotion = (req, res) =>  {
-    pageModel.adminEditPromotion(res);
-}
+exports.test = (req, res) => {
+    console.log(req.body.test);
+};

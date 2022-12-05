@@ -47,9 +47,3 @@ exports.adminManageMovies = (res) => {
         res.json(results);
     });
 };
-
-exports.adminEditPromotion = (req, res) => {
-//    promoId = req.body.promo_id;
-    res.redirect('/adminEditEntry.html');
-    console.log("edit promo is " + req.body.id);
-  };

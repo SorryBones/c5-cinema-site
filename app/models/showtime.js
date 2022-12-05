@@ -52,10 +52,19 @@ exports.editShowtime = (date, time, id, res) => {
 };
 
 exports.addShowtime = (date, showtime, res) => {
-    connection.query('select * from showTime where date = ? and time = ?;',[date, showtime],function(error,results,fields) {
+    connection.query('select * from showTime where date = ? and time = ?;',[date, showtime],function(error,results,fields) { // create
         if (results[0] == null) {
-            const query = 'INSERT INTO showTime (movie_id, room_id, date, time) VALUES (?, ?, ?, ?);';
-            connection.query(query,[values.getMovieId(), 1, date, showtime],function(error,results,fields) {
+            let query = 'INSERT INTO showTime (movie_id, room_id, date, time) VALUES (?, ?, ?, ?);';
+            connection.query(query,[values.getMovieId(), 1, date, showtime],function(error,results,fields) { // get show_id
+                let show_id = results.insertId;
+                connection.query('SELECT * FROM room WHERE room_id = ?;',[1],function(error,results,fields) { // get numofseats
+                    let numberOfSeats = results[0].numofseats;
+                    for (let i = 1; i <= numberOfSeats; i++) { // create showSeat for all seats
+                        query = 'INSERT INTO showSeat (show_id, room_id, seat_number, availability) VALUES (?, ?, ?, ?);'; 
+                        connection.query(query,[show_id, 1, i, 1],function(error,results,fields) {
+                        });
+                    }
+                });
                 console.log('showtime added');
             });
             values.setIsIncorrectShowtime(false);

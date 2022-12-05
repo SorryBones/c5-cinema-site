@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="background-color: black">
   <header class="header">
 
     <!--Navbar-->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727">
       <a class="navbar-brand" href="index.html">UGA Flix</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -36,75 +36,31 @@
           </ul>
       </div>
     </nav>
+    <div style="padding: 30px"></div>
 
     <!--LATEST MOVIES-->
     <div class="flex-container-homepage">
       <div class="flex-container-row">
         <h1 class="text-sub">NEWEST RELEASES</h1>
       </div>
-      <div class="flex-container-row">
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster1Indemnity.png"/>
-          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-        </div>
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster2Morbius.png"/>
-          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-        </div>
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster3AdamProject.png"/>
-          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-        </div>
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster4FantasticFour.png"/>
-          <a href="book.html"><button type="button" class="button-book-now">Book Tickets</button></a>
-        </div>
-      </div>
+      <div class="flex-container-row" id="newestReleases"></div>
     </div>
+
     <!--UPCOMING MOVIES-->
     <div class="flex-container-homepage">
       <div class="flex-container-row">
         <h1 class="text-sub">UPCOMING MOVIES</h1>
       </div>
-      <div class="flex-container-row">
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster6Fall.png"/>
-          <p class="text-sub">10/29/22</p>
-        </div>
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster5ICareALot.png"/>
-          <p class="text-sub">11/01/22</p>
-        </div>
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster4FantasticFour.png"/>
-          <p class="text-sub">11/14/22</p>
-        </div>
-        <div class="flex-homepage-latest-movie">
-          <img class="img-movie-poster" src="images/poster3AdamProject.png"/>
-          <p class="text-sub">11/24/22</p>
-        </div>
-      </div>
+      <div class="flex-container-row" id="upcomingMovies"></div>
     </div>
+
+
     <!--TRAILERS-->
     <div class="flex-container-homepage">
       <div class="flex-container-row">
         <h1 class="text-sub">LATEST TRAILERS</h1>
       </div>
-      <div class="flex-container-row">
-        <!--Embedded Vids-->
-          <div class="embed-responsive embed-responsive-16by9" style="margin: 10px;">
-            <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/c70ko07julc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="embed-responsive embed-responsive-16by9" style="margin: 10px;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/BcDK7lkzzsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="embed-responsive embed-responsive-16by9" style="margin: 10px;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Z9Pap24jv3c" title="JOHN WICK: CHAPTER 4 - 4K NEW Trailer (2023) | Keanu Reeves, Donnie Yen, Lionsgate" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="embed-responsive embed-responsive-16by9" style="margin: 10px;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/hf8EYbVxtCY" title="All Quiet on the Western Front | Official Trailer | Netflix" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-      </div>
+      <div class="flex-container-row" style="width: 100%" id="trailers"></div>
     </div>
 
   </header>
@@ -121,6 +77,89 @@
         success: function(result) {
           if (result.status == true) $('#loginButton').remove();
           else $('#profileButton').remove();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
+  <script> // NEWEST RELEASES
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/getNewestReleases",
+        type: "GET",
+        success: function(result1) {
+          result1.forEach(createUserRow);
+          function createUserRow(result) {
+            var newDiv = document.createElement('div');
+            newDiv.className = "flex-homepage-latest-movie";
+
+            var rating;
+            if (result.ratings_id == 2) rating = 'PG';
+            else if (result.ratings_id == 1) rating = 'PG-13';
+            else if (result.ratings_id == 3) rating = 'R';
+
+            console.log(result.image);
+
+            newDiv.innerHTML = result.image
+                            + "<h3>" + result.title + " - " + result.genre + " - " + rating + "</h3>"
+                            + result.button
+
+            document.getElementById('newestReleases').appendChild(newDiv);
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
+  <script> // UPCOMING MOVIES
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/getUpcomingMovies",
+        type: "GET",
+        success: function(result1) {
+          result1.forEach(createUserRow);
+          function createUserRow(result) {
+            var newDiv = document.createElement('div');
+            newDiv.className = "flex-homepage-latest-movie";
+
+            newDiv.innerHTML = result.image
+                            + "<h3>" + result.release_date + "</h3>"
+
+            document.getElementById('upcomingMovies').appendChild(newDiv);
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
+
+  <script> // LATEST TRAILERS
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/getNewestReleases",
+        type: "GET",
+        success: function(result1) {
+          result1.forEach(createUserRow);
+          function createUserRow(result) {
+            var newDiv = document.createElement('div');
+            newDiv.className = "embed-responsive-item";
+            newDiv.style = "margin: 10px"
+
+            var videoContent = '<iframe width="450" height="275" src="' + result.video_url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+
+            newDiv.innerHTML = videoContent;
+
+            document.getElementById('trailers').appendChild(newDiv);
+          }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           console.log('failure');

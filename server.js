@@ -45,7 +45,6 @@ app.get("/getPromo", promotionController.getPromo);
 app.post("/addPromotion", promotionController.addPromotion);
 app.post("/sendPromotion", promotionController.sendPromotion);
 app.post("/removePromotion", promotionController.removePromotion);
-app.post("/editPromotion", promotionController.editPromotion);
 
 // pages
 app.get("/isLoggedIn", pageController.isLoggedIn);
@@ -62,6 +61,7 @@ app.get("/userInfo", pageController.userInfo);
 app.get("/isInvalidMovie", pageController.isInvalidMovie);
 app.get("/isIncorrectShowtime", pageController.isIncorrectShowtime);
 app.get("/adminManageMovies", pageController.adminManageMovies);
+app.post("/test", pageController.test);
 
 // update users
 app.post("/adminUpdateName", editUsersController.updateName);

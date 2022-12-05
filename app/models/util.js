@@ -42,10 +42,10 @@ exports.getAllPromotions = (req, res) => {
         });
     });
   };
-  queryPromise2 = (title) =>{
+  queryPromise2 = (movie_id) =>{
       return new Promise((resolve, reject)=>{
-          const movieQuery = 'SELECT * FROM movie WHERE title = ?';
-          connection.query(movieQuery,[title],(error, results)=>{
+          const movieQuery = 'SELECT * FROM movie WHERE movie_id = ?';
+          connection.query(movieQuery,[movie_id],(error, results)=>{
               if(error){
                   return reject(error);
               }
@@ -55,14 +55,12 @@ exports.getAllPromotions = (req, res) => {
   };
 
   async function runQueries () {
-      
       try {
-          let sent = 0;
-          promoResults = await queryPromise1(sent);
-
+          let sent = 1;
+          let promoResults = await queryPromise1(sent);
           for(let index = 0; index < promoResults.length; index++) {
-              result = await queryPromise2(promoResults[index].title)
-
+              result = await queryPromise2(promoResults[index].movie_id)
+              promoResults[index] = result[index];
               // GET IMAGE SOURCE FROM MOVIE QUERY (index for promo because their are multiple; Zeros for movie because on every loop result will always be at index 0)
               promoResults[index].image = "<img class='img-movie-poster' src='" + result[0].img + "'/>";
 

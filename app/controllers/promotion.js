@@ -10,13 +10,10 @@ exports.addPromotion = (req, res) => {
     let promoCode = req.body.promocode;
     let promoDiscount = req.body.percent;
     let promoBody = req.body.message;
-    let promoHeader = req.body.heading;
-    let movietitle = req.body.movietitle;
 
-    console.log(promoHeader);
     values.setPromoBody(promoBody);
         
-    model.addPromotion(startDate, endDate, promoCode, promoDiscount, promoBody, promoHeader, movietitle, res);
+    model.addPromotion(startDate, endDate, promoCode, promoDiscount, promoBody, res);
 
     res.redirect('/adminSendPromo.html');
 };
@@ -32,10 +29,3 @@ exports.removePromotion = (req, res) => {
 exports.getPromo = (req, res) => {
     model.getPromo(res);
 };
-
-
-exports.editPromotion = (req, res) => {
- //let input = req.body;
-    model.editPromotion(req, res);
-    res.redirect('/adminPromotions.html');
-}

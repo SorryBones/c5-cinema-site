@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>.checked {color: orange;}</style>
 </head>
 
 <body style="padding-top:55px ; background-color: black">
@@ -38,46 +40,123 @@
     </div>
   </nav>
 
-          <!--Seating Chart Image-->
-          <div class="div-book-chart">
-            <h1>Movie Booking</h1>
-            <img class="img-book-chart" src="images/cinemaSeatingChart.png"/>
+  <div class="div-browse-entry">
+    <div class="div-browse-text">
+      <img class="img-browse-entry" src="images/poster-default.png" id="poster"/>
+        <p id="title">TITLE:</p>
+        <p id="genre">GENRE:</p>
+        <p id="rating">AGE RATING:</p>
+        <p id="releaseDate">RELEASE DATE:</p>
+        <p id="duration">RUN TIME:</p>
+        <p id="director">DIRECTOR:</p>
+        <p id="producer">PRODUCER:</p>
+        <p id="cast">CAST:</p>
+        <p id="description">DESCRIPTION:</p>
+        <div id="audienceRating"></div>
+    </div>
+  </div>
+
+  <div class="div-browse-entry" style="align-content: center; text-align:center">
+    <h1>Trailer:</h1>
+    <div class="embed-responsive embed-responsive-16by9" style="margin: 10px; width: 600px" id="video"></div>
+  </div>
+
+  <div class="div-browse-entry" style="align-content: center; text-align:center" id="showtimesDiv">
+    <h1>Select a Showtime:</h1>
+    <!-- <div class="flex-entry-content" style="background-color: #272727; width: 100%; height: 30vh; align-content: left">
+      <div class="flex-container-row" id="allShowtimes">
+        <div class="flex-container-row"></div>
+      </div>
+    </div> -->
+    <form action="/selectShowtime" method="POST">
+      <div class="flex-entry-content-line">
+          <div class="input-group mb-3 p-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Showtimes:</span>
+            </div>
+            <select class="form-control" id="showtime" name="showtime">
+              <option value=""></option>
+              <div id="allShowtimes"></div>
+            </select required>
           </div>
+      </div>
+      <input class="button-book-now" type="submit" value="Select">
+  </form>
+  </div>
+
+  <form action="/test" method="POST">
+    <div class="div-book-chart d-flex flex-column" style="text-align: center; align-items: center">
+      <h1>Movie Booking:</h1><br>
+      <div style="background: white; width: 500px; height: 45px; border: 2px solid #000; border-radius: 15px; -moz-border-radius: 15px; color:black"><h2>Screen</h2></div><br>
+      <div data-toggle="buttons">
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">1</label>
+        <label class="btn btn-secondary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none">2</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="3">3</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="4">4</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="5">5</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="6">6</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="7">7</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="8">8</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="9">9</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="10">10</label>
+        <br><br>
+        <label style="width: 90px"></label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">11</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">12</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="3">13</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="4">14</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="5">15</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="6">16</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="7">17</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="8">18</label>
+        <br>
+        <label style="width: 90px"></label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">19</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">20</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="3">21</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="4">22</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="5">23</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="6">24</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="7">25</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="8">26</label>
+        <br>
+        <label style="width: 90px"></label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">19</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">20</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="3">21</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="4">22</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="5">23</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="6">24</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="7">25</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="8">26</label>
+        <br>
+        <label style="width: 90px"></label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">19</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">20</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="3">21</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="4">22</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="5">23</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="6">24</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="7">25</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="8">26</label>
+        <br>
+        <label style="width: 90px"></label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">19</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="1">20</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="3">21</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="4">22</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="5">23</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="6">24</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="7">25</label>
+        <label class="btn btn-primary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none" name="8">26</label>
+      </div>
+      <input class="btn" id="loginButton" type="submit" value="submit" style="background-color:#272727 ; color:white">
+    </div>
+  </form>
 
           <div class="div-book-fields">
-          <!--Showtimes-->
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="">Date</span>
-            </div>
-            <select class="custom-select" id="showDate" required> <!--Use "date"-type label???-->
-              <option selected>Select a date...</option>
-              <option value="1">09/30</option>
-              <option value="2">10/01</option>
-              <option value="3">10/02</option>
-              <option value="4">10/03</option>
-              <option value="5">10/04</option>
-              <option value="6">10/05</option>
-              <option value="7">10/06</option>
-              <option value="8">10/07</option>
-              <option value="9">10/08</option>
-              <option value="10">10/09</option>
-            </select>
-            <div class="input-group-prepend">
-              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="">Show Time</span>
-            </div>
-            <select class="custom-select" id="showTime" required>
-              <option selected>Select time...</option>
-              <option value="1">12:00PM</option>
-              <option value="2">2:00PM</option>
-              <option value="3">4:00PM</option>
-              <option value="4">6:00PM</option>
-              <option value="5">8:00PM</option>
-              <option value="6">10:00PM</option>
-              <option value="7">12:00AM</option>
-            </select>
-          </div>
           <!--Ticket Type & Number Selection-->
+          <h3>Seat</h3>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <button class="btn btn-outline-secondary dropdown-toggle text-light border border-danger" style="background-color: #272727;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ticket Type...</button>
@@ -174,6 +253,84 @@
     });
   </script>
 
+  <script> // DISPLAY MOVIE INFO
+    $(document).ready(function() {
+        $.ajax( {
+            url: "/getMovie",
+            type: "GET",
+            success: function(result) {
+                console.log(result);
+                var rating;
+                if (result.ratings_id == 2) rating = 'PG';
+                else if (result.ratings_id == 1) rating = 'PG-13';
+                else if (result.ratings_id == 3) rating = 'R';
+
+                let audienceRatingContent
+                if (result.audience_rating == 1) audienceRatingContent = 'RATING: <span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
+                else if (result.audience_rating == 2) audienceRatingContent = 'RATING: <span class="fa fa-star checked"></span><span class="fa fa-star checked"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
+                else if (result.audience_rating == 3) audienceRatingContent = 'RATING: <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
+                else if (result.audience_rating == 4) audienceRatingContent = 'RATING: <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>';
+                else if (result.audience_rating == 5) audienceRatingContent = 'RATING: <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked">';
+
+                let videoContent = '<iframe class="embed-responsive-item" src="' + result.video_url + '" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                
+                $("#title").html('TITLE: ' + result.title);
+                $("#rating").html('RATING: ' + rating);
+                $("#genre").html('GENRE: ' + result.genre);
+                $("#releaseDate").html('RELEASE DATE: ' + result.release_date);
+                $("#duration").html('DURATION: ' + result.duration);
+                $("#director").html('DIRECTOR: ' + result.director);
+                $("#producer").html('PRODUCER: ' + result.producer);
+                $("#cast").html('CAST: ' + result.cast);
+                $("#description").html('DESCRIPTION: ' + result.description);
+                $("#poster").attr('src',result.img);
+                document.getElementById("audienceRating").innerHTML = audienceRatingContent;
+                document.getElementById("video").innerHTML = videoContent;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log('failure');
+            }
+        });
+    });
+</script>
+
+<!-- <option value="1">Dec 12, 9:00am</option>
+<option value="1">Dec 12, 9:00am</option>
+<option value="1">Dec 12, 9:00am</option>
+<option value="1">Dec 12, 9:00am</option>
+<option value="1">Dec 12, 9:00am</option>
+<option value="1">Dec 12, 9:00am</option> -->
+
+<script> // DISPLAY ALL SHOWTIMES
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/getAllShowtimes",
+      type: "GET",
+      success: function(result1) {
+        if (result1.status == false) {
+            document.getElementById('showtimesDiv').innerHTML = ''; // clear old
+            var newDiv = document.createElement('div');
+            newDiv.className = "flex-homepage-latest-movie";
+            newDiv.style = "height: 27vh; width: 202vh";
+            newDiv.innerHTML = "<h3>" + "No Showtimes Found" + "</h3>"
+            document.getElementById('showtimesDiv').appendChild(newDiv);
+        }
+        else {
+          var content = '<option value=""></option>';
+          result1.forEach(createUserRow);
+          function createUserRow(result) {
+            var displayedDate = result.date.substring(0,10);
+            content += '<option value="1">' + displayedDate + ' ' + result.time + '</option>'; // NEEDS TO BE BETTER FORMAT
+          }
+          document.getElementById('showtime').innerHTML = content;
+        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
