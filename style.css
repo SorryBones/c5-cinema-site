@@ -24,8 +24,6 @@
 	font-size: 25px;
 }
 
-
-
 html {
 	font-family: 'Arial Black';
 }
@@ -175,6 +173,49 @@ li a:hover:not(.active) {
 	min-height: 100vh;
 }
 
+.flex-container-general {
+	display: flex;
+	flex-flow: column;
+	justify-content: left;
+	align-items: left;
+	color: rgb(240, 240, 240);
+  	text-align: left;
+  	text-transform: uppercase;
+  	text-shadow: 3px 3px black;
+  	font-family: Arial, Helvetica, sans-serif;
+  	font-size: 2em;
+	background-color: #272727;
+	border: 10px solid black;
+
+	/* border: 2px solid green; */
+}
+
+.flex-container-row2 {
+	display: flex;
+	flex-flow: row;
+	justify-content: left;
+	align-items: center;
+	margin: 10px;
+	color: rgb(240, 240, 240);
+	width: auto;
+	background-color: #272727;
+
+	/* border: 2px solid red; */
+}
+
+.flex-container-column2 {
+	display: flex;
+	flex-flow: column;
+	justify-content: start;
+	align-items: start;
+	margin: 10px;
+	color: white;
+	width: auto;
+	background-color: #272727;
+
+	/* border: 2px solid blue; */
+}
+
 .flex-container-homepage {
 	display: flex;
 	flex-direction: row;
@@ -188,11 +229,25 @@ li a:hover:not(.active) {
 .flex-container-row {
 	display: flex;
 	flex-flow: row;
+	justify-content: left;
+	align-items: center;
+	color: rgb(240, 240, 240);
+	width: auto;
+	background-color: #272727;
+
+	/* border: 2px solid red; */
+}
+
+.flex-container-column {
+	display: flex;
+	flex-flow: column;
 	justify-content: center;
 	align-items: center;
 	color: white;
 	width: auto;
 	background-color: #272727;
+
+	/* border: 2px solid blue; */
 }
 
 .flex-homepage-latest-movie {
@@ -368,6 +423,15 @@ li a:hover:not(.active) {
 	font-size: 1.5em;
 }
 
+.text-small {
+	color: rgb(240, 240, 240);
+    text-align: left;
+    text-shadow: 1px 1px black;
+	vertical-align: middle;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.5em;
+}
+
 .img-movie-poster {
 	height: 68vh;
 }
@@ -381,11 +445,12 @@ li a:hover:not(.active) {
     right: 0px;
 }
 
-.img-browse-entry {
+.img-flex {
     float: left;
     background: #272727;
-	width: 25%;
-    height: auto;
+	object-fit: contain;
+	max-width: 15%;
+	min-width: 15%;
     left: 0px;
     right: 0px;
 }
