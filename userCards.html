@@ -64,11 +64,6 @@
     <form action="/usercards.html" method="GET">
       <input class="btn" type="submit" value="Payment" style="background-color:#272727 ; color:white">
     </form>
-    <div id="adminControlsButton">
-      <form action="/adminMain.html" method="GET">
-        <input class="btn" type="submit" id="adminControls" value="Admin Controls" style="background-color:#272727 ; color:gold">
-      </form>
-    </div>
     <form action="/logout" method="GET">
       <input class="btn" type="submit" value="Logout" style="background-color:#272727 ; color:white">
     </form>
@@ -140,19 +135,6 @@ crossorigin="anonymous"></script>
   });
 </script>
 
-<script> // ADMIN CONTROLS SIDEBAR
-  $(document).ready(function() {
-    $.ajax( {
-      url: "/userInfo",
-      type: "GET",
-      success: function(result) {
-        if (result.utype_id == 2) $('#adminControlsButton').remove();
-        $("#name").html(result.first_name + ' ' + result.last_name);
-        $("#phone").html(result.phone_num);
-        $("#email").html(result.email);
-    }});
-  });
-</script>
 
 <script> // CARD CREDENTIALS
   $(document).ready(function() {

@@ -40,62 +40,75 @@
  
   <div class="banner" style="background-color: rgb(20, 20, 20); color:red; text-align: center; font-size:25px" id="banner">Please Enter a Valid Movie</div> 
  
-    <div class="div-promo-fields h-50 w-100 p-3">
-      <h1>Create New Promotion</h1>
-      <form action="/addPromotion" method="POST">
-        <div class="div-browse-search">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
-            </div>
-            <input type="date" class="form-control" placeholder="XX/XX/XX" name = "startdate" id="startdate" aria-describedby="basic-addon3" required>
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
-            </div>
-            <input type="date" class="form-control" placeholder="XX/XX/XX" name = "enddate" id="enddate" aria-describedby="basic-addon3" required>
-          </div>
+  <div class="div-promo-fields h-50 w-100 p-3">
+    <h1>Create New Promotion</h1>
+    <div class="div-browse-search">              
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">MOVIE TITLE:</span>
+        </div>
+        <form action="/addPromotion" name = "addPromotion" id = "addPromotion" method="POST">
+        <input type="text" class="form-control" placeholder="title" name = "movietitle" id="movietitle" aria-describedby="basic-addon3">
+      </div>
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
-            </div>
-            <input type="text" class="form-control" placeholder="XX%" name = "percent" id="percent" aria-describedby="basic-addon3" required>
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Promo Code:</span>
-            </div>
-            <input type="text" class="form-control" placeholder="" name = "promocode" id="promocode" aria-describedby="basic-addon3" required>
-          </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">START DATE:</span>
+        </div>
+        <input type="date" class="form-control" placeholder="XX/XX/XX" name = "startdate" id="startdate" aria-describedby="basic-addon3">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">END DATE:</span>
+        </div>
+        <input type="date" class="form-control" placeholder="XX/XX/XX" name = "enddate" id="enddate" aria-describedby="basic-addon3">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PERCENT OFF:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="XX%" name = "percent" id="percent" aria-describedby="basic-addon3">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Promo Code:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" name = "promocode" id="promocode" aria-describedby="basic-addon3">
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Email Heading</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" name = "heading" id="heading" aria-describedby="basic-addon3">
+      </div>
+      <!-- -->
+      <div class="form-group">
+        
+          <label for="message">MESSAGE:</label>
+          <textarea class="form-control" class = "text" rows="5" id="message" name = "message" form = "addPromotion" required></textarea>
           
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Message:</span>
-            </div>
-            <input type="text" class="form-control" placeholder="" name = "message" id="message" aria-describedby="basic-addon3" required>
-          </div>
-          <!-- -->
+
           <input type="submit" class="button-book-admin" value="Create">
         </form>
-        <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
-      </div>
-    </div>
-  </div>
+              <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
+            </div>
+          </div>
+        </div>
 
-  <!--Edit existing promotion-->
-  <div class="flex-container-homepage">
-    <div class="flex-container-row">
-      <h1>Edit Existing Promotions</h1>
-    </div>
+        <!--Edit existing promotion-->
+        <div class="flex-container-homepage">
+          <div class="flex-container-row">
+            <h1>Edit Existing Promotions</h1>
+          </div>
 
-    <div class="flex-container-row" name = "existingPromoField" id = "existingPromoField">
-      <!--Entry-->
+          <div class="flex-container-row" name = "existingPromoField" id = "existingPromoField">
+            <!--Entry-->
+       
 
-
-    </div> <!--End of flex row-->
-  </div> <!--End of flex homepage-->
+          </div> <!--End of flex row-->
+        </div> <!--End of flex homepage-->
 
 
 
