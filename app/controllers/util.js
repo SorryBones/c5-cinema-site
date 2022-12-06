@@ -23,10 +23,6 @@ exports.getAddress = (req, res) => {
     model.getAddress(address_id, res);
 };
 
-exports.getAllPromotions = (req, res) => {
-    model.getAllPromotions(req, res);
-};
-
 exports.logout = (req, res) => {
     console.log('logged out')
     values.setLoggedIn(false);

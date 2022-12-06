@@ -37,7 +37,7 @@
   </nav>
 
   <!--Movie Info-->
-    <img class="img-browse-entry" src="images/poster-default.png" id="poster"/>
+    <img class="img-browse-entry" style="margin-top: 16px" src="images/poster-default.png" id="poster"/>
     <div class="div-promo-fields">
         <!--Search Fields TURN INTO ADDMOVIE INPUT-->
         <div class="div-browse-search">       
@@ -111,44 +111,60 @@
                 <input type="text" class="form-control" rows="5" id="description" name="description">
             </div>
     
-            <input class="button-book-now" type="submit" value="Submit">
-            <a href="adminMain.html"><button type="button" class="button-book-now">Back</button></a>
+            <input class="button-book-admin" type="submit" value="Submit">
+            <a href="adminMain.html"><button type="button" class="button-book-admin">Back</button></a>
           </div>
         </form>
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
+    
+  <script>
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/isLoggedIn",
+        type: "GET",
+        success: function(result) {
+          if (result.status == true) $('#loginButton').remove();
+          else $('#profileButton').remove();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
 
-    <script>
-        $(document).ready(function() {
-            $.ajax( {
-                url: "/getMovie",
-                type: "GET",
-                success: function(result) {
-                    console.log(result);
-                    var rating;
-                    if (result.ratings_id == 2) rating = 'PG';
-                    else if (result.ratings_id == 1) rating = 'PG-13';
-                    else if (result.ratings_id == 3) rating = 'R';
+  <script>
+      $(document).ready(function() {
+          $.ajax( {
+              url: "/getMovie",
+              type: "GET",
+              success: function(result) {
+                  console.log(result);
+                  var rating;
+                  if (result.ratings_id == 2) rating = 'PG';
+                  else if (result.ratings_id == 1) rating = 'PG-13';
+                  else if (result.ratings_id == 3) rating = 'R';
 
-                    $("#title").html('TITLE: ' + result.title);
-                    $("#rating").html('RATING: ' + rating);
-                    $("#genre").html('GENRE: ' + result.genre);
-                    $("#releaseDate").html('RELEASE DATE: ' + result.release_date);
-                    $("#duration").html('DURATION: ' + result.duration);
-                    $("#cast").html('CAST: ' + result.cast);
-                    $("#description").html('DESCRIPTION: ' + result.description);
-                    $("#poster").attr('src',result.img);
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    console.log('failure');
-                }
-            });
-        });
-    </script>
+                  $("#title").html('TITLE: ' + result.title);
+                  $("#rating").html('RATING: ' + rating);
+                  $("#genre").html('GENRE: ' + result.genre);
+                  $("#releaseDate").html('RELEASE DATE: ' + result.release_date);
+                  $("#duration").html('DURATION: ' + result.duration);
+                  $("#cast").html('CAST: ' + result.cast);
+                  $("#description").html('DESCRIPTION: ' + result.description);
+                  $("#poster").attr('src',result.img);
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  console.log('failure');
+              }
+          });
+      });
+  </script>
 
 </body>
 </html>

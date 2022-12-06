@@ -165,6 +165,7 @@
           result1.forEach(createUserRow);
           function createUserRow(result) {
             var displayedDate = result.date.substring(0,10);
+            
             content += '<option value="' + result.show_id + '">' + displayedDate + ' ' + result.time + '</option>'; // NEEDS TO BE BETTER FORMAT
           }
           document.getElementById('showtimeDiv').innerHTML = content;

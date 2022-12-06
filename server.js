@@ -22,7 +22,6 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 
 // util
 app.post("/getAddress", utilController.getAddress);
-app.get("/getAllPromotions", utilController.getAllPromotions);
 app.get("/logout", utilController.logout);
 app.post("/login", utilController.login);
 
@@ -51,6 +50,7 @@ app.post("/addPromotion", promotionController.addPromotion);
 app.post("/sendPromotion", promotionController.sendPromotion);
 app.post("/removePromotion", promotionController.removePromotion);
 app.post('/editPromotion', promotionController.editPromotion);
+app.get("/getAllPromotions", promotionController.getAllPromotions);
 
 // pages
 app.get("/isLoggedIn", pageController.isLoggedIn);

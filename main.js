@@ -183,9 +183,7 @@ app.get('/getAllPromotions', encoder, function(req,res) {
 
                 // ADDS PLACEHOLDER VALUES FOR EDIT PROMOTIONS
     
-                promoResults[index].editButton = '<form action="/adminEditPromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Edit Promotion"></form>'
-                promoResults[index].removeButton = '<form action="/removePromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResults[index].promo_id + '><input class="button-book-admin" type="submit" value="Remove Promotion"></form>'
-            }
+                }
  
             res.json(promoResults);
       

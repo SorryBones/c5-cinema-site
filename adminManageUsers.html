@@ -36,15 +36,10 @@
     </div>
   </nav>
 
-	<div class="div-browse-entry" style="text-align:center">
-		<form action="/adminEditUserProfile" method="POST" text-align="center">
-			<Label for="email" style="font-size: 25px"> User ID: </Label>
-			<input class="form-register" type="text" id="user_id" name="user_id" placeholder="id" style="width: 10%" required><br><br>
-      <input type="submit" class="button-book-admin" value="Edit Information"><br><br>
-		</form>
-	</div>
+  <div id="usersDiv"></div>
+  
+  <a href="adminMain.html"><button type="button" class="button-book-admin" style="background:black; margin-left: 20px">Back</button></a>
 
-  <div class="div-browse-entry" id="browseEntry"></div>
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -76,9 +71,6 @@
         success: function(result1) {
           result1.forEach(createUserRow);
           function createUserRow(result) {
-            var newDiv = document.createElement('div');
-            console.log(result);
-
             var userType;
             if (result.utype_id == 1) userType = "Admin";
             else userType = "User";
@@ -86,16 +78,20 @@
             var isSubscribed;
             if (result.promo_subs == "Y") isSubscribed = "Subscribed";
             else isSubscribed = "Unsubscribed";
+            
+            var content = '<div class="div-browse-entry" style="align-content: center; text-align:center">';
+            content += "<p><b>ID: </b>" + result.user_id + "</p>";
+            content += "<p><b>Name: </b>" + result.first_name + ' ' + result.last_name + "</p>";
+            content += "<p><b>User Type: </b>" + userType + "</p>";
+            content += "<p><b>Phone: </b>" + result.phone_num + "</p>";
+            content += "<p><b>Email: </b>" + result.email + "</p>";
+            content += "<p><b>Promotions: </b>" + isSubscribed + "</p>";
+            content += '<form action="/adminEditUserProfile" method="POST">';
+            content += '<input class="form-register" style="display:none" type="text" name="user_id" value="' + result.user_id + '">';
+            content += '<input type="submit" class="button-book-admin" value="Edit Information"><br>';
+            content += '</form></div>';
 
-            newDiv.innerHTML = "ID: " + result.user_id + "<br>" 
-                            + "Name: " + result.first_name + ' ' + result.last_name + "<br>"
-                            + "Phone: " + result.phone_num + "<br>"
-                            + "Email: " + result.email + "<br>"
-                            + "Promotions: " + isSubscribed + "<br>"
-                            + "User Type: " + userType + "<br>" + "<br>";
-
-            newDiv.className = 'div-browse-text';
-            document.getElementById('browseEntry').appendChild(newDiv);
+            document.getElementById('usersDiv').innerHTML = content;
           }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {

@@ -79,7 +79,7 @@
           <!-- -->
           <input type="submit" class="button-book-admin" value="Create">
         </form>
-        <a href="adminMain.html"><button type="button" class="button-book-now">Go Back</button></a>
+        <a href="adminMain.html"><button type="button" class="button-book-admin">Back</button></a>
       </div>
     </div>
   </div>
@@ -89,13 +89,8 @@
     <div class="flex-container-row">
       <h1>Edit Existing Promotions</h1>
     </div>
-
-    <div class="flex-container-row" name = "existingPromoField" id = "existingPromoField">
-      <!--Entry-->
-
-
-    </div> <!--End of flex row-->
-  </div> <!--End of flex homepage-->
+    <div class="flex-container-row" name="existingPromoField" id="existingPromoField"></div>
+  </div>
 
 
 
@@ -128,16 +123,23 @@ crossorigin="anonymous"></script>
       url: "/getAllPromotions",
       type: "GET",
       success: function(result1) {
+        console.log(result1);
         result1.forEach(createUserRow);
         function createUserRow(result) {
-          var newDiv = document.createElement('div');
-          newDiv.className = "existingPromo";
+          console.log(result.promo_id);
+          var content = '<div class="existingPromo">';
+          content += "<img class='img-movie-poster' src='" + result.img + "'/>";
+          content += "<h3>" + result.title + "<h3>";
+          content += '<form action="/adminEditPromotion" method="POST">';
+          content += '<input style="display: none" type="text" name="promo_id" value=' + result.promo_id + '>';
+          content += '<input class="button-book-admin" type="submit" value="Edit Promotion"></form>';
+          content += '<br>';
+          content += '<form action="/removePromotion" method="POST">';
+          content += '<input style="display: none" type="text" name="promo_id" value=' + result.promo_id + '>';
+          content += '<input class="button-book-admin" type="submit" value="Remove Promotion"></form>';
+          content += '</div>';
 
-          newDiv.innerHTML = result.image + 
-                             "<h3>" + result.title + "<h3>" + result.editButton + result.removeButton
-                              + "<style>h3 {text-align: center;}</style>"
-
-          document.getElementById('existingPromoField').appendChild(newDiv);
+          document.getElementById('existingPromoField').innerHTML = content;
         }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {

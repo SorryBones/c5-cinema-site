@@ -37,6 +37,7 @@ exports.removePromotion = (res) => {
 };
 
 exports.getPromo = (res) => {
+    console.log(values.getPromoId());
     const query = 'SELECT * FROM promotions WHERE promo_id = ?';
     connection.query(query,[values.getPromoId()],function(error,results,fields) {
       if (results.length > 0) {
@@ -110,3 +111,44 @@ exports.editPromotion = (req, res) => {
     });
     res.redirect('/adminEditPromotion.html');
 }
+
+exports.getAllPromotions = (req, res) => {
+    queryPromise1 = () =>{
+      return new Promise((resolve, reject)=>{
+          const promotionsQuery = 'SELECT * FROM promotions WHERE sent = ?';
+          connection.query(promotionsQuery,[1],(error, results, fields)=>{
+              if(error) {
+                  return reject(error);
+              }
+              return resolve(results);
+          });
+      });
+    };
+    queryPromise2 = (movie_id) =>{
+        return new Promise((resolve, reject)=>{
+            const movieQuery = 'SELECT * FROM movie WHERE movie_id = ?';
+            connection.query(movieQuery,[movie_id],(error, results)=>{
+                if(error){
+                    return reject(error);
+                }
+                return resolve(results);
+            });
+        });
+    };
+  
+    async function runQueries () {
+        try {
+            let promoResults = await queryPromise1();
+            let result = [];
+            for (let index = 0; index < promoResults.length; index++) {
+                result[index] = await queryPromise2(promoResults[index].movie_id);
+                // result[index].promo_id = promoResults[index].promo_id;
+            }
+  
+            res.json(result);
+        } catch(error){
+            console.log(error)
+        }
+    }
+    runQueries();
+  }

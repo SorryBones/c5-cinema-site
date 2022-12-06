@@ -33,3 +33,7 @@ exports.getPromo = (req, res) => {
 exports.editPromotion = (req, res) => {
     model.editPromotion(req, res);
 }
+
+exports.getAllPromotions = (req, res) => {
+    model.getAllPromotions(req, res);
+};
