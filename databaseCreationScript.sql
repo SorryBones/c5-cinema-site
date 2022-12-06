@@ -269,6 +269,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `NewCES`.`showSeat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`showSeat` (
+  `seat_id` INT NOT NULL AUTO_INCREMENT,
   `show_id` INT NOT NULL,
   `room_id` INT NOT NULL,
   `seat_number` INT NOT NULL,

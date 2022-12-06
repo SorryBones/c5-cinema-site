@@ -63,7 +63,7 @@
 
   <div class="div-browse-entry" style="align-content: center; text-align:center" id="showtimesDiv">
     <h1>Select a Showtime:</h1>
-    <form action="/selectShowtime" method="POST" id="selectShowtimeForm">
+    <form action="/getSeats" method="POST">
       <div class="flex-entry-content-line">
           <div class="input-group mb-3 p-2">
             <div class="input-group-prepend">
@@ -75,13 +75,11 @@
             </select required>
           </div>
       </div>
-      <input class="button-book-now" style="width: 150px" type="submit" value="submit">
     </form>
+    <button class="button-book-now" style="width: 150px" id="selectShowtime">Select</button>
   </div>
 
-  <form action="/selectSeats" method="POST" id="selectSeatsForm">
-    <div id="selectSeatsDiv"></div>
-  </form>
+  <div id="selectSeatsDiv"><button class="button-book-now" style="width: 150px" id="selectSeatsButton">Select</button></div>
 
   <div id="bookSeatsDiv"></div>
 
@@ -146,7 +144,7 @@
     });
 </script>
 
-<script> // 1. CREATE SELECT SHOWTIME
+<script> // SELECT A SHOWTIME
   $(document).ready(function() {
     $.ajax( {
       url: "/getAllShowtimes",
@@ -177,10 +175,9 @@
   });
 </script>
 
-
-<script> // 2. SELECT SEATS
+<script> // SELECT SEATS
   $(document).ready(function() {
-    $("#selectShowtimeForm").submit(function() {
+    $("#selectShowtime").click(function() {
       $.ajax( {
         url: "/getSeats",
         type: "POST",
@@ -189,7 +186,8 @@
         data: $.param({showId: document.getElementById("showtimeDiv").value}),
         processData: false,
         success: function(result1) {
-          var content = '<div class="div-book-chart d-flex flex-column" style="text-align: center; align-items: center">';
+          var content = '<form action="/test" method="POST">';
+          content += '<div class="div-book-chart d-flex flex-column" style="text-align: center; align-items: center">';
           content += '<h1>Select a Seat:</h1><br>';
           content += '<div style="background: white; width: 500px; height: 45px; border: 2px solid #000; border-radius: 15px; -moz-border-radius: 15px; color:black"><h2>Screen</h2></div><br>';
           content += '<div data-toggle="buttons" id="seats">';
@@ -203,7 +201,7 @@
             if (result.seat_number === 10) content += '<br><br><label style="width: 94px"></label>';
             if ((result.seat_number - 2) % 8 === 0 && result.seat_number > 10) content += '<br><label style="width: 94px"></label>';
           }
-          content += '</div><input class="button-book-now" type="submit" value="Select"></div>';
+          content += '</div><br></form></div>';
           document.getElementById('selectSeatsDiv').innerHTML = content;
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -214,41 +212,68 @@
   });
 </script>
 
-<script> // 3. BOOK SEATS
+<script> // BOOK SEATS
   $(document).ready(function() {
-    $("#selectSeatsForm").submit(function() { // selectSeatsButton not being clicked?
-      $.ajax( {
-        url: "/getSelectedSeats",
-        type: "GET",
-        success: function(result1) {
-          var content = '<div class="div-book-chart d-flex flex-column" style="text-align: center; align-items: center">';
-          content += '<form action="/addToCart" method="POST">';
-          console.log(result1);
-          result1.forEach(createUserRow);
-          function createUserRow(result) {
-            content += '<h3>Seat ' + result + '</h3>';
-            content += '<div class="input-group-prepend" style="width: 300px">';
-            content += '<span class="input-group-text text-light border border-danger" style="background-color: #272727; height: 38px" id="">Seat Type</span>';
-            content += '<select class="form-control" id="ticketType" name="' + result + '" required>';
-            content += '<option selected></option>';
-            content += '<option value="1">Adult = $14.99</option>';
-            content += '<option value="2">Child = $10.99</option>';
-            content += '<option value="3">Senior = $12.99</option>';
-            content += '</select>';
-            content += '</div><br>';
-          }
-
-          content += '<input class="button-book-now" type="submit" value="Add to Cart"></form></div>';
-
-          document.getElementById('bookSeatsDiv').innerHTML = content;
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          console.log('failure');
-        }
-      });
+    $("#selectSeatsButton").click(function() { // selectSeatsButton not being clicked?
+      console.log('test');
+      //var content = '<form action="/bookTickets" method="POST">';
+      //content += '<div class="div-browse-entry" style="align-content: center; text-align:center" id="bookSeatsDiv">'
+      //console.log(document.getElementById('seats').value);
+      //result1.forEach(createUserRow);
+      //function createUserRow(result) {
+        //if (result.availability === 1) {
+        //  content += '<label class="btn btn-primary" style="width: 45px; height: 45px; margin: 2px"><input type="checkbox" style="display:none" name="' + result.seat_number + '">' + result.seat_number + '</label>';
+        //} else { // exception: unavailable
+        //  content += '<label class="btn btn-secondary" style="width: 45px; height: 45px"><input type="checkbox" style="display:none">' + result.seat_number + '</label>';
+        //}
+        //if (result.seat_number === 10) content += '<br><br><label style="width: 94px"></label>';
+        //if ((result.seat_number - 2) % 8 === 0 && result.seat_number > 10) content += '<br><label style="width: 94px"></label>';
+      //}
+      //content += '<input class="button-book-now" type="submit" value="Book Now!"></form></div>';
+      //document.getElementById('bookSeatsDiv').innerHTML = content;
     });
   });
 </script>
+
+<!-- <form action="/bookTickets" method="POST">
+  <h3>Seat 42</h3>
+  <div class="input-group-prepend" style="width: 300px">
+    <input class="form-register" style="display:none" type="seat_id" id="seat_id" name="seat_id" placeholder=42><br><br>
+    <span class="input-group-text text-light border border-danger" style="background-color: #272727; height: 38px" id="">Seat Type</span>
+    <select class="form-control" id="ticketType" required>
+      <option selected></option>
+      <option value="1">Adult = $14.99</option>
+      <option value="2">Child = $10.99</option>
+      <option value="3">Senior = $12.99</option>
+    </select>
+  </div><br>
+
+  <h3>Seat 43</h3>
+  <div class="input-group-prepend" style="width: 300px">
+    <input class="form-register" style="display:none" type="seat_id" id="seat_id" name="seat_id" placeholder=42><br><br>
+    <span class="input-group-text text-light border border-danger" style="background-color: #272727; height: 38px" id="">Seat Type</span>
+    <select class="form-control" id="ticketType" required>
+      <option selected></option>
+      <option value="1">Adult = $14.99</option>
+      <option value="2">Child = $10.99</option>
+      <option value="3">Senior = $12.99</option>
+    </select>
+  </div><br>
+
+  <h3>Seat 44</h3>
+  <div class="input-group-prepend" style="width: 300px">
+    <input class="form-register" style="display:none" type="seat_id" id="seat_id" name="seat_id" placeholder=42><br><br>
+    <span class="input-group-text text-light border border-danger" style="background-color: #272727; height: 38px" id="">Seat Type</span>
+    <select class="form-control" id="ticketType" required>
+      <option selected></option>
+      <option value="1">Adult = $14.99</option>
+      <option value="2">Child = $10.99</option>
+      <option value="3">Senior = $12.99</option>
+    </select>
+  </div><br>
+
+  <input class="button-book-now" type="submit" value="Book Now!">
+</form> -->
 
 </body>
 </html>

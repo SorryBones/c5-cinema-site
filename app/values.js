@@ -113,6 +113,36 @@ let setPromoId = function(input) {
     promoId = input;
 }
 
+
+let showId;
+let setShowId = function(input) {
+    showId = input;
+}
+let getShowId = function() {
+    return showId;
+}
+
+let showSeats = [];
+let flushShowSeats = function() {
+    showSeats = [];
+}
+let addShowSeat = function(input) {
+    if (showSeats.includes(input)) return;
+    showSeats.push(input);
+}
+let getShowSeats = function() {
+    return showSeats;
+}
+
+let cart = []; // {show_id, seat_number, ticketType}
+let addToCart = function(show_id, seat_number, ticketType) {
+    cart.push({show_id: show_id, seat_number: seat_number, ticketType: ticketType});
+}
+let getCart = function() {
+    return cart;
+}
+
+
 // database encryption
 const algorithm = "aes-256-cbc";
 const key ="12345678123456781234567812345678";
@@ -174,4 +204,5 @@ module.exports = {
     getPromoId, setPromoId,
     encrypt, decrypt,
     sendEmail,
+    setShowId, getShowId, addShowSeat, flushShowSeats, getShowSeats, addToCart, getCart,
 };
