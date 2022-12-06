@@ -1,6 +1,6 @@
 const userController = require("./app/controllers/user.js");
 const editUsersController = require("./app/controllers/editUsers.js");
-const showtimeController = require("./app/controllers/showtime.js");
+const showController = require("./app/controllers/show.js");
 const promotionController = require("./app/controllers/promotion.js");
 const bookingController = require("./app/controllers/booking.js");
 const pageController = require("./app/controllers/page.js");
@@ -26,10 +26,15 @@ app.get("/getAllPromotions", utilController.getAllPromotions);
 app.get("/logout", utilController.logout);
 app.post("/login", utilController.login);
 
-// showtime
-app.get("/getAllShowtimes", showtimeController.getAllShowtimes);
-app.post("/addShowtime", showtimeController.addShowtime);
-app.post("/editShowtime", showtimeController.editShowtime);
+// show
+app.get("/getAllShowtimes", showController.getAllShowtimes);
+app.post("/addShowtime", showController.addShowtime);
+app.post("/editShowtime", showController.editShowtime);
+app.post("/getSeats", showController.getSeats);
+app.post("/selectShowtime", showController.selectShowtime);
+app.post("/selectSeats", showController.selectSeats);
+app.get("/getSelectedSeats", showController.getSelectedSeats)
+app.post("/addToCart", showController.addToCart)
 
 // movie
 app.post("/addMovie", movieController.addMovie);
@@ -45,6 +50,7 @@ app.get("/getPromo", promotionController.getPromo);
 app.post("/addPromotion", promotionController.addPromotion);
 app.post("/sendPromotion", promotionController.sendPromotion);
 app.post("/removePromotion", promotionController.removePromotion);
+app.post('/editPromotion', promotionController.editPromotion);
 
 // pages
 app.get("/isLoggedIn", pageController.isLoggedIn);
@@ -61,6 +67,7 @@ app.get("/userInfo", pageController.userInfo);
 app.get("/isInvalidMovie", pageController.isInvalidMovie);
 app.get("/isIncorrectShowtime", pageController.isIncorrectShowtime);
 app.get("/adminManageMovies", pageController.adminManageMovies);
+
 app.post("/test", pageController.test);
 
 // update users

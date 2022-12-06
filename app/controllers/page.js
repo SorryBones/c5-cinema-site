@@ -85,5 +85,5 @@ exports.getAllUsersInfo = (req, res) => {
 };
 
 exports.test = (req, res) => {
-    console.log(req.body.test);
+    console.log(req.body);
 };
