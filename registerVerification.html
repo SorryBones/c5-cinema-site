@@ -10,22 +10,7 @@
     <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-    body {
-      margin: 0;
-      font-family: "Lexend Deca";
-      background-color: black;
-    }
-  
-   
-    .responsive {
-      width: 100%;
-      height: auto;
-    }
-   
-  
-  
-    </style>
+
   </head>
   
   <body style="padding-top:55px ; background-color: black">
@@ -57,13 +42,13 @@
 
       <!-- Verification -->
 
-    <div class="div-base" style="height: 45vh; margin: 5% 20% 0 20%; width: auto; text-align: center; border-radius: 25px">
-      <div><br>
+    <div class="div-base" style="height: auto; margin: 5% 25% 0 25%; width: auto; text-align: center; border-radius: 20px;">
+      <div style="display: flexbox; flex-direction: column; text-align: center; padding: 5%;">
         <h1 style="font-size: 40px;"> Verification </h1><br>
         <p style="font-size: 30px;"> Check your email and enter the code sent below:<p><br>
         <form action="/verify" method="POST" text-align="center">
-          <input class="form-register" style="width:30vh; height:5vh" type="text" id="regCode" name="regCode" placeholder="Enter Code" required><br>
-          <input type="submit" style="margin: 5% 25% 0 25%; width: 25%; height: auto; background-color:#e6e6e6;font-size:35px;color:black;border-radius: 45px; border: 8px solid black; text-align: center;" value="Verify">
+          <input class="form-register" style="width:30vh; height:5vh" type="text" id="regCode" name="regCode" placeholder="Enter Code" required><br><br>
+          <input class="button-book-now" type="submit" value="Verify">
         </form>
       </div>
     </div>  
