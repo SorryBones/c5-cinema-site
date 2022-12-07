@@ -36,23 +36,23 @@
     </div>
   </nav>
 
-  <div class="div-promo-fields">
-    <!--Search Fields TURN INTO ADDMOVIE INPUT-->
-    <div class="div-browse-search">       
+  <!--Input forms-->
+  <div class="flex-secret-wrapper">
+    <div class="flex-container-column2" style="align-items: center; justify-content: center; padding: 10px;"> <!--DIV-BROWSE-SEARCH-->  
       <form action="/addMovie" method="POST">
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">TITLE:</span>
           </div>
-          <input type="text" class="form-control" id="title" name="title" aria-describedby="basic-addon3" required>
+          <input type="text" class="form-control" placeholder="title" id="title" name="title" aria-describedby="basic-addon3" required>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">GENRE:</span>
           </div>
           <select class="form-control" id="genre" name="genre">
-            <option value=""></option>
+            <option value="" selected disabled>Select an option...</option>
             <option value="Action">Action</option>
             <option value="Animation">Animation</option>
             <option value="Comedy">Comedy</option>
@@ -62,75 +62,75 @@
           </select>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">RATING:</span>
           </div>
           <select class="form-control" id="rating" name="rating">
-            <option value=""></option>
+            <option value="" selected disabled>Select an option...</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
             <option value="R">R</option>
           </select>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">RELEASE DATE:</span>
           </div>
           <input type="date" class="form-control" id="releaseDate" name="releaseDate" aria-describedby="basic-addon3" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">RUN TIME: (H:MM)</span>
           </div>
-          <input type="text" class="form-control" id="duration" name="duration" aria-describedby="basic-addon3" pattern="[0-9]{1}:[0-5]{1}[0-9]{1}" required>
+          <input type="text" class="form-control" placeholder="X:XX" id="duration" name="duration" aria-describedby="basic-addon3" pattern="[0-9]{1}:[0-5]{1}[0-9]{1}" required>
         </div>
           
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">DIRECTOR:</span>
           </div>
-          <input type="text" class="form-control" id="director" name="director" aria-describedby="basic-addon3" required>
+          <input type="text" class="form-control" placeholder="director" id="director" name="director" aria-describedby="basic-addon3" required>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">PRODUCER:</span>
           </div>
-          <input type="text" class="form-control" id="producer" name="producer" aria-describedby="basic-addon3" required>
+          <input type="text" class="form-control" placeholder="producer" id="producer" name="producer" aria-describedby="basic-addon3" required>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">CAST:</span>
           </div>
-          <input type="text" class="form-control" id="cast" name="cast" aria-describedby="basic-addon3" required>
+          <input type="text" class="form-control" placeholder="cast members" id="cast" name="cast" aria-describedby="basic-addon3" required>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">DESCRIPTION:</span>
           </div>
-          <input type="text" class="form-control" id="description" name="description" aria-describedby="basic-addon3" required>
+          <input type="text" class="form-control" placeholder="description" id="description" name="description" aria-describedby="basic-addon3" required>
         </div>
         
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">AUDIENCE RATING: (input number 1-5)</span>
           </div>
-          <input type="text" class="form-control" id="audienceRating" name="audienceRating" aria-describedby="basic-addon3" required>
+          <input type="text" class="form-control" placeholder="X" id="audienceRating" name="audienceRating" aria-describedby="basic-addon3" required>
         </div>
         
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">POSTER IMAGE:</span>
           </div>
           <input type="text" class="form-control" id="img" name="img" aria-describedby="basic-addon3" value="images/poster-default.png" required>
         </div>
         
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 w-75">
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">TRAILER LINK:</span>
           </div>
@@ -142,8 +142,11 @@
       </div>
     </form>
   </div>
-</div>
 
+
+</div> <!--Body-->
+
+  <!----------SCRIPS---------->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>

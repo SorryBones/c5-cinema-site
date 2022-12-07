@@ -41,7 +41,7 @@
   <div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px" id="banner">Show Time Taken</div>
 
     <!--Add Showtime-->
-    <div class="flex-entry-container" style="height: 24vh; width: 100%">
+    <div class="flex-entry-container" style="height: 24vh; width: 100%; border-top: 10px solid black;">
         <div class="flex-entry-content" style="align-items: center; text-align: center">
             <form action="/addShowtime" method="POST">
                 <p class="text-sub">Add Showtime:</p>
@@ -58,7 +58,7 @@
                         <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Time:</span>
                         </div>
                         <select class="form-control" id="showtime" name="showtime">
-                        <option value=""></option>
+                        <option value="" selected disabled>Select an option...</option>
                         <option value="09:00:00">9:00am</option>
                         <option value="12:00:00">12:00pm</option>
                         <option value="15:00:00">3:00pm</option>
@@ -74,7 +74,7 @@
     </div>
     
     <!--Edit Showtime-->
-    <div class="flex-entry-container" style="height: 24vh; width: 100%">
+    <div class="flex-entry-container" style="height: 24vh; width: 100%;">
         <div class="flex-entry-content" style="align-items: center; text-align: center">
             <form action="/editShowtime" method="POST">
                 <p class="text-sub">Edit Showtime:</p>
@@ -83,7 +83,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">ID:</span>
                         </div>
-                        <input type="text" class="form-control" id="id" name="id" required>
+                        <input type="text" class="form-control" placeholder="id" id="id" name="id" required>
                     </div>
 
                     <div class="input-group mb-3 p-2">
@@ -98,7 +98,7 @@
                         <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Time:</span>
                         </div>
                         <select class="form-control" id="time" name="time">
-                        <option value=""></option>
+                        <option value="" selected disabled>Select an option...</option>
                         <option value="09:00:00">9:00am</option>
                         <option value="12:00:00">12:00pm</option>
                         <option value="15:00:00">3:00pm</option>
@@ -121,9 +121,9 @@
       </div>
     </div>
 
-    <br>
-    <a href="adminMain.html"><button type="button" class="button-book-admin" style="background:black; margin-left: 5px">Back</button></a>
-
+    <div class="flex-entry-content" style="background-color: #272727; align-items: center;">
+      <a href="adminMain.html"><button type="button" class="button-book-admin">Back</button></a>
+    </div>
     
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
