@@ -116,7 +116,7 @@ crossorigin="anonymous"></script>
     });
   });
 </script>
-
+<!--- NEW VERSION DID NOT WORK
 <script> // EXISTING PROMOTYIONS
   $(document).ready(function() {
     $.ajax( {
@@ -126,7 +126,7 @@ crossorigin="anonymous"></script>
         console.log(result1);
         result1.forEach(createUserRow);
         function createUserRow(result) {
-          console.log(result.promo_id);
+          
           var content = '<div class="existingPromo">';
           content += "<img class='img-movie-poster' src='" + result.img + "'/>";
           content += "<h3>" + result.title + "<h3>";
@@ -137,9 +137,36 @@ crossorigin="anonymous"></script>
           content += '<form action="/removePromotion" method="POST">';
           content += '<input style="display: none" type="text" name="promo_id" value=' + result.promo_id + '>';
           content += '<input class="button-book-admin" type="submit" value="Remove Promotion"></form>';
-          content += '</div>';
+          content += "<style>h3 {text-align: center;}</style>";
 
           document.getElementById('existingPromoField').innerHTML = content;
+        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script> -->
+
+<script> // EXISTING PROMOTYIONS (WORKS)
+
+
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/getAllPromotions",
+      type: "GET",
+      success: function(result1) {
+        result1.forEach(createUserRow);
+        function createUserRow(result) {
+          var newDiv = document.createElement('div');
+          newDiv.className = "existingPromo";
+
+          newDiv.innerHTML = result.img + 
+                             "<h3>"  + "<h3>" + result.editButton + result.removeButton
+                              + "<style>h3 {text-align: center;}</style>"
+
+          document.getElementById('existingPromoField').appendChild(newDiv);
         }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {

@@ -81,14 +81,6 @@
               </div>
               <input type="text" class="form-control" id="promocode" name="promocode" aria-describedby="basic-addon3">
             </div>
-              
-            <h4><p id="header">EMAIL HEADER:</p></h4>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Header:</span>
-              </div>
-              <input type="text" class="form-control" id="header" name="header" aria-describedby="basic-addon3">
-            </div>
 
             <h4><p id="message">EMAIL BODY:</p></h4>
             <div class="input-group mb-3">
@@ -116,8 +108,7 @@
                 type: "GET",
                 success: function(result) {
                     console.log(result);
-                
-                    $("#title").html('TITLE: ' + result.title);
+
                     $("#startdate").html('START DATE: ' + result.start_date.substring(0,10));
                     $("#enddate").html('END DATE: ' + result.end_date.substring(0,10));
                     $("#discount").html('PERCENT OFF: ' + result.discount);
@@ -132,6 +123,15 @@
             });
         });
     </script>
-
+<script>
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/getMovie",
+      type: "GET",
+      success: function(result) {
+        $("#title").html(result.title);
+      }})
+    });
+</script>
 </body>
 </html>
