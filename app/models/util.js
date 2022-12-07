@@ -28,3 +28,47 @@ exports.getAddress = (id, res) => {
     }
   })
 };
+
+exports.purchase = (req, res) => {
+
+  let cart = values.getCart();
+  console.log("cart total " + values.getCartTotal())
+  console.log("userId " + values.getCurrentUserID())
+  console.log("showId " + cart[0].show_id)
+  console.log("movieId " + values.getMovieId())
+
+  // 0s are filler values before promotions and getting payment card
+  let query = 'INSERT INTO booking (total_price, user_id, paymentCard_id, show_id, movie_id, promo_id) VALUES (1, 1, 3, 4, 5, 6);';
+
+  try {
+    connection.query(query, function (err, results) {
+      console.log("insert booking");
+      if (err) console.error('err from callback: ' + err.stack);
+    });
+  } catch (e) {
+    console.error('err thrown: ' + err.stack);
+  }
+
+   
+  
+
+//connection.query('SELECT scope_identity();', function(error,results,fields) {
+ // console.log("pk " + results);
+//});
+
+  let seatId;
+  for (index = 0; index < cart.length; index++) {
+
+    seatId = cart[index].seat_number;
+    ticketType = cart[index].ticketType; 
+  const query1 = 'UPDATE showseat SET availability = ? WHERE seat_number = ?;';
+  connection.query(query1,[0, cart[index].seat_number], function(error,results,fields) {
+    //console.log(results);
+  });
+  }
+}
+  /*const query2 = 'SELECT * FROM address WHERE address_id = ?';
+  connection.query(query2,[id],function(error,results,fields) {
+
+  }); */
+  

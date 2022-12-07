@@ -54,6 +54,7 @@ exports.adminEditShowtimes = (req, res) => {
 };
 
 exports.book = (req, res) => {
+    console.log("red" + req.body.movie_id + " (movie id checks")
     values.setMovieId(req.body.movie_id);
     res.redirect('/book.html');
 };
@@ -89,3 +90,4 @@ exports.getAllUsersInfo = (req, res) => {
 exports.test = (req, res) => {
     console.log(req.body);
 };
+

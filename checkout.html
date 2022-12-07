@@ -62,17 +62,17 @@
 	<div style="width:90% ; height: auto; max-height:auto; background-color: black; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; column-gap: 10%;">
 		<div style="width:60% ; height:auto;">
 			<h1>Card Number:</h1>
-			<h1> XXXX XXXX XXXX XXXX</h1> <!--Get Number from database-->
+			<h1 id = "cardNumber"> XXXX XXXX XXXX XXXX</h1> <!--Get Number from database-->
 		</div>
 		<!--Div for Type:-->
 		<div style="width:20% ; height:auto;">
 			<h1>Type:</h1>
-			<h1>Visa</h1> <!--GET type from database-->
+			<h1 id = "cardType"></h1> <!--GET type from database-->
 		</div>		
 		<!--Div for Exp-->
 		<div style="height:auto ; min-width:5% ; max-width:40% ; font-size: 10px;">
 			<h1>Expiration Date : </h1>
-			<h1>XX/XXXX </h1>
+			<h1 id = "expirationDate">XX/XXXX </h1>
 
 	
 		</div>
@@ -83,9 +83,9 @@
 	</div>	
 	
 </div>	
-
+<form action="/purchase" method="GET">
 <button style="margin: 5% 45% 0 44%; width: auto; height: auto; background-color:#e6e6e6;font-size:35px;color:black;border-radius: 45px; border: 8px solid black; text-align: center; align-self: center;"><b>Purchase</b></button>
-
+</form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -108,5 +108,25 @@ crossorigin="anonymous"></script>
   });
 </script>
   
+<script> // CARD CREDENTIALS
+	$(document).ready(function() {
+	  $.ajax( {
+		url: "/getCard",
+		type: "GET",
+		success: function(result) {
+		  if (result.status == false) console.log('no cards');
+		  else {
+			console.log(result);
+			$("#cardType").html(result.type);
+			$("#expirationDate").html(result.expiration_month + '/' + result.expiration_year);
+			$("#cardNumber").html(result.card_num);
+		  }
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		  console.log('failure');
+		}
+	  });
+	});
+  </script>
 </body>
 </html>
