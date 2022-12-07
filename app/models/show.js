@@ -84,3 +84,18 @@ exports.getSeats = (show_id, res) => {
         }
     });
 };
+
+exports.getCartShowtime = (req, res) => {
+    const query = 'SELECT * FROM showtime WHERE show_id = ?';
+    connection.query(query,[values.getShowId()],function(error,results,fields) {
+        if (results.length > 0) {
+            res.json(results[0]);
+        } else {
+            res.json({status: false});
+        }
+});
+}
+
+exports.getCartSeatNumber = (req, res) => {
+res.json(values.getCart());
+}

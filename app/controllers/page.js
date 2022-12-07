@@ -38,11 +38,13 @@ exports.getUserInfo = (req, res) => {
 
 exports.adminPromotions = (req, res) => {
     values.setMovieId(req.body.movie_id);
+    console.log("set movied" + values.getMovieId())
     res.redirect('/adminPromotions.html');
 };
 
 exports.adminEditPromotion = (req, res) => {
     values.setPromoId(req.body.promo_id);
+     
     res.redirect('/adminEditPromotion.html');
 };
 
@@ -52,6 +54,7 @@ exports.adminEditShowtimes = (req, res) => {
 };
 
 exports.book = (req, res) => {
+    console.log("red" + req.body.movie_id + " (movie id checks")
     values.setMovieId(req.body.movie_id);
     res.redirect('/book.html');
 };
@@ -87,3 +90,4 @@ exports.getAllUsersInfo = (req, res) => {
 exports.test = (req, res) => {
     console.log(req.body);
 };
+

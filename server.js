@@ -24,6 +24,9 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 app.post("/getAddress", utilController.getAddress);
 app.get("/logout", utilController.logout);
 app.post("/login", utilController.login);
+app.get("/getCart", utilController.getCart);
+app.get("/getCartTotal", utilController.getCartTotal);
+app.get("/purchase", utilController.purchase);
 
 // show
 app.get("/getAllShowtimes", showController.getAllShowtimes);
@@ -34,6 +37,8 @@ app.post("/selectShowtime", showController.selectShowtime);
 app.post("/selectSeats", showController.selectSeats);
 app.get("/getSelectedSeats", showController.getSelectedSeats)
 app.post("/addToCart", showController.addToCart)
+app.get("/getCartShowtime", showController.getCartShowtime);
+//app.get("/getCartSeatNumber", utilController.getSeatNumber)
 
 // movie
 app.post("/addMovie", movieController.addMovie);
@@ -67,6 +72,7 @@ app.get("/userInfo", pageController.userInfo);
 app.get("/isInvalidMovie", pageController.isInvalidMovie);
 app.get("/isIncorrectShowtime", pageController.isIncorrectShowtime);
 app.get("/adminManageMovies", pageController.adminManageMovies);
+
 
 app.post("/test", pageController.test);
 

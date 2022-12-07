@@ -242,10 +242,7 @@ INSERT IGNORE INTO room SET room_id = 1, numofseats = 50;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`ticket` (
   `ticket_id` INT NOT NULL AUTO_INCREMENT,
-  `is_available` TINYINT(1) NOT NULL,
-  `adult_price` DOUBLE NULL DEFAULT NULL,
-  `child_price` DOUBLE NULL DEFAULT NULL,
-  `senior_price` DOUBLE NULL DEFAULT NULL,
+  `seat_id` INT NOT NULL,
   `tickettype_id` INT NOT NULL,
   `booking_id` SMALLINT NOT NULL,
   PRIMARY KEY (`ticket_id`, `tickettype_id`, `booking_id`),
@@ -269,7 +266,6 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `NewCES`.`showSeat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`showSeat` (
-  `seat_id` INT NOT NULL AUTO_INCREMENT,
   `show_id` INT NOT NULL,
   `room_id` INT NOT NULL,
   `seat_number` INT NOT NULL,
@@ -316,7 +312,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `NewCES`.`booking`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`booking` (
-  `booking_id` SMALLINT NOT NULL,
+  `booking_id` SMALLINT NOT NULL AUTO_INCREMENT,
   `total_price` DOUBLE NULL DEFAULT NULL,
   `user_id` INT NOT NULL,
   `paymentCard_id` INT NOT NULL,

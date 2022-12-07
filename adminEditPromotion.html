@@ -42,6 +42,7 @@
   </nav>
 
   <!--Movie Info-->
+
   <!--<div class="flex-secret-wrapper">-->
   <div class="flex-container-row2" style="padding: 10px;">
       <img class="img-browse-entry" src="images/poster-default.png" id="poster" />
@@ -55,6 +56,63 @@
           <div class="input-group-prepend">
             <span class="input-group-text text-light border border-danger" style="background-color: #272727;"
               id="basic-addon3">Edit Title:</span>
+
+    <img class="img-browse-entry" src="images/poster-default.png" id="poster"/>
+    <div class="div-promo-fields">
+        <!--Search Fields TURN INTO ADDMOVIE INPUT-->
+        <div class="div-browse-search">       
+          <form action="/editPromotion" method="POST">
+            <h4><p id="title">TITLE:</p></h4>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Title:</span>
+              </div>
+              <input type="text" class="form-control" placeholder="title" id="title" name="title" aria-describedby="basic-addon3">
+            </div>
+    
+            <h4><p id="startdate">START DATE:</p></h4>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Start Date:</span>
+              </div>
+              <input type="date" class="form-control" placeholder="XX/XX/XX" name = "startdate" id="startdate" aria-describedby="basic-addon3">
+            </div>
+    
+            <h4><p id="enddate">END DATE:</p></h4>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit End Date:</span>
+              </div>
+              <input type="date" class="form-control" placeholder="XX/XX/XX" name = "enddate" id="enddate" aria-describedby="basic-addon3">
+            </div>
+    
+            <h4><p id="discount">PERCENT OFF:</p></h4>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Percent Off</span>
+              </div>
+              <input type="text" class="form-control"  placeholder="XX"id="discount" name="discount" aria-describedby="basic-addon3" pattern="[0-9]{2}">
+            </div>
+    
+            <h4><p id="promocode">PROMO CODE:</p></h4>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Promo Code</span>
+              </div>
+              <input type="text" class="form-control" id="promocode" name="promocode" aria-describedby="basic-addon3">
+            </div>
+
+            <h4><p id="message">EMAIL BODY:</p></h4>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Message:</span>
+                </div>
+                <input type="text" class="form-control" rows="5" id="message" name="message">
+            </div>
+    
+            <input class="button-book-now" type="submit" value="Submit">
+            <a href="adminMain.html"><button type="button" class="button-book-now">Cancel</button></a>
+
           </div>
           <input type="text" class="form-control" placeholder="title" id="title" name="title"
             aria-describedby="basic-addon3">
@@ -139,6 +197,7 @@
 
 <!--</div>--> <!--secret-->
 
+
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
@@ -165,6 +224,44 @@
       });
     });
   </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax( {
+                url: "/getPromo",
+                type: "GET",
+                success: function(result) {
+                    console.log(result);
+
+                    $("#startdate").html('START DATE: ' + result.start_date.substring(0,10));
+                    $("#enddate").html('END DATE: ' + result.end_date.substring(0,10));
+                    $("#discount").html('PERCENT OFF: ' + result.discount);
+                    $("#promocode").html('PROMO CODE: ' + result.promo_code);
+                    $("#header").html('HEADER: ' + result.header);
+                    $("#message").html('MESSAGE: ' + result.message);
+                    $("#poster").attr('src',result.img);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('failure');
+                }
+            });
+        });
+    </script>
+<script>
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/getMovie",
+      type: "GET",
+      success: function(result) {
+        $("#title").html(result.title);
+      }})
+    });
+</script>
 
 </body>
 
