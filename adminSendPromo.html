@@ -1,126 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>UGA Flix</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="Home page" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>UGA Flix</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Home page" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<body style="padding-top:55px ; background-color: #870500">
-  
+<body style="padding-top:55px ; background-color: black">
+
   <!--Navbar-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
-      <a class="navbar-brand" href="index.html">UGA Flix</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <form action="index.html">
-            <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/browse.html">
-            <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
-          </form>
-          <form action="/profile" method="GET">
-            <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
-          </form>
-        </ul>
-      </div>
-    </nav>
+    <a class="navbar-brand" href="index.html">UGA Flix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<!--NEW CODE-->
-
->
-  <!--Username Display Div-->
-  
-<div class="flex-container-homepage">
-  <!--Make New Promotion-->
-  
-  <div class="div-promo-fields h-50 w-100 p-3">
-    <h1>Are You Sure You Want to Send This Promotion?</h1>
-    <div class="div-browse-search">
-      <h1>Movie:</h1>
-    <h2><p id="title"></p></h2>
-      <!-- -->
-      <h1>Start Date:</h1>
-    <h2><p id="startdate"></p></h2>
-
-    <h1>End Date:</h1>
-    <h2><p id="enddate"></p></h2>
-
-    <h1>Promo Code:</h1>
-    <h2><p id="promocode"></p></h2>
-
-    <h1><h1>Discount:</h1>
-    <h2><p id="discount"></p></h2></h1>
-
-    <h1><h1>Message:</h1>
-    <h2><p id="message"></p></h2></h1>
-    
-      <div class="form-group">
-        
-          
-         <!-- <textarea class="form-control" class = "text" rows="5" id="message" name = "message" form = "addPromotion" ></textarea> -->
-          
-          <form action="/sendPromotion" name = "sendPromotion" id = "sendPromotion" method="POST">
-          <input type="submit" class="button-book-admin" value="Send Promotion">
-          </form>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <form action="index.html">
+          <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
         </form>
-        <form action="/removePromotion" name = "removePromotion" id = "removePromotion" method="POST">
+        <form action="/browse.html">
+          <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+        </form>
+        <form action="/profile" method="GET">
+          <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+        </form>
+      </ul>
+    </div>
+  </nav>
+
+  <!--NEW CODE-->
+
+
+  <!--Username Display Div-->
+  <div class="flex-secret-wrapper">
+    <div class="flex-container-column2">
+      <!--flex-container-homepage-->
+      <!--Make New Promotion-->
+
+      <div class="div-promo-fields h-50 w-100 p-3">
+        <p class="text-main" style="font-size: 2.2em;">Are You Sure You Want to Send This Promotion?</p>
+        <div class="flex-container-column2"> <!--div-browse-search-->
+          <p class="text-main" style="font-size: 2em;">Movie:</p>
+          <p class="text-sub" style="font-size: 1.5em" id="title"></p>
+
+          <p class="text-main" style="font-size: 2em;">Start Date:</p>
+          <p class="text-sub" style="font-size: 1.5em" id="startdate"></p>
+
+          <p class="text-main" style="font-size: 2em;">End Date:</p>
+          <p class="text-sub" style="font-size: 1.5em" id="enddate"></p>
+
+          <p class="text-main" style="font-size: 2em;">Promo Code:</p>
+          <p class="text-sub" style="font-size: 1.5em" id="promocode"></p>
+
+          <p class="text-main" style="font-size: 2em;">Discount:</p>
+          <p class="text-sub" style="font-size: 1.5em" id="discount"></p>
+
+          <p class="text-main" style="font-size: 2em;">Message:</p>
+          <p class="text-sub" style="font-size: 1.5em" id="message"></p>
+          <br>
+
+          <div class="form-group">
+
+            <!-- <textarea class="form-control" class = "text" rows="5" id="message" name = "message" form = "addPromotion" ></textarea> -->
+
+            <form action="/sendPromotion" name="sendPromotion" id="sendPromotion" method="POST">
+              <input type="submit" class="button-book-admin" value="Send Promotion">
+            </form>
+            </form>
+            <form action="/removePromotion" name="removePromotion" id="removePromotion" method="POST">
               <!-- <a href="adminPromotions.html"><button type="button" class="button-book-now">Go Back</button></a>-->
               <input type="submit" class="button-book-now" value="Delete Promotion">
-      </form>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
-
-        
-
-            
-
-          </div> <!--End of flex row-->
-        </div> <!--End of flex homepage-->
-
-
-
       </div>
-      
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-crossorigin="anonymous"></script>
+    </div>
+  </div>
 
-<script>
-  $(document).ready(function() {
-    $.ajax( {
-      url: "/getPromo",
-      type: "GET",
-      success: function(result) {
-        $("#startdate").html(result.start_date.substring(0,10));
-        $("#enddate").html(result.end_date.substring(0,10));
-        $("#promocode").html(result.promo_code);
-        $("#discount").html(result.discount + '%');
-        $("#message").html(result.message);
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-      }})
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: "/getPromo",
+        type: "GET",
+        success: function (result) {
+          $("#startdate").html(result.start_date.substring(0, 10));
+          $("#enddate").html(result.end_date.substring(0, 10));
+          $("#promocode").html(result.promo_code);
+          $("#discount").html(result.discount + '%');
+          $("#message").html(result.message);
+
+        }
+      })
     });
-    </script>
+  </script>
 
-<script>
-  $(document).ready(function() {
-    $.ajax( {
-      url: "/getMovie",
-      type: "GET",
-      success: function(result) {
-        $("#title").html(result.title);
-      }})
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: "/getMovie",
+        type: "GET",
+        success: function (result) {
+          $("#title").html(result.title);
+        }
+      })
     });
-</script>
+  </script>
 
 </body>
 

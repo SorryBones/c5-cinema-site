@@ -6,7 +6,7 @@
 	text-align: left;
 	vertical-align: middle;
 	border: 3px solid black;
-    overflow: auto;
+	overflow: auto;
 	padding: .5em;
 }
 
@@ -17,14 +17,12 @@
 	text-align: left;
 	vertical-align: middle;
 	border: 3px solid black;
-    overflow: auto;
+	overflow: auto;
 	padding: .5em;
 	width: 90%;
 	height: 35px;
 	font-size: 25px;
 }
-
-
 
 html {
 	font-family: 'Arial Black';
@@ -36,11 +34,11 @@ body {
 }
 
 input.login-field {
-	padding:8px;
+	padding: 8px;
 	border-radius: 8px;
-	width:60%;
+	width: 60%;
 	height: 45px;
-	border:2px solid black;
+	border: 2px solid black;
 	background-color: black;
 	font-size: 20px;
 	font-family: "Lexend Deca";
@@ -50,15 +48,15 @@ input.login-field {
 #registerDiv {
 	border-radius: 15px;
 	border: 2px solid #686869;
-	padding: 25px; 
-	background-color: black; 
+	padding: 25px;
+	background-color: black;
 	height: 100%;
 	margin: 4%;
-	margin-left: 0%; 
+	margin-left: 0%;
 	margin-right: 0%;
-	margin-bottom: 0%;	
+	margin-bottom: 0%;
 	color: white;
-	display: table; 
+	display: table;
 }
 
 #registerField {
@@ -72,15 +70,13 @@ input.login-field {
 
 
 #stripedbg {
-  	color: white;
+	color: white;
 	position: top;
-  	background: repeating-linear-gradient(
-    	-55deg,
-    	#222,
-    	#222 10px,
-    	#333 10px,
-    	#333 20px
-  );
+	background: repeating-linear-gradient(-55deg,
+			#222,
+			#222 10px,
+			#333 10px,
+			#333 20px);
 	height: 15vh;
 	text-align: center;
 }
@@ -88,8 +84,8 @@ input.login-field {
 #regConfirm {
 	border-radius: 0px;
 	border: 2px solid #686869;
-	padding: 25px; 
-	background-color: black; 
+	padding: 25px;
+	background-color: black;
 	width: 97%;
 	height: 80%;
 	margin-top: 4%;
@@ -121,10 +117,11 @@ ul.sidebar {
 	height: 100%;
 	overflow: auto;
 }
-  
+
 li a {
 	display: block;
-	color: black; /* or whitesmoke */
+	color: black;
+	/* or whitesmoke */
 	padding: 8px 16px;
 	text-decoration: none;
 }
@@ -138,7 +135,7 @@ li a.active {
 	background-color: #818181;
 	color: white;
 }
-  
+
 li a:hover:not(.active) {
 	background-color: #555;
 	color: white;
@@ -157,22 +154,96 @@ li a:hover:not(.active) {
 }
 
 .header {
-    height: 100vh;
+	height: 100vh;
 }
 
 .navbar-style {
-    box-shadow: 0 5px 10px #000;
+	box-shadow: 0 5px 10px #000;
 }
 
 .logo {
-    height: 48px;
-    padding: 2px 10px;
+	height: 48px;
+	padding: 2px 10px;
 }
 
 .flex-secret-wrapper {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	min-height: 100vh;
+}
+
+.flex-container-general {
+	display: flex;
+	flex-flow: column;
+	justify-content: left;
+	align-items: left;
+	color: rgb(240, 240, 240);
+	text-align: left;
+	text-transform: uppercase;
+	text-shadow: 3px 3px black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 2em;
+	background-color: #272727;
+	border: 10px solid black;
+
+	/* border: 2px solid green; */
+}
+
+.flex-container-row2 {
+	display: flex;
+	flex-flow: row;
+	justify-content: left;
+	align-items: center;
+	margin: 10px;
+	color: rgb(240, 240, 240);
+	width: auto;
+	background-color: #272727;
+
+	/* border: 2px solid red; */
+}
+
+.flex-container-column2 {
+	display: flex;
+	flex-flow: column;
+	justify-content: start;
+	align-items: start;
+	margin: 10px;
+	color: white;
+	width: auto;
+	background-color: #272727;
+
+	/* border: 2px solid blue; */
+}
+
+.flex-checkout-main {
+	height: 100%;
+	display: flex;
+	border: 4px solid black;
+	color: white;
+	background-color: black;
+}
+
+.flex-checkout-left {
+	flex: 1 1 0;
+
+	background-color: black;
+}
+
+.flex-checkout-right {
+	flex: 1 1 0;
+	display: flex;
+	flex-direction: column;
+	background-color: black;
+}
+
+.flex-half {
+	flex: 1;
+	overflow: auto;
+	padding: 10px;
+	border: 4px solid black;
+	background-color: #272727;
 }
 
 .flex-container-homepage {
@@ -188,6 +259,16 @@ li a:hover:not(.active) {
 .flex-container-row {
 	display: flex;
 	flex-flow: row;
+	justify-content: left;
+	align-items: center;
+	color: rgb(240, 240, 240);
+	width: auto;
+	background-color: #272727;
+}
+
+.flex-container-column {
+	display: flex;
+	flex-flow: column;
 	justify-content: center;
 	align-items: center;
 	color: white;
@@ -227,7 +308,7 @@ li a:hover:not(.active) {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
-	color:whitesmoke;
+	color: whitesmoke;
 }
 
 .div-center-spread {
@@ -238,8 +319,8 @@ li a:hover:not(.active) {
 	height: 90%;
 	text-align: center;
 	vertical-align: middle;
-	padding-top:30vh;
-  	padding-bottom:30vh;
+	padding-top: 30vh;
+	padding-bottom: 30vh;
 	padding-right: 20vh;
 	padding-left: 20vh;
 }
@@ -251,8 +332,8 @@ li a:hover:not(.active) {
 	height: 100%;
 	text-align: center;
 	vertical-align: middle;
-	padding-top:5vh;
-	padding-bottom:10vh;
+	padding-top: 5vh;
+	padding-bottom: 10vh;
 	padding-right: 20vh;
 	padding-left: 20vh;
 }
@@ -273,8 +354,8 @@ li a:hover:not(.active) {
 	height: 100%;
 	text-align: left;
 	vertical-align: middle;
-	padding-top:2vh;
-  	padding-bottom:2vh;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
 	padding-right: .5em;
 	padding-left: .5em;
 }
@@ -340,32 +421,41 @@ li a:hover:not(.active) {
 }
 
 .text-main {
-    color: rgb(240, 240, 240);
-    text-align: center;
-    text-transform: uppercase;
-    text-shadow: 3px 3px black;
+	color: rgb(240, 240, 240);
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 3px 3px black;
 	vertical-align: middle;
-    font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 3em;
 }
 
 .text-sub {
-    color: rgb(240, 240, 240);
-    text-align: center;
-    text-shadow: 1px 1px black;
+	color: rgb(240, 240, 240);
+	text-align: center;
+	text-shadow: 1px 1px black;
 	vertical-align: middle;
-    font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
 	margin: 10px;
 }
 
 .text-description {
 	color: rgb(240, 240, 240);
-    text-align: left;
-    text-shadow: 1px 1px black;
+	text-align: left;
+	text-shadow: 1px 1px black;
 	vertical-align: middle;
-    font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
+}
+
+.text-small {
+	color: rgb(240, 240, 240);
+	text-align: left;
+	text-shadow: 1px 1px black;
+	vertical-align: middle;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.5em;
 }
 
 .img-movie-poster {
@@ -373,21 +463,22 @@ li a:hover:not(.active) {
 }
 
 .img-browse-entry {
-    float: left;
-    background: #272727;
+	float: left;
+	background: #272727;
 	width: 25%;
-    height: auto;
-    left: 0px;
-    right: 0px;
+	height: auto;
+	left: 0px;
+	right: 0px;
 }
 
-.img-browse-entry {
-    float: left;
-    background: #272727;
-	width: 25%;
-    height: auto;
-    left: 0px;
-    right: 0px;
+.img-flex {
+	float: left;
+	background: #272727;
+	object-fit: contain;
+	max-width: 15%;
+	min-width: 15%;
+	left: 0px;
+	right: 0px;
 }
 
 .img-book-chart {
@@ -397,35 +488,46 @@ li a:hover:not(.active) {
 }
 
 .button-book-now {
-	background-color: #272727;
+	/* background-color: rgb(240, 240, 240);
 	border: 2px solid black;
-  	color: whitesmoke;
+  	color: black;
   	padding: 15px 32px;
   	text-align: center;
   	text-decoration: none;
   	display: inline-block;
-  	font-size: 16px;
+  	font-size: 16px; */
+	width: fit-content;
+	height: auto;
+	background-color: white;
+	font-size: 20px;
+	padding: 7px 32px;
+	color: black;
+	border-radius: 15px;
+	border: 4px solid black;
+	text-align: center;
 }
 
 .button-book-admin {
-	background-color: #272727;
-	border: 2px solid yellow;
-  	color: yellow;
-  	padding: 15px 32px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
-  	font-size: 16px;
+	background-color: whitesmoke;
+	border: 4px solid yellow;
+	color: black;
+	padding: 7px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 15px;
+	font-size: 20px;
 }
 
 .button-book-now:hover {
-	background-color: whitesmoke;
-	color: #272727;
+	background-color: #272727;
+	border-color: red;
+	color: whitesmoke;
 	cursor: pointer;
-  }
+}
 
-  .button-book-admin:hover {
+.button-book-admin:hover {
 	background-color: yellow;
 	color: #272727;
 	cursor: pointer;
-  }
+}
