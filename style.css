@@ -222,20 +222,20 @@ li a:hover:not(.active) {
 	display: flex;
 	border: 4px solid black;
 	color: white;
-	background-color: #272727;
+	background-color: black;
 }
 
 .flex-checkout-left {
 	flex: 1 1 0;
 
-	background-color: #272727;
+	background-color: black;
 }
 
 .flex-checkout-right {
 	flex: 1 1 0;
 	display: flex;
 	flex-direction: column;
-	background-color: #272727;
+	background-color: black;
 }
 
 .flex-half {
