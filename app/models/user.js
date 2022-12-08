@@ -2,6 +2,21 @@ const connection = require("./db.js");
 let values = require("../values");
 let {encrypt, decrypt, sendEmail} = require("../values");
 
+exports.emailTaken = (req) => {
+    const query = 'SELECT * FROM user WHERE email = ?'
+    return connection.query(query,[req.body.email] ,function(error,results,fields) {
+        if (results.length > 0) {
+            values.setIsEmailTaken(true);
+            console.log('true');
+            return true;
+        } else {
+            values.setIsEmailTaken(false);
+            console.log('false');
+            return true;
+        }
+    });
+};
+
 exports.createUser = (firstName, lastName, phone, email, password, promotions, homeAddressOptional, paymentOptional, registerBody, res) => {
     let cardType, cardNumber, cardExpiration, billingStreet, billingCity, billingState, billingZip;
     if (paymentOptional) {

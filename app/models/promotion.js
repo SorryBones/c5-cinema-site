@@ -3,20 +3,12 @@ let values = require("../values");
 let {encrypt, decrypt, sendEmail} = require("../values");
 
 exports.addPromotion = (startDate, endDate, promoCode, promoDiscount, promoBody, res) => {
-  
-     let query = 'INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);';
-     connection.query(query,[startDate, endDate, promoCode, values.getMovieId(), promoDiscount, 0, promoBody],function(error,results,fields) {
-         console.log("insert to promotions");
-        // console.log(results);
-         connection.query('SELECT * FROM promotions WHERE start_date = ? AND end_date = ? AND promo_code = ? AND discount = ? AND message = ?;', [startDate, endDate, promoCode, promoDiscount, promoBody], function(error,results,fields) {
-          //  console.log(results);
-             promoId = results[0].promo_id;
-             values.setPromoId(promoId);  
-          
-      });
-         
-     });  
- };
+    let query = 'INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);';
+    connection.query(query,[startDate, endDate, promoCode, values.getMovieId(), promoDiscount, 0, promoBody],function(error,results,fields) {
+        console.log("insert to promotions");
+        values.setPromoId(results.insertId);
+    });
+};
 
 exports.sendPromotion = (res) => {
     connection.query('SELECT * FROM user WHERE promo_subs = ?',['Y'],function(error,results,fields) {
@@ -45,7 +37,7 @@ exports.removePromotion = (res) => {
 };
 
 exports.getPromo = (res) => {
-    console.log("promoid is " + values.getPromoId());
+    console.log(values.getPromoId());
     const query = 'SELECT * FROM promotions WHERE promo_id = ?';
     connection.query(query,[values.getPromoId()],function(error,results,fields) {
       if (results.length > 0) {
@@ -120,33 +112,43 @@ exports.editPromotion = (req, res) => {
     res.redirect('/adminEditPromotion.html');
 }
 
-exports.getAllPromotions = (req, res, cb) => {
-    // WITHOUT ASYNC - USES TIMEOUT AS WORK AROUND
-    let sent = 1;
-      const promotionsQuery = 'SELECT * FROM promotions WHERE sent = ?';
-      connection.query(promotionsQuery,[sent],(error, promoResult, fields) => {
-        
-        for (let index = 0; index < promoResult.length; index++) {
-        const movieQuery = 'SELECT * FROM movie WHERE movie_id = ?';
-        const img = [];
-        
-              connection.query(movieQuery,[promoResult[index].movie_id],(error, results) => {
-              //  console.log(results[0].img);
-                img[index] = results[0].img;
-              });
-              
-    
-              setTimeout(() => {console.log("img " + img[index]);
-              promoResult[index].img  = "<img class='img-movie-poster' src='" + img[index] + "'/>";
-              promoResult[index].editButton = '<form action="/adminEditPromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResult[index].promo_id + '><input class="button-book-admin" type="submit" value="Edit Promotion"></form>'
-              promoResult[index].removeButton = '<form action="/removePromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResult[index].promo_id + '><input class="button-book-admin" type="submit" value="Remove Promotion"></form>'
-            //  console.log("RESULT");
-            //  console.log(promoResult);
-            }, 900);
+exports.getAllPromotions = (req, res) => {
+    queryPromise1 = () =>{
+      return new Promise((resolve, reject)=>{
+          const promotionsQuery = 'SELECT * FROM promotions WHERE sent = ?';
+          connection.query(promotionsQuery,[1],(error, results, fields)=>{
+              if(error) {
+                  return reject(error);
+              }
+              return resolve(results);
+          });
+      });
+    };
+    queryPromise2 = (movie_id) =>{
+        return new Promise((resolve, reject)=>{
+            const movieQuery = 'SELECT * FROM movie WHERE movie_id = ?';
+            connection.query(movieQuery,[movie_id],(error, results)=>{
+                if(error){
+                    return reject(error);
+                }
+                return resolve(results);
+            });
+        });
+    };
+  
+    async function runQueries () {
+        try {
+            let promoResults = await queryPromise1();
+            let result = [];
+            for (let index = 0; index < promoResults.length; index++) {
+                result[index] = await queryPromise2(promoResults[index].movie_id);
+                // result[index].promo_id = promoResults[index].promo_id;
             }
-            setTimeout(() => {//console.log("getAllP")
-            console.log(promoResult);
-            res.json(promoResult);
-          }, 950);
-    });
+  
+            res.json(result);
+        } catch(error){
+            console.log(error)
+        }
     }
+    runQueries();
+  }

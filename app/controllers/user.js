@@ -3,11 +3,22 @@
 let values = require("../values");
 
 let model = require("../models/user.js");
+const e = require("express");
 
-exports.register = (req, res) => {
-  values.setRegisterBody(req.body);
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+exports.register = async (req, res) => {
+    values.setRegisterBody(req.body);
+    model.emailTaken(req);
+    await sleep(500);
     if (req.body.email != req.body.confemail) {
         console.log('emails do not match');
+    }
+    else if (values.getIsEmailTaken()) {
+        console.log('emails already taken');
+        res.redirect('/register.html');
     }
     else if (req.body.password != req.body.confpassword) {
         console.log('passwords do not match');
@@ -15,6 +26,7 @@ exports.register = (req, res) => {
     else {
         values.setVerificationCode(Math.floor(100000 + Math.random() * 900000));
         let message = 'Thanks for creating an account! To verify your account, use this code: ' + values.getVerificationCode();
+        
         values.sendEmail(req.body.email, message);
 
         console.log('verification code: ' + values.getVerificationCode());

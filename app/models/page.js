@@ -47,3 +47,4 @@ exports.adminManageMovies = (res) => {
         res.json(results);
     });
 };
+    

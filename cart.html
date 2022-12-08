@@ -42,70 +42,20 @@
         </div>
     </nav>
 
-
     <!--General List Wrapper-->
     <div class="flex-container-general">
-        <p class="text-main" style="font-size: 2em;">[User]'s Cart</p> <!--Username goes here!-->
-
-        <!--Example item 1-->
-        <div class="flex-container-row2" style="justify-content: top; align-items: start;">
-            <img class="img-flex" src="images/poster-default.png" id="poster" /> <!--Poster-->
-            <div class="flex-container-column2">
-                <p class="text-small">Date: </p>
-                <p class="text-small">Showtime: </p>
-                <p class="text-small">Ticket Type: </p>
-                <p class="text-small">Seat Number: </p>
-                <p class="text-small">Price: </p>
-                <button class="button-book-now" style="border: 1px solid red" id="#">Remove</button> <!--ID me!-->
-            </div>
-        </div>
-
-        <!--Example item 2-->
-        <div class="flex-container-row2" style="justify-content: top; align-items: start;">
-            <img class="img-flex" src="images/poster-default.png" id="poster"/> <!--Poster-->
-            <div class="flex-container-column2">
-                <p class="text-small">Date: </p>
-                <p class="text-small">Showtime: </p>
-                <p class="text-small">Ticket Type: </p>
-                <p class="text-small">Seat Number: </p>
-                <p class="text-small">Price: </p>
-                <button class="button-book-now" style="border: 1px solid red" id="#">Remove</button> <!--ID me!-->
-            </div>
-        </div>
-
-        <!--Example item 3-->
-        <div class="flex-container-row2" style="justify-content: top; align-items: start;">
-            <img class="img-flex" src="images/poster-default.png" id="poster"/> <!--Poster-->
-            <div class="flex-container-column2">
-                <p class="text-small">Date: </p>
-                <p class="text-small">Showtime: </p>
-                <p class="text-small">Ticket Type: </p>
-                <p class="text-small">Seat Number: </p>
-                <p class="text-small">Price: </p>
-                <button class="button-book-now" style="border: 1px solid red" id="#">Remove</button> <!--ID me!-->
-            </div>
-        </div>
-
+        <p class="text-main" style="font-size: 2em;">Shopping Cart</p> <!--Username goes here!-->
+        <div id="cartDiv"></div>
     </div> <!--End of general list wrapper-->
-
-
-
 
     <!--Total Price-->
     <div class="flex-container-column2" style="justify-content: start; align-items: center; padding: 5px;">
-
-        <!--Seat Loop Start-->
-            <p class="text-small" style="font-size: 1.5em;">Seat XX: $XX.XX</p> <!--Seat number and price here-->
-            <p class="text-small" style="font-size: 1.5em;">Seat XX: $XX.XX</p> <!--Seat number and price here-->
-            <p class="text-small" style="font-size: 1.5em;">Seat XX: $XX.XX</p> <!--Seat number and price here-->
-        <!--Seat Loop End-->
-
-        <!--Total-->
+        <br>
+        <div id="orderTotalsDiv"></div>
         <div class="flex-container-row2" style="justify-content: center; align-items: center; padding: 5px;">
-            <p class="text-small" style="font-size: 2em;">Total: $XX.XX</p> <!--Total price here-->
-        </div>
-        <div class="flex-container-row2" style="justify-content: center; align-items: center; padding: 5px;">
-            <button class="button-book-now" style="border: 1px solid red" id="#">Confirm Purchase</button> <!--ID me!-->
+            <form action="/checkout.html">
+                <input class="button-book-now" style="border: 1px solid red" type="submit" value="Proceed to Checkout">
+            </form>
         </div>
     </div>
 
@@ -131,13 +81,89 @@
         });
     </script>
 
-    <script> // INITIALIZE
-        $(document).ready(function () {
-            var newDiv = document.createElement('div');
-            newDiv.className = "flex-homepage-latest-movie";
-            newDiv.style = "height: 70vh";
-            newDiv.innerHTML = "<h3>" + "Search for Movies!" + "</h3>"
-            document.getElementById('searchResults').appendChild(newDiv);
+    <script> // DISPLAY CART ITEMS
+        $(document).ready(function() {
+            $.ajax( {
+                url: "/getCart",
+                type: "GET",
+                success: function(result1) {
+                    var content = '';
+                    result1.returnable.forEach((result) => {
+                        content += '<div class="flex-container-row2" style="justify-content: top; align-items: start;">';
+                        content += '<img class="img-flex" style="height: 100%" src="' + result.img + '" id="poster"/> ';
+                        content += '<div class="flex-container-column2">';
+
+                        content += '<div class="form-group w-100 input-group-prepend">';
+                        content += '<span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Movie:</span>';
+                        content += '<input class="form-control" type="text" placeholder="' + result.title + '" readonly>';
+                        content += '</div>';
+        
+                        let date = new Date(result.date);
+                        let displayDate = date.toDateString();
+                        content += '<div class="form-group w-100 input-group-prepend">';
+                        content += '<span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Date:</span>';
+                        content += '<input class="form-control" type="text" placeholder="' + displayDate + '" readonly>';
+                        content += '</div>';
+
+                        date.setHours(result.time.substr(0,2));
+                        let displayTime = date.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+                        content += '<div class="form-group w-100 input-group-prepend">';
+                        content += '<span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Time:</span>';
+                        content += '<input class="form-control" type="text" placeholder="' + displayTime + '" readonly>';
+                        content += '</div>';
+
+                        content += '<div class="form-group w-100 input-group-prepend">';
+                        content += '<span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Seat Number:</span>';
+                        content += '<input class="form-control" type="text" placeholder="' + result.seat_number + '" readonly>';
+                        content += '</div>';
+                        
+                        content += '<div class="form-group w-100 input-group-prepend">';
+                        content += '<span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Ticket Type:</span>';
+                        content += '<input class="form-control" type="text" placeholder="' + result.ticketTypeName + '" readonly>';
+                        content += '</div>';
+                        
+                        content += '<div class="form-group w-100 input-group-prepend">';
+                        content += '<span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Price:</span>';
+                        content += '<input class="form-control" type="text" placeholder="$' + result.price + '" readonly>';
+                        content += '</div>';
+                        
+                        content += '<form action="/removeItemFromCart" method="POST">';
+                        content += '<input style="display:none" type="number" name="id" value="' + result.id + '">';
+                        content += '<input class="button-book-now" style="border: 1px solid red" type="submit" value="Remove">';
+                        content += '</form>';
+
+                        content += '</div></div><br>';
+                    });
+                    document.getElementById('cartDiv').innerHTML = content;
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('failure');
+                }
+            });
+        });
+    </script>
+
+    <script> // DISPLAY CART ITEMS
+        $(document).ready(function() {
+            $.ajax( {
+                url: "/getCart",
+                type: "GET",
+                success: function(result1) {
+                    var content = '';
+                    var totalPrice = 0.00;
+                    result1.returnable.forEach((result) => {
+                        totalPrice += result.price;
+                        content += '<p class="text-small" style="font-size: 2em;">Seat ' + result.seat_number + ': $' + result.price + '</p>';
+                    });
+                    content += '<div class="flex-container-row2" style="justify-content: center; align-items: center; padding: 5px;">'
+                    content += '<p class="text-small" style="font-size: 2em">Total: $' + totalPrice + '</p>';
+                    content += '</div>';
+                    document.getElementById('orderTotalsDiv').innerHTML = content;
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('failure');
+                }
+            });
         });
     </script>
 

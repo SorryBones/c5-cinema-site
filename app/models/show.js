@@ -59,11 +59,19 @@ exports.addShowtime = (date, showtime, res) => {
                 let show_id = results.insertId;
                 connection.query('SELECT * FROM room WHERE room_id = ?;',[1],function(error,results,fields) { // get numofseats
                     let numberOfSeats = results[0].numofseats;
-                    for (let i = 1; i <= numberOfSeats; i++) { // create showSeat for all seats
-                        query = 'INSERT INTO showSeat (show_id, room_id, seat_number, availability) VALUES (?, ?, ?, ?);'; 
-                        connection.query(query,[show_id, 1, i, 1],function(error,results,fields) {
-                        });
-                    }
+                    connection.query('select seat_id from showSeat order by seat_id desc limit 0,1;',[],function(error,results,fields) { // get numofseats
+                        let startingId;
+                        if (results.length > 0) {
+                            startingId = results[0].seat_id;
+                        } else {
+                            startingId = 0;
+                        }
+                        for (let i = 1; i <= numberOfSeats; i++) { // create showSeat for all seats
+                            query = 'INSERT INTO showSeat (seat_id, show_id, room_id, seat_number, availability) VALUES (?, ?, ?, ?, ?);'; 
+                            connection.query(query,[startingId+i, show_id, 1, i, 1],function(error,results,fields) {
+                            });
+                        }
+                    });
                 });
                 console.log('showtime added');
             });
@@ -84,18 +92,3 @@ exports.getSeats = (show_id, res) => {
         }
     });
 };
-
-exports.getCartShowtime = (req, res) => {
-    const query = 'SELECT * FROM showtime WHERE show_id = ?';
-    connection.query(query,[values.getShowId()],function(error,results,fields) {
-        if (results.length > 0) {
-            res.json(results[0]);
-        } else {
-            res.json({status: false});
-        }
-});
-}
-
-exports.getCartSeatNumber = (req, res) => {
-res.json(values.getCart());
-}

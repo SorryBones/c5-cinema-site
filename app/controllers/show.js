@@ -32,7 +32,6 @@ exports.selectShowtime = (req, res) => {
     if (req.body.showtime === '') return;
     show_id = req.body.showtime;
     values.setShowId(show_id);
-    console.log("blue" + values.getMovieId())
 };
 
 exports.selectSeats = (req, res) => {
@@ -40,8 +39,6 @@ exports.selectSeats = (req, res) => {
     for (let x in req.body) {
         values.addShowSeat(x);
     }
-
-    console.log("green" + values.getMovieId())
 };
 
 exports.getSelectedSeats = (req, res) => {
@@ -50,31 +47,8 @@ exports.getSelectedSeats = (req, res) => {
 };
 
 exports.addToCart = (req, res) => {
- 
     for (let x in req.body) {
         values.addToCart(values.getShowId(), x, req.body[x]);
     }
-    console.log(values.getCart());
-
-let cart = values.getCart();
-let sum = 0;
-
-    for (index = 0; index < cart.length; index++) {
-
-        if (cart[index].ticketType == 1)  sum += 14.99;
-		if (cart[index].ticketType == 2)  sum += 10.99 
-		if (cart[index].ticketType == 3)  sum += 12.99;
-        console.log(sum);
-    }
-
-    values.setCartTotal(sum);
-    res.redirect('/orderSummary.html');
+    res.redirect('/cart.html');
 };
-
-exports.getCartShowtime = (req, res) => {
-model.getCartShowtime(req, res);
-}
-
-exports.getCartSeatNumber = (req, res) => {
-    model.getCartSeatNumber(req, res);
-}

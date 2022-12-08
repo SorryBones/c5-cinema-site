@@ -31,17 +31,5 @@ exports.logout = (req, res) => {
 };
 
 exports.getCart = (req, res) => {
- 
-    console.log(values.getCart());
-    res.json(values.getCart());  
-}
-
-exports.getCartTotal = (req, res) => {
-res.json({ total: values.getCartTotal()});
-
-}
-
-exports.purchase = (req, res) => {
-    model.purchase(req, res);
-
-}
+    model.getCart(res);
+};

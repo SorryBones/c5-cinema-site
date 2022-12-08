@@ -65,10 +65,10 @@
       style="width:auto; height:max-content ; font-size: 20px;  text-align: center; border: none; border-radius: 15px;">
       <h1> User's Payment Info </h1>
     </div>
-<!--div for cards and address-->
-<div style="width: 100%; height:min-content;display: flex; flex-direction: row; justify-content: space-between;">
-  <div style="width: 50%; max-height: 75vh; display: flexbox; flex-direction: column; justify-content: space-between; align-self: flex-start;  overflow:auto; direction: rtl;">
-  <!--Cards Div-->
+  <!--div for cards and address-->
+  <div style="width: 100%; height:min-content;display: flex; flex-direction: row; justify-content: space-between;">
+    <div style="width: 50%; max-height: 75vh; display: flexbox; flex-direction: column; justify-content: space-between; align-self: flex-start;  overflow:auto; direction: rtl;">
+    <!--Cards Div-->
           <!--Add for-each method around div-->
           <div style="background-color:#272727; width:90%; height:auto ; color:white; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; align-self: flex-start; direction: ltr; border-radius: 20px; padding: 5%; margin-bottom: 15px;">
             <a style="width:45%">
@@ -90,20 +90,18 @@
               <button class="button-book-now" id="deleteButton">
                 Delete Card
               </button>
-      
-             
+              <button id="editCard" onclick="location.href='editPayment.html'" class="button-book-now">
+                Edit Payment Info
+              </button>
+              <button onclick="location.href='addcard.html'" class="button-book-now">
+                Add New Card +
+              </button>
             </div>
           </div>
           
 
-          <button onclick="location.href='addcard.html'"
-          class="button-book-now">
-          Add New Card +
-        </button>
-        <button id="editCard" onclick="location.href='editPayment.html'"
-        class="button-book-now">
-        Edit Payment Info
-      </button>
+          
+          
         </div>
         <div style="width: 45%; display: flex; flex-direction: column;">
           <!--User Home Adress Div-->
@@ -112,10 +110,10 @@
             <a >
               <h1>Billing Address</h1>
             </a>
-            <a >
+            <a>
               <h2>Street Address:</h2>
               <p id="street">None</p>
-            </a><br><br>
+            </a>
             <a style="width:30%">
               <h2>City:</h2>
               <p id="city">None</p>
@@ -128,18 +126,13 @@
               <h2>ZIP:</h2>
               <p id="zip">None</p>
             </a>
-            <br><br><br><br><br>
+            <br>
           </div>
-      
         </div>
       </div>
-
- 
-
     </div>
-
-
   </div>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
 integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 crossorigin="anonymous"></script>
@@ -234,7 +227,10 @@ crossorigin="anonymous"></script>
             data: $.param({id: result.address_id}),
             processData: false,
             success: function(result2) {
-              if (result.status == false) $('#editCard').remove();
+              if (result.status == false) {
+                $('#editCard').remove();
+                $('#deleteButton').remove();
+              }
               else {
                 $("#street").html(result2.street);
                 $("#city").html(result2.city);

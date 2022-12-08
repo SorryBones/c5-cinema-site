@@ -39,6 +39,9 @@
 			</ul>
 		</div>
 	  </nav>
+	  
+ 	<div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px; display:none" id="incorrect">Email is Taken</div>
+
 	<div style="display: flexbox; flex-direction: row; padding: 3% 5% 0 5%;"> <!--background-->
   	<div style="width: 45%; float: left;"><!--background left-->
 		<div class="div-base" style="border-radius: 20px; display: flexbox; flex-direction: column; text-align: center;"><!--display div-->
@@ -216,25 +219,41 @@
 	</div>
 	
 
-	  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-	  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-	  crossorigin="anonymous"></script>
-	
-	  <script>
-		$(document).ready(function() {
-		  $.ajax( {
-			url: "/isLoggedIn",
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+	crossorigin="anonymous"></script>
+
+	<script>
+	$(document).ready(function() {
+		$.ajax( {
+		url: "/isLoggedIn",
+		type: "GET",
+		success: function(result) {
+			if (result.status == true) $('#loginButton').remove();
+			else $('#profileButton').remove();
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			console.log('failure');
+		}
+		});
+	});
+	</script>
+
+	<script> // EMAIL TAKEN
+	$(document).ready(function() {
+		$.ajax( {
+			url: "/isEmailTaken",
 			type: "GET",
 			success: function(result) {
-			  if (result.status == true) $('#loginButton').remove();
-			  else $('#profileButton').remove();
+				const targetDiv = document.getElementById("incorrect");
+				if (result.status === true) targetDiv.style.display = "block";
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-			  console.log('failure');
+				console.log('failure');
 			}
-		  });
 		});
-	  </script>
+	});
+</script>
 	
 </body>
 </html>

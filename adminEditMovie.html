@@ -37,26 +37,26 @@
   </nav>
 
   <!--Movie Info-->
-    <div class="flex-container-row2" style="padding: 10px; border-radius: 5%;"> <!--div-promo-fields-->
-      <img class="img-browse-entry" src="images/poster-default.png" id="poster"/>
+    <img class="img-browse-entry" style="margin-top: 16px" src="images/poster-default.png" id="poster"/>
+    <div class="div-promo-fields">
         <!--Search Fields TURN INTO ADDMOVIE INPUT-->
-        <div class="flex-container-column2" style="padding: 10px;"> <!--div-browse-search-->
+        <div class="div-browse-search">       
           <form action="/editMovie" method="POST">
             <h4><p id="title">TITLE:</p></h4>
-            <div class="input-group mb-3 w-75">
+            <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Title:</span>
               </div>
-              <input type="text" class="form-control" placeholder="title" id="title" name="title" aria-describedby="basic-addon3">
+              <input type="text" class="form-control" id="title" name="title" aria-describedby="basic-addon3">
             </div>
     
             <h4><p id="genre">GENRE:</p></h4>
-            <div class="input-group mb-3 w-75">
+            <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Genre:</span>
               </div>
               <select class="form-control" id="genre" name="genre">
-                <option value="" selected disabled>Select an option...</option>
+                <option value=""></option>
                 <option value="Action">Action</option>
                 <option value="Animation">Animation</option>
                 <option value="Comedy">Comedy</option>
@@ -67,12 +67,12 @@
             </div>
     
             <h4><p id="rating">RATING:</p></h4>
-            <div class="input-group mb-3 w-75">
+            <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Rating:</span>
               </div>
               <select class="form-control" id="rating" name="rating">
-                <option value="" selected disabled>Select an option...</option>
+                <option value=""></option>
                 <option value="PG">PG</option>
                 <option value="PG-13">PG-13</option>
                 <option value="R">R</option>
@@ -80,7 +80,7 @@
             </div>
     
             <h4><p id="releaseDate">RELEASE DATE:</p></h4>
-            <div class="input-group mb-3 w-75">
+            <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Release Date: (DD/MM/YYYY)</span>
               </div>
@@ -88,27 +88,27 @@
             </div>
     
             <h4><p id="duration">SHOW TIME:</p></h4>
-            <div class="input-group mb-3 w-75">
+            <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Run Time: (H:MM)</span>
               </div>
-              <input type="text" class="form-control" placeholder="X:XX" id="duration" name="duration" aria-describedby="basic-addon3" pattern="[0-9]{1}:[0-5]{1}[0-9]{1}">
+              <input type="text" class="form-control" id="duration" name="duration" aria-describedby="basic-addon3" pattern="[0-9]{1}:[0-5]{1}[0-9]{1}">
             </div>
               
             <h4><p id="cast">CAST:</p></h4>
-            <div class="input-group mb-3 w-75">
+            <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Cast:</span>
               </div>
-              <input type="text" class="form-control" placeholder="cast members" id="cast" name="cast" aria-describedby="basic-addon3">
+              <input type="text" class="form-control" id="cast" name="cast" aria-describedby="basic-addon3">
             </div>
 
             <h4><p id="description">DESCRIPTION:</p></h4>
-            <div class="input-group mb-3 w-75">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Edit Description:</span>
                 </div>
-                <input type="text" class="form-control" rows="5" placeholder="description" id="description" name="description">
+                <input type="text" class="form-control" rows="5" id="description" name="description">
             </div>
     
             <input class="button-book-admin" type="submit" value="Submit">
@@ -144,7 +144,6 @@
               url: "/getMovie",
               type: "GET",
               success: function(result) {
-                  console.log(result);
                   var rating;
                   if (result.ratings_id == 2) rating = 'PG';
                   else if (result.ratings_id == 1) rating = 'PG-13';

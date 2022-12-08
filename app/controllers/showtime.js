@@ -12,7 +12,7 @@ exports.addShowtime = (req, res) => {
     let date = req.body.date;
     let showtime = req.body.showtime;
     model.addShowtime(date, showtime, res);
-    res.redirect('/adminEditShowtimes.html');
+    res.redirect('back');
 };
 
 exports.editShowtime = (req, res) => {

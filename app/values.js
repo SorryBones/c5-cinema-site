@@ -9,6 +9,14 @@ let setLoggedIn = function(input) {
     loggedIn = input;
 }
 
+let isEmailTaken = false;
+let getIsEmailTaken = function() {
+    return isEmailTaken;
+}
+let setIsEmailTaken = function(input) {
+    isEmailTaken = input;
+}
+
 let adminUserProfileId;
 let getAdminUserProfileId = function() {
     return adminUserProfileId;
@@ -135,37 +143,23 @@ let getShowSeats = function() {
 }
 
 let cart = []; // {show_id, seat_number, ticketType}
+let cartIdCounter = 0;
 let addToCart = function(show_id, seat_number, ticketType) {
-    cart.push({show_id: show_id, seat_number: seat_number, ticketType: ticketType});
+    cart.push({id: cartIdCounter, show_id: show_id, seat_number: seat_number, ticketType: ticketType});
+    cartIdCounter++;
 }
 let getCart = function() {
     return cart;
 }
-let totalPrice;
-let setPrice = function(input) {
-    totalPrice = input;
+let removeFromCart = function(id) {
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id == id) {
+            cart.splice(i, 1);
+        }
+    }
 }
 
-let getPrice = function() {
-    return totalPrice;
-}
 
-let cartShowtime;
-let setCartShowtime = function(input) {
-    cartShowtime = input;
-}
-
-let getCartShowtime = function() {
-    return cartShowtime;
-}
-let cartTotal;
-let setCartTotal = function(input) {
-    cartShowtime = input;
-}
-
-let getCartTotal = function() {
-    return cartShowtime;
-}
 // database encryption
 const algorithm = "aes-256-cbc";
 const key ="12345678123456781234567812345678";
@@ -220,6 +214,7 @@ module.exports = {
     getForgotPasswordEmail, setForgotPasswordEmail,
     getIsIncorrectPassword, setIsIncorrectPassword,
     getIsIncorrectShowtime, setIsIncorrectShowtime,
+    getIsEmailTaken, setIsEmailTaken,
     getIsInvalidMovie, setIsInvalidMovie,
     getPromoHeader, setPromoHeader,
     getPromoBody, setPromoBody,
@@ -227,6 +222,6 @@ module.exports = {
     getPromoId, setPromoId,
     encrypt, decrypt,
     sendEmail,
-    setShowId, getShowId, addShowSeat, flushShowSeats, getShowSeats, addToCart, getCart, setPrice,
-    getPrice, setCartShowtime, getCartShowtime, setCartTotal, getCartTotal, 
+    setShowId, getShowId, addShowSeat, flushShowSeats, getShowSeats, 
+    getCart, addToCart, removeFromCart,
 };

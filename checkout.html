@@ -44,72 +44,19 @@
 
     <!--Window Wrapper-->
     <div class="flex-checkout-main">
-        <!--TICKETS START-->
         <div class="flex-checkout-left">
-
-            <!--General List Wrapper-->
             <div class="flex-container-general" style="height: 100%; border-radius: 5%;">       
-                <p class="text-sub">Tickets</p>
-       
-                <!--Example item 1-->        
-                <div class="flex-container-row2">            
-                    <img class="img-flex" style="height: 120px; width: 120px;" src="images/poster-default.png" id="poster" /> <!--Poster-->            
-                    <div class="flex-container-column2" style="flex: 1;">               
-                        <p class="text-small" style="font-size: 0.4em;">Showtime: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Seat Number: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Ticket Type: </p>       
-                    </div>
-                </div>
-
-				<!--Example item 2-->        
-                <div class="flex-container-row2">            
-                    <img class="img-flex" style="height: 120px; width: 120px;" src="images/poster-default.png" id="poster" /> <!--Poster-->            
-                    <div class="flex-container-column2" style="flex: 1;">               
-                        <p class="text-small" style="font-size: 0.4em;">Showtime: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Seat Number: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Ticket Type: </p>       
-                    </div>
-                </div>
-
-				<!--Example item 3-->        
-                <div class="flex-container-row2">            
-                    <img class="img-flex" style="height: 120px; width: 120px;" src="images/poster-default.png" id="poster" /> <!--Poster-->            
-                    <div class="flex-container-column2" style="flex: 1;">               
-                        <p class="text-small" style="font-size: 0.4em;">Showtime: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Seat Number: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Ticket Type: </p>       
-                    </div>
-                </div>
-
-				<!--Example item 4-->        
-                <div class="flex-container-row2">            
-                    <img class="img-flex" style="height: 120px; width: 120px;" src="images/poster-default.png" id="poster" /> <!--Poster-->            
-                    <div class="flex-container-column2" style="flex: 1;">               
-                        <p class="text-small" style="font-size: 0.4em;">Showtime: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Seat Number: </p>
-                        <p class="text-small" style="font-size: 0.4em;">Ticket Type: </p>       
-                    </div>
-                </div>
-
+                <p class="text-sub">Tickets</p> <!--Username goes here!-->
+                <div id="cartDiv"></div>
             </div> <!--End of general list wrapper-->
+        </div>
 
-
-        </div> <!--TICKETS END-->
         <div class="flex-checkout-right">
 
             <!--PRICES START-->
             <div class="flex-half" style="border-radius: 5%;">
-            <!--Ticket loop start-->
-            <p class="text-sub">Price</p>
-            <p class="text-small" style="font-size: 1em;">Ticket:   $XX.XX</p>
-            <p class="text-small" style="font-size: 1em;">Ticket:   $XX.XX</p>
-            <p class="text-small" style="font-size: 1em;">Ticket:   $XX.XX</p>
-            <p class="text-small" style="font-size: 1em;">Ticket:   $XX.XX</p>
-            <p class="text-small" style="font-size: 1em;">Ticket:   $XX.XX</p>
-            <p class="text-small" style="font-size: 1em;">Ticket:   $XX.XX</p>
-
-            <!--Ticket loop end-->
-            <p class="text-sub" style="font-size: 1em;">Total:   $XX.XX</p>
+                <p class="text-sub">Price</p>
+                <div id="orderTotalsDiv"></div>
           </div> <!--PRICES END-->
 
           <!--PAYMENT OPTION START-->
@@ -287,6 +234,55 @@ crossorigin="anonymous"></script>
 	  });
 	});
   </script>
+
+
+  <script> // DISPLAY CART ITEMS
+    $(document).ready(function() {
+        $.ajax( {
+            url: "/getCart",
+            type: "GET",
+            success: function(result1) {
+                var content = '';
+                result1.returnable.forEach((result) => {
+                    content += '<div class="flex-container-row2">';
+                    content += '<img class="img-flex" style="height: 120px; width: 150px;" src="' + result.img + '" id="poster" />';
+                    content += '<div class="flex-container-column2" style="flex: 1">';
+
+                    content += '<p class="text-small" style="font-size: 0.4em;">Showtime: ' + result.date + result.time + '</p>';
+                    content += '<p class="text-small" style="font-size: 0.4em;">Seat Number: ' + result.seat_number + '</p>';
+                    content += '<p class="text-small" style="font-size: 0.4em;">Ticket Type: ' + result.ticketTypeName + '</p>';
+                    content += '</div></div>';
+                });
+                document.getElementById('cartDiv').innerHTML = content;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log('failure');
+            }
+        });
+    });
+</script>
+
+<script> // DISPLAY CART ITEMS
+    $(document).ready(function() {
+        $.ajax( {
+            url: "/getCart",
+            type: "GET",
+            success: function(result1) {
+                var content = '';
+                var totalPrice = 0.00;
+                result1.returnable.forEach((result) => {
+                    totalPrice += result.price;
+                    content += '<p class="text-small" style="font-size: 1em;">Ticket: $' + result.price + '</p>';
+                });
+                content += '<p class="text-sub" style="font-size: 1em;">Total: $' + totalPrice + '</p>';
+                document.getElementById('orderTotalsDiv').innerHTML = content;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log('failure');
+            }
+        });
+    });
+</script>
 
 </body>
 

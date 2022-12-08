@@ -25,8 +25,6 @@ app.post("/getAddress", utilController.getAddress);
 app.get("/logout", utilController.logout);
 app.post("/login", utilController.login);
 app.get("/getCart", utilController.getCart);
-app.get("/getCartTotal", utilController.getCartTotal);
-app.get("/purchase", utilController.purchase);
 
 // show
 app.get("/getAllShowtimes", showController.getAllShowtimes);
@@ -37,8 +35,6 @@ app.post("/selectShowtime", showController.selectShowtime);
 app.post("/selectSeats", showController.selectSeats);
 app.get("/getSelectedSeats", showController.getSelectedSeats)
 app.post("/addToCart", showController.addToCart)
-app.get("/getCartShowtime", showController.getCartShowtime);
-//app.get("/getCartSeatNumber", utilController.getSeatNumber)
 
 // movie
 app.post("/addMovie", movieController.addMovie);
@@ -66,15 +62,13 @@ app.post("/adminPromotions", pageController.adminPromotions);
 app.post("/adminEditPromotion", pageController.adminEditPromotion);
 app.post("/adminEditShowtimes", pageController.adminEditShowtimes);
 app.get("/isIncorrectPassword", pageController.isIncorrectPassword);
+app.get("/isEmailTaken", pageController.isEmailTaken);
 app.post("/adminEditMovie", pageController.adminEditMovie);
 app.post("/book", pageController.book);
 app.get("/userInfo", pageController.userInfo);
 app.get("/isInvalidMovie", pageController.isInvalidMovie);
 app.get("/isIncorrectShowtime", pageController.isIncorrectShowtime);
 app.get("/adminManageMovies", pageController.adminManageMovies);
-
-
-app.post("/test", pageController.test);
 
 // update users
 app.post("/adminUpdateName", editUsersController.updateName);
@@ -101,6 +95,9 @@ app.post("/updatePassword", userController.updatePassword);
 app.post("/updateHomeAddress", userController.updateHomeAddress);
 app.post("/updateCard", userController.updateCard);
 app.post("/updateBillingAddress", userController.updateBillingAddress);
+
+// book
+app.post("/removeItemFromCart", bookingController.removeItemFromCart);
 
 // set port, listen for requests
 const PORT = 4000;

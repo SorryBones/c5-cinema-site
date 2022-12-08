@@ -43,21 +43,22 @@
     </div>
   </nav>
 
-
-  <!-- Side Navbar -->
-  <div id="aligncontainer">
-    <ul class="sidebar">
-      <form action="/profile" method="GET">
-        <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+  <ul class="sidebar"> <!--Unordered List for Side Navbar -->
+    <form action="/profile.html" method="GET">
+      <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+    </form>
+    <form action="/usercards.html" method="GET">
+      <input class="btn" type="submit" value="Payment" style="background-color:#272727 ; color:white">
+    </form>
+    <div id="adminControlsButton">
+      <form action="/adminMain.html" method="GET">
+        <input class="btn" type="submit" id="adminControls" value="Admin Controls" style="background-color:#272727 ; color:gold">
       </form>
-      <form action="/usercards.html" method="GET">
-        <input class="btn" type="submit" value="Payment" style="background-color:#272727 ; color:white">
-      </form>
-      <form action="/logout" method="GET">
-        <input class="btn" type="submit" value="Logout" style="background-color:#272727 ; color:white">
-      </form>
-    </ul>
-  </div>
+    </div>
+    <form action="/logout" method="GET">
+      <input class="btn" type="submit" value="Logout" style="background-color:#272727 ; color:white">
+    </form>
+  </ul>
 
 
 <div class="div-base" style="width:85% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; text-align: center; background-color: black; gap: 5%;">
@@ -125,6 +126,20 @@
   </script>
 
   <script>
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/userInfo",
+        type: "GET",
+        success: function(result) {
+          if (result.utype_id == 2) $('#adminControlsButton').remove();
+          $("#name").html(result.first_name + ' ' + result.last_name);
+          $("#phone").html(result.phone_num);
+          $("#email").html(result.email);
+      }});
+    });
+  </script>
+
+  <script> // ADMIN CONTROLS SIDEBAR
     $(document).ready(function() {
       $.ajax( {
         url: "/userInfo",

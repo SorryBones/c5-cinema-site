@@ -51,13 +51,14 @@ INSERT IGNORE INTO ENUM_status SET status_id = 3, status_name = "suspended";
 CREATE TABLE IF NOT EXISTS `NewCES`.`ENUM_ticketType` (
   `tickettype_id` INT NOT NULL AUTO_INCREMENT,
   `tickettyoe_name` ENUM('adult', 'senior', 'child') NOT NULL,
+  `price` DECIMAL(13,2) NOT NULL,
   PRIMARY KEY (`tickettype_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
-INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 1, tickettyoe_name = "adult";
-INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 2, tickettyoe_name = "child";
-INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 3, tickettyoe_name = "senior";
+INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 1, tickettyoe_name = "adult", price = 14.99;
+INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 2, tickettyoe_name = "child", price = 10.99;
+INSERT IGNORE INTO ENUM_ticketType SET tickettype_id = 3, tickettyoe_name = "senior", price = 12.99;
 
 
 -- -----------------------------------------------------
@@ -242,7 +243,10 @@ INSERT IGNORE INTO room SET room_id = 1, numofseats = 50;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`ticket` (
   `ticket_id` INT NOT NULL AUTO_INCREMENT,
-  `seat_id` INT NOT NULL,
+  `is_available` TINYINT(1) NOT NULL,
+  `adult_price` DOUBLE NULL DEFAULT NULL,
+  `child_price` DOUBLE NULL DEFAULT NULL,
+  `senior_price` DOUBLE NULL DEFAULT NULL,
   `tickettype_id` INT NOT NULL,
   `booking_id` SMALLINT NOT NULL,
   PRIMARY KEY (`ticket_id`, `tickettype_id`, `booking_id`),
@@ -266,12 +270,13 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `NewCES`.`showSeat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`showSeat` (
+  `seat_id` INT NOT NULL AUTO_INCREMENT,
   `show_id` INT NOT NULL,
   `room_id` INT NOT NULL,
   `seat_number` INT NOT NULL,
   `availability` TINYINT(1) NOT NULL,
   `ticket_id` INT NULL DEFAULT NULL,
-  PRIMARY KEY (`seat_number`),
+  PRIMARY KEY (`seat_id`, `seat_number`),
   INDEX `fk_showSeat_ticket1_idx` (`ticket_id` ASC) VISIBLE,
   CONSTRAINT `fk_showSeat_ticket1`
     FOREIGN KEY (`ticket_id`)
@@ -312,7 +317,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `NewCES`.`booking`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`booking` (
-  `booking_id` SMALLINT NOT NULL AUTO_INCREMENT,
+  `booking_id` SMALLINT NOT NULL,
   `total_price` DOUBLE NULL DEFAULT NULL,
   `user_id` INT NOT NULL,
   `paymentCard_id` INT NOT NULL,
