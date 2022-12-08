@@ -23,6 +23,7 @@ exports.sendPromotion = (req, res) => {
 };
 
 exports.removePromotion = (req, res) => {
+    values.setPromoId(req.body.promo_id);
     model.removePromotion(res);
 };
 
