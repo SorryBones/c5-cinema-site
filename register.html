@@ -10,20 +10,7 @@
 	<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script>
 	<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<style>
-	body {
-		margin: 0;
-		font-family: "Lexend Deca";
-		background-color: black;
-	}
 
-	
-	.responsive {
-		width: 100%;
-		height: auto;
-	}
- 
-  	</style>
 </head>
 
 <body style="padding-top:55px ; background-color: black">
@@ -52,41 +39,44 @@
 			</ul>
 		</div>
 	  </nav>
-
-  	<div class="div-base" style="width: 48%; float: left">
-		<h2 style="text-align: center"> Personal Information*</h2>
+	<div style="display: flexbox; flex-direction: row; padding: 3% 5% 0 5%;"> <!--background-->
+  	<div style="width: 45%; float: left;"><!--background left-->
+		<div class="div-base" style="border-radius: 20px; display: flexbox; flex-direction: column; text-align: center;"><!--display div-->
+		<h2 > Personal Information*</h2>
 		<form action="/register" method="POST" text-align="center">
 			<Label for="fname"> First Name:</Label><br>
-			<input class="form-register" type="text" id="fname" name="fname" placeholder="First Name..." required><br><br>
+			<input class="form-register" style="width: 50%;" type="text" id="fname" name="fname" placeholder="First Name..." required><br><br>
 			<Label for="lname"> Last Name:</Label><br>
-			<input class="form-register" type="text" id="lname" name="lname" placeholder="Last Name..." required>  <br><br>
+			<input class="form-register" style="width: 50%;" type="text" id="lname" name="lname" placeholder="Last Name..." required>  <br><br>
 			<Label for="phone"> Phone Number: (###-###-####)</Label><br>
-			<input class="form-register" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
+			<input class="form-register" style="width: 50%;" type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
 			<Label for ="email"> Email Address: (example@mail.com)</Label><br>
-			<input class="form-register" type="text" id="email" name="email" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
+			<input class="form-register" style="width: 50%;" type="text" id="email" name="email" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
 			<Label for="confemail"> Confirm Email Address: (example@mail.com)</Label><br>
-			<input class="form-register" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>  <br><br>
+			<input class="form-register" style="width: 50%;" type="text" id="confemail" name="confemail" placeholder="Example@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>  <br><br>
 			<Label for="fname"> Subscribe for Promotional Emails:</Label><br>
-			<input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh; margin-left: 10px" id="promotions" name="promotions">
+			<input class="form-check-input" type="checkbox" style="width: 4vh; height: 4vh;" id="promotions" name="promotions">
 			<br><br><br>
 			<Label for ="password"> Password:</Label><br>
-			<input class="form-register" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
+			<input class="form-register" style="width: 50%;" type="password" id="password" name="password" placeholder="Password..." required>  <br><br>
 			<Label for="confpassword"> Confirm Password:</Label><br>
-			<input class="form-register" type="password" id="confpassword" name="confpassword" placeholder="Confirm Password..." required>  <br><br>
+			<input class="form-register" style="width: 50%;" type="password" id="confpassword" name="confpassword" placeholder="Confirm Password..." required>  <br><br>
 
-			<input type="submit" class="div-base" style="width:48%;height:13vh;float:left; border: 10px solid black; text-align: center; font-size: 45px;" value="Submit">
+			<input type="submit" class="button-book-now" value="Submit">
+		</div>
   	</div>
 
-  	<div class="div-base" style="width: 48%; float:right">
+  	<div style="width: 45%; float:right;"><!--background right-->
+		<div class="div-base" style="display:flexbox; flex-direction: column; border-radius: 20px; text-align: center;"> <!--display div-->
 		<h2 style="text-align: center">Home Address (Optional)</h2><br>
 			<Label for="homeStreet">Street Address:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="homeStreet" name="homeStreet" placeholder="123 example street"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="homeStreet" name="homeStreet" placeholder="123 example street"><br><br>
 
 			<Label for="homeCity">City:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="homeCity" name="homeCity" placeholder="Athens"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="homeCity" name="homeCity" placeholder="Athens"><br><br>
 
 			<Label for="homeState">State:</Label><br>
-			<select class="form-register" style="width:70%" id="homeState" name="homeState">
+			<select class="form-register" style="width:20%; height: auto; font-size: large;" id="homeState" name="homeState">
 				<option value="AL">AL</option>
 				<option value="AK">AK</option>
 				<option value="AR">AR</option>
@@ -141,30 +131,30 @@
 			</select> <br><br>
 
 			<Label for="homeZip">Zip Code: (#####)</Label><br>
-			<input id="registerField" style="width:70%" type="text" id="homeZip" name="homeZip" placeholder="12345"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="homeZip" name="homeZip" placeholder="12345"><br><br>
 		<h2 style="text-align: center">Payment Information (Optional)</h2>
 			<Label for="cardtype"> Card Type:</Label><br>
-			<select id="registerField" style="width:70%" id="cardtype" name="cardType">
+			<select class="form-register" style="width:40%; height: auto; font-size: large;" id="cardtype" name="cardType">
 				<option value="Visa">Visa</option>
 				<option value="Mastercard">Mastercard</option>
 				<option value="AmericanExpress">American Express</option>
 				<option value="Discover">Discover</option></select> <br><br>
 			
 			<Label for="cardnumb"> Card Number: (#### #### #### ####)</Label><br>
-			<input class="form-register" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="cardnumb" name="cardNumb" placeholder="#### #### #### ####" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"><br><br>
 		
 			<Label for="expDate"> Expiration Date: (##/####)</Label><br>
-			<input class="form-register" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern="[0-1]{1}[0-9]{1}/[0-9]{4}"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="" name="expDate" placeholder="MM/YYYY" pattern="[0-1]{1}[0-9]{1}/[0-9]{4}"><br><br>
 			<br>
 			<h4> Billing Address </h4>
 			<Label for="billingStreet"> Street Address:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="billingStreet" name="billingStreet" placeholder="123 example street"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="billingStreet" name="billingStreet" placeholder="123 example street"><br><br>
 
 			<Label for="billingCity"> City:</Label><br>
-			<input class="form-register" style="width:70%" type="text" id="billingCity" name="billingCity" placeholder="Athens"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="billingCity" name="billingCity" placeholder="Athens"><br><br>
 
 			<Label for="billingState"> State:</Label><br>
-			<select class="form-register" style="width:70%" id="billingState" name="billingState">
+			<select class="form-register" style="width:20%; height: auto; font-size: large;" id="billingState" name="billingState">
 				<option value="AL">AL</option>
 				<option value="AK">AK</option>
 				<option value="AR">AR</option>
@@ -219,9 +209,11 @@
 			</select> <br><br>
 			
 			<Label for="billingZip"> Zip Code: (#####)</Label><br>
-			<input id="registerField" style="width:70%" type="text" id="billingZip" name="billingZip" placeholder="12345" pattern="[0-9]{5}"><br><br>
+			<input class="form-register" style="width:40%" type="text" id="billingZip" name="billingZip" placeholder="12345" pattern="[0-9]{5}"><br><br>
 		</form>
+		</div>
   	</div>
+	</div>
 	
 
 	  <script src="https://code.jquery.com/jquery-3.6.1.min.js"

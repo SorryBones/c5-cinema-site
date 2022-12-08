@@ -29,3 +29,19 @@ exports.logout = (req, res) => {
     values.setCurrentUserID(-1);
     res.redirect('/login.html');
 };
+
+exports.getCart = (req, res) => {
+ 
+    console.log(values.getCart());
+    res.json(values.getCart());  
+}
+
+exports.getCartTotal = (req, res) => {
+res.json({ total: values.getCartTotal()});
+
+}
+
+exports.purchase = (req, res) => {
+    model.purchase(req, res);
+
+}

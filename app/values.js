@@ -141,8 +141,31 @@ let addToCart = function(show_id, seat_number, ticketType) {
 let getCart = function() {
     return cart;
 }
+let totalPrice;
+let setPrice = function(input) {
+    totalPrice = input;
+}
 
+let getPrice = function() {
+    return totalPrice;
+}
 
+let cartShowtime;
+let setCartShowtime = function(input) {
+    cartShowtime = input;
+}
+
+let getCartShowtime = function() {
+    return cartShowtime;
+}
+let cartTotal;
+let setCartTotal = function(input) {
+    cartShowtime = input;
+}
+
+let getCartTotal = function() {
+    return cartShowtime;
+}
 // database encryption
 const algorithm = "aes-256-cbc";
 const key ="12345678123456781234567812345678";
@@ -204,5 +227,6 @@ module.exports = {
     getPromoId, setPromoId,
     encrypt, decrypt,
     sendEmail,
-    setShowId, getShowId, addShowSeat, flushShowSeats, getShowSeats, addToCart, getCart,
+    setShowId, getShowId, addShowSeat, flushShowSeats, getShowSeats, addToCart, getCart, setPrice,
+    getPrice, setCartShowtime, getCartShowtime, setCartTotal, getCartTotal, 
 };
