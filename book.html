@@ -194,7 +194,7 @@
         data: $.param({showId: document.getElementById("showtimeDiv").value}),
         processData: false,
         success: function(result1) {
-          var content = '<div class="div-select-a-seat d-flex flex-column" style="text-align: center; align-items: center">';
+          var content = '<div class="div-browse-entry d-flex flex-column" style="text-align: center; align-items: center">';
           content += '<h1>Select a Seat:</h1><br>';
           content += '<div style="background: white; width: 500px; height: 45px; border: 2px solid #000; border-radius: 15px; -moz-border-radius: 15px; color:black"><h2>Screen</h2></div><br>';
           content += '<div data-toggle="buttons" id="seats">';
@@ -212,6 +212,9 @@
           document.getElementById('selectSeatsDiv').innerHTML = content;
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log(XMLHttpRequest);
+          console.log(textStatus);
+          console.log(errorThrown);
           console.log('failure');
         }
       });
@@ -247,6 +250,9 @@
           document.getElementById('bookSeatsDiv').innerHTML = content;
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log(XMLHttpRequest);
+          console.log(textStatus);
+          console.log(errorThrown);
           console.log('failure');
         }
       });

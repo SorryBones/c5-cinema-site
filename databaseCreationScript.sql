@@ -243,13 +243,10 @@ INSERT IGNORE INTO room SET room_id = 1, numofseats = 50;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`ticket` (
   `ticket_id` INT NOT NULL AUTO_INCREMENT,
-  `is_available` TINYINT(1) NOT NULL,
-  `adult_price` DOUBLE NULL DEFAULT NULL,
-  `child_price` DOUBLE NULL DEFAULT NULL,
-  `senior_price` DOUBLE NULL DEFAULT NULL,
+  `seat_id` INT NOT NULL,
   `tickettype_id` INT NOT NULL,
   `booking_id` SMALLINT NOT NULL,
-  PRIMARY KEY (`ticket_id`, `tickettype_id`, `booking_id`),
+  PRIMARY KEY (`ticket_id`, `seat_id`, `tickettype_id`, `booking_id`),
   INDEX `fk_ticket_ENUM_ticketType1_idx` (`tickettype_id` ASC) VISIBLE,
   INDEX `fk_ticket_booking1_idx` (`booking_id` ASC) VISIBLE,
   CONSTRAINT `fk_ticket_booking1`
@@ -264,6 +261,7 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`ticket` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
 
 
 -- -----------------------------------------------------
@@ -317,13 +315,13 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `NewCES`.`booking`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `NewCES`.`booking` (
-  `booking_id` SMALLINT NOT NULL,
+  `booking_id` SMALLINT NOT NULL AUTO_INCREMENT,
   `total_price` DOUBLE NULL DEFAULT NULL,
   `user_id` INT NOT NULL,
   `paymentCard_id` INT NOT NULL,
   `show_id` INT NOT NULL,
   `movie_id` INT NOT NULL,
-  `promo_id` INT NOT NULL,
+  `promo_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`booking_id`, `user_id`, `paymentCard_id`, `show_id`, `movie_id`, `promo_id`),
   INDEX `fk_booking_user1_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_booking_paymentCard1_idx` (`paymentCard_id` ASC) VISIBLE,

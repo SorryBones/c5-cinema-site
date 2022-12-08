@@ -7,3 +7,7 @@ let model = require("../models/booking.js");
 exports.removeItemFromCart = (req, res) => {
     model.removeItemFromCart(req, res);
 };
+
+exports.purchase = (req, res) => {
+    model.purchase(req, res);
+};

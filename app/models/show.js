@@ -2,6 +2,10 @@ const connection = require("./db.js");
 let values = require("../values");
 let {encrypt, decrypt, sendEmail} = require("../values");
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 exports.getAllShowtimes = (res) => {
     const query = 'SELECT * FROM showTime WHERE movie_id = ?';
     connection.query(query,[values.getMovieId()],function(error,results,fields) {
@@ -82,7 +86,8 @@ exports.addShowtime = (date, showtime, res) => {
     });
 }
 
-exports.getSeats = (show_id, res) => {
+exports.getSeats = async (show_id, res) => {
+    await sleep(500);
     const query = 'SELECT * FROM showSeat WHERE show_id = ?';
     connection.query(query,[show_id],function(error,results,fields) {
         if (results.length > 0) {

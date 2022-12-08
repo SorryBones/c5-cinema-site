@@ -4,6 +4,10 @@ let values = require("../values");
 
 let model = require("../models/show.js");
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 exports.getAllShowtimes = (req, res) => {
     model.getAllShowtimes(res);
 };
@@ -41,7 +45,8 @@ exports.selectSeats = (req, res) => {
     }
 };
 
-exports.getSelectedSeats = (req, res) => {
+exports.getSelectedSeats = async (req, res) => {
+    await sleep(500);
     let results = values.getShowSeats();
     res.json(results);
 };

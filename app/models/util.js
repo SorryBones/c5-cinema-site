@@ -2,6 +2,10 @@ const connection = require("./db.js");
 let values = require("../values");
 let {encrypt, decrypt, sendEmail} = require("../values");
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 exports.login = (email, password, req, res) => {
   connection.query('SELECT * FROM user WHERE email = ? AND password = ?',[email, values.encrypt(password)],function(error,results,fields){
     if (results.length > 0) {
@@ -29,7 +33,7 @@ exports.getAddress = (id, res) => {
   })
 };
 
-exports.getCart = (res) => {
+exports.getCart = async (res) => {
   let returnable = values.getCart();
   returnable.forEach((element) => {
     connection.query('SELECT * FROM showTime WHERE show_id = ?',[element.show_id],function(error,results,fields) {
@@ -50,5 +54,6 @@ exports.getCart = (res) => {
         }
     });
   })
+  await sleep(500);
   res.json({returnable});
 };

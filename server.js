@@ -98,6 +98,7 @@ app.post("/updateBillingAddress", userController.updateBillingAddress);
 
 // book
 app.post("/removeItemFromCart", bookingController.removeItemFromCart);
+app.post("/purchase", bookingController.purchase);
 
 // set port, listen for requests
 const PORT = 4000;

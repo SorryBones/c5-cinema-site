@@ -87,6 +87,7 @@
                 url: "/getCart",
                 type: "GET",
                 success: function(result1) {
+                    console.log(result1);
                     var content = '';
                     result1.returnable.forEach((result) => {
                         content += '<div class="flex-container-row2" style="justify-content: top; align-items: start;">';

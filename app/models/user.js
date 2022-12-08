@@ -64,7 +64,7 @@ exports.createUser = (firstName, lastName, phone, email, password, promotions, h
         const cardExpirationArray = cardExpiration.split('');
         connection.query('INSERT INTO address (street, city, state, country, zipcode) VALUES (?, ?, ?, ?, ?);',[billingStreet, billingCity, billingState, 'United States', billingZip],function(error,results,fields) {
             let address_id = results.insertId;
-            connection.query('SELECT * FROM user WHERE first_name = ? AND last_name = ? AND phone_num = ? AND email = ? AND password = ?;',[firstName, lastName, phone, email, values.encrypt(password)],function(error,results,fields) {
+            connection.query('SELECT * FROM user WHERE email = ?;',[email],function(error,results,fields) {
                 let user_id = results[0].user_id;
                 connection.query('INSERT INTO paymentCard (card_num, type, expiration_month, expiration_year, user_id, address_id) VALUES (?, ?, ?, ?, ?, ?);',[values.encrypt(cardNumber), values.encrypt(cardType), values.encrypt(cardExpirationArray[0] + cardExpirationArray[1]), values.encrypt(cardExpirationArray[3] + cardExpirationArray[4] + cardExpirationArray[5] + cardExpirationArray[6]), user_id, address_id],function(error,results,fields) {
                     console.log('created card');
