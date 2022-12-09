@@ -4,11 +4,18 @@ let {encrypt, decrypt, sendEmail} = require("../values");
 
 exports.addPromotion = (startDate, endDate, promoCode, promoDiscount, promoBody, res) => {
     let query = 'INSERT INTO promotions (start_date, end_date, promo_code, movie_id, discount, sent, message) VALUES (?, ?, ?, ?, ?, ?, ?);';
-    connection.query(query,[startDate, endDate, promoCode, values.getMovieId(), promoDiscount, 0, promoBody],function(error,results,fields) {
-        console.log("insert to promotions");
-        values.setPromoId(results.insertId);
-    });
-};
+     connection.query(query,[startDate, endDate, promoCode, values.getMovieId(), promoDiscount, 0, promoBody],function(error,results,fields) {
+         console.log("insert to promotions");
+        // console.log(results);
+         connection.query('SELECT * FROM promotions WHERE start_date = ? AND end_date = ? AND promo_code = ? AND discount = ? AND message = ?;', [startDate, endDate, promoCode, promoDiscount, promoBody], function(error,results,fields) {
+          //  console.log(results);
+             promoId = results[0].promo_id;
+             values.setPromoId(promoId);  
+
+      });
+
+     });  
+ };
 
 exports.sendPromotion = (res) => {
     connection.query('SELECT * FROM user WHERE promo_subs = ?',['Y'],function(error,results,fields) {
@@ -38,14 +45,21 @@ exports.removePromotion = (res) => {
 
 exports.getPromo = (res) => {
     console.log(values.getPromoId());
+    console.log(values.getMovieId());
     const query = 'SELECT * FROM promotions WHERE promo_id = ?';
     connection.query(query,[values.getPromoId()],function(error,results,fields) {
+        const query2 = 'SELECT * FROM movie WHERE movie_id = ?';
+        connection.query(query2,[values.getMovieId()],function(error,results2,fields) {
+           // console.log(results2);
+
       if (results.length > 0) {
+          results[0].img = results2[0].img; // set image source
           res.json(results[0]);
       } else {
           res.json({status: false});
       }
     })
+    });
   };
 
 exports.editPromotion = (req, res) => {
@@ -113,42 +127,32 @@ exports.editPromotion = (req, res) => {
 }
 
 exports.getAllPromotions = (req, res) => {
-    queryPromise1 = () =>{
-      return new Promise((resolve, reject)=>{
-          const promotionsQuery = 'SELECT * FROM promotions WHERE sent = ?';
-          connection.query(promotionsQuery,[1],(error, results, fields)=>{
-              if(error) {
-                  return reject(error);
-              }
-              return resolve(results);
-          });
-      });
-    };
-    queryPromise2 = (movie_id) =>{
-        return new Promise((resolve, reject)=>{
-            const movieQuery = 'SELECT * FROM movie WHERE movie_id = ?';
-            connection.query(movieQuery,[movie_id],(error, results)=>{
-                if(error){
-                    return reject(error);
-                }
-                return resolve(results);
-            });
-        });
-    };
-  
-    async function runQueries () {
-        try {
-            let promoResults = await queryPromise1();
-            let result = [];
-            for (let index = 0; index < promoResults.length; index++) {
-                result[index] = await queryPromise2(promoResults[index].movie_id);
-                // result[index].promo_id = promoResults[index].promo_id;
-            }
-  
-            res.json(result);
-        } catch(error){
-            console.log(error)
-        }
-    }
-    runQueries();
-  }
+   // WITHOUT ASYNC - USES TIMEOUT AS WORK AROUND
+   let sent = 1;
+   const promotionsQuery = 'SELECT * FROM promotions WHERE sent = ?';
+   connection.query(promotionsQuery,[sent],(error, promoResult, fields) => {
+     
+     for (let index = 0; index < promoResult.length; index++) {
+     const movieQuery = 'SELECT * FROM movie WHERE movie_id = ?';
+     const img = [];
+     
+           connection.query(movieQuery,[promoResult[index].movie_id],(error, results) => {
+           //  console.log(results[0].img);
+             img[index] = results[0].img;
+           });
+           
+ 
+           setTimeout(() => {console.log("img " + img[index]);
+           promoResult[index].img  = "<img class='img-movie-poster' src='" + img[index] + "'/>";
+           promoResult[index].editButton = '<form action="/adminEditPromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResult[index].promo_id + '><input class="button-book-admin" type="submit" value="Edit Promotion"></form>'
+           promoResult[index].removeButton = '<form action="/removePromotion" method="POST"><input style="display: none" type="text" id="promo_id" name="promo_id" value=' + promoResult[index].promo_id + '><input class="button-book-admin" type="submit"  value="Remove Promotion"></form>'
+         //  console.log("RESULT");
+         //  console.log(promoResult);
+         }, 900);
+         }
+         setTimeout(() => {//console.log("getAllP")
+         console.log(promoResult);
+         res.json(promoResult);
+       }, 950);
+ });
+ }

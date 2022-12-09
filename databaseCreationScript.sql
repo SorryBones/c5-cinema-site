@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`booking` (
   `show_id` INT NOT NULL,
   `movie_id` INT NOT NULL,
   `promo_id` INT NULL DEFAULT NULL,
-  PRIMARY KEY (`booking_id`, `user_id`, `paymentCard_id`, `show_id`, `movie_id`, `promo_id`),
+  PRIMARY KEY (`booking_id`, `user_id`, `paymentCard_id`, `show_id`, `movie_id`),
   INDEX `fk_booking_user1_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_booking_paymentCard1_idx` (`paymentCard_id` ASC) VISIBLE,
   INDEX `fk_booking_show1_idx` (`show_id` ASC) VISIBLE,
