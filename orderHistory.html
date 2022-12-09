@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>UGA Flix</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Home page" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body style="padding-top:55px ; background-color: black">
+
+  <!--Navbar-->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727">
+    <a class="navbar-brand" href="index.html">UGA Flix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <form action="/index.html">
+            <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/browse.html">
+            <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/profile.html">
+            <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/login.html">
+            <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
+          </form>
+        </ul>
+        <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
+    </div>
+  </nav>
+
+  <!-- Side Navbar -->
+  <ul class="sidebar"> 
+    <form action="/profile.html" method="GET">
+      <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+    </form>
+    <form action="/usercards.html" method="GET">
+      <input class="btn" type="submit" value="Payment" style="background-color:#272727 ; color:white">
+    </form>
+    <form action="/orderHistory.html" method="GET">
+      <input class="btn" type="submit" value="Order History" style="background-color:#272727 ; color:white">
+    </form>
+    <div id="adminControlsButton">
+      <form action="/adminMain.html" method="GET">
+        <input class="btn" type="submit" id="adminControls" value="Admin Controls" style="background-color:#272727 ; color:gold">
+      </form>
+    </div>
+    <form action="/logout" method="GET">
+      <input class="btn" type="submit" value="Logout" style="background-color:#272727 ; color:white">
+    </form>
+  </ul>
+
+  <!--UsersDiv-->
+  
+    <div class="div-base" style="width:85% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; text-align: center; background-color: black; gap: 5%;">
+        <div class="flex-container-row" id="historyDiv"></div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <!-- TOP BAR -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/isLoggedIn",
+                type: "GET",
+                success: function (result) {
+                    if (result.status == true) $('#loginButton').remove();
+                    else $('#profileButton').remove();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('failure');
+                }
+            });
+        });
+    </script>
+  
+    <script> // ADMIN CONTROLS SIDEBAR
+        $(document).ready(function() {
+            $.ajax( {
+                url: "/userInfo",
+                type: "GET",
+                success: function(result) {
+                    if (result.utype_id == 2) $('#adminControlsButton').remove();
+                }
+            });
+        });
+    </script>
+
+    <!-- ORDER HISTORY -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/getOrderHistory",
+                type: "GET",
+                success: function (result1) {
+                    if (result1.status == false) {
+                        var content = '<h3>No Order History Found</h3>'
+                        document.getElementById('historyDiv').innerHTML = content;
+                    }
+                    else {
+                        document.getElementById('historyDiv').innerHTML = ''; // clear old
+                        result1.returnable.forEach(createUserRow);
+                        function createUserRow(result2) {
+                            var content = "<h3><b>Order ID: </b>" + result2.booking_id + "</h3>";
+                            content += "<h3><b>Total Price: </b>$" + result2.total_price + "</h3>";
+                            content += "<h3><b>Card: </b>" + result2.card_num + "</h3>";
+                            content += "<h3></h3>";
+                            content += "<h3>-</h3>";
+                            content += "<h3></h3>";
+
+                            result2.tickets.forEach(createRow);
+                            function createRow(result3) {
+                                let date = new Date(result3.date);
+                                let displayDate = date.toDateString();
+
+                                date.setHours(result3.time.substr(0,2));
+                                let displayTime = date.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+                                content += "<p><b>Show Time: </b>" + displayDate + ' ' + displayTime + "</p>";
+
+                                content += "<p><b>Movie: </b>" + result3.title + "</p>";
+                                content += "<p><b>Seat: </b>" + result3.seat_number + "</p>";
+                                content += "<p><b>Type: </b>" + result3.seat_type + "</p>";
+                                content += "<p></p>";
+                            }
+
+                            var newDiv = document.createElement('div');
+                            newDiv.className = "flex-homepage-latest-movie";
+                            newDiv.style = "align-content: center; text-align:center";
+                            newDiv.innerHTML = content;
+                            document.getElementById('historyDiv').appendChild(newDiv);
+                        }
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('failure');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

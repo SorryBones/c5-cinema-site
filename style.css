@@ -488,14 +488,6 @@ li a:hover:not(.active) {
 }
 
 .button-book-now {
-	/* background-color: rgb(240, 240, 240);
-	border: 2px solid black;
-  	color: black;
-  	padding: 15px 32px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
-  	font-size: 16px; */
 	width: fit-content;
 	height: auto;
 	background-color: white;
@@ -508,9 +500,9 @@ li a:hover:not(.active) {
 }
 
 .button-book-admin {
-	background-color: whitesmoke;
-	border: 4px solid yellow;
-	color: black;
+	background-color: #272727;
+	border: 4px solid gold;
+	color: white;
 	padding: 7px 32px;
 	text-align: center;
 	text-decoration: none;
@@ -527,7 +519,7 @@ li a:hover:not(.active) {
 }
 
 .button-book-admin:hover {
-	background-color: yellow;
+	background-color: gold;
 	color: #272727;
 	cursor: pointer;
 }

@@ -12,26 +12,30 @@
 <body style="padding-top:55px ; background-color: black">
   
   <!--Navbar-->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
-      <a class="navbar-brand" href="index.html">UGA Flix</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727">
+    <a class="navbar-brand" href="index.html">UGA Flix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <form action="index.html">
+          <form action="/index.html">
             <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
           </form>
           <form action="/browse.html">
             <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
           </form>
-          <form action="/profile.html" method="GET">
-            <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+          <form action="/profile.html">
+            <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/login.html">
+            <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
           </form>
         </ul>
-      </div>
-    </nav>
+        <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
+    </div>
+  </nav>
 
 <!--NEW CODE-->
 
@@ -99,6 +103,22 @@
 integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 crossorigin="anonymous"></script>
 
+<script>
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/isLoggedIn",
+      type: "GET",
+      success: function(result) {
+        if (result.status == true) $('#loginButton').remove();
+        else $('#profileButton').remove();
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script>
+
 <script> // PROMOTION CHECK VALID MOVIE
   $(document).ready(function() {
     $.ajax( {
@@ -114,42 +134,8 @@ crossorigin="anonymous"></script>
     });
   });
 </script>
-<!--- NEW VERSION DID NOT WORK
-<script> // EXISTING PROMOTYIONS
-  $(document).ready(function() {
-    $.ajax( {
-      url: "/getAllPromotions",
-      type: "GET",
-      success: function(result1) {
-        console.log(result1);
-        result1.forEach(createUserRow);
-        function createUserRow(result) {
-          
-          var content = '<div class="existingPromo">';
-          content += "<img class='img-movie-poster' src='" + result.img + "'/>";
-          content += "<h3>" + result.title + "<h3>";
-          content += '<form action="/adminEditPromotion" method="POST">';
-          content += '<input style="display: none" type="text" name="promo_id" value=' + result.promo_id + '>';
-          content += '<input class="button-book-admin" type="submit" value="Edit Promotion"></form>';
-          content += '<br>';
-          content += '<form action="/removePromotion" method="POST">';
-          content += '<input style="display: none" type="text" name="promo_id" value=' + result.promo_id + '>';
-          content += '<input class="button-book-admin" type="submit" value="Remove Promotion"></form>';
-          content += "<style>h3 {text-align: center;}</style>";
-
-          document.getElementById('existingPromoField').innerHTML = content;
-        }
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        console.log('failure');
-      }
-    });
-  });
-</script> -->
 
 <script> // EXISTING PROMOTYIONS (WORKS)
-
-
   $(document).ready(function() {
     $.ajax( {
       url: "/getAllPromotions",

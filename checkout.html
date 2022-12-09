@@ -14,32 +14,29 @@
 <body style="padding-top:55px ; background-color: black">
 
     <!--Navbar-->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
-        <a class="navbar-brand" href="index.html">UGA Flix</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727">
+      <a class="navbar-brand" href="index.html">UGA Flix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <form action="/index.html"> <!--Home-->
-                    <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
-                </form>
-                <form action="/browse.html"> <!--Browse-->
-                    <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
-                </form>
-                <form action="/profile.html"> <!--Profile-->
-                    <input class="btn" id="profileButton" type="submit" value="Profile"
-                        style="background-color:#272727 ; color:white">
-                </form>
-                <form action="/login.html"> <!--Login-->
-                    <input class="btn" id="loginButton" type="submit" value="Login"
-                        style="background-color:#272727 ; color:white">
-                </form>
-            </ul>
-            <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <form action="/index.html">
+              <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+            </form>
+            <form action="/browse.html">
+              <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+            </form>
+            <form action="/profile.html">
+              <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+            </form>
+            <form action="/login.html">
+              <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
+            </form>
+          </ul>
+          <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
+      </div>
     </nav>
 
     <!--Window Wrapper-->
@@ -93,39 +90,40 @@
 	<div class="flex-container-column2" style="justify-content: start; align-items: center; width: 100%; padding: 20px; border-radius: 5%;">
 		<p class="text-main" style="font-size: 2em;">Order History</p>
 		  <!--Order info loop-->
-        <div class="flex-container-row2" style="justify-content: center; align-items: center;">
-			<p class="text-sub">Previous Order Information</p> <!--Order here-->
-        </nav>
-    <div>
+    <div id="historyDiv"></div>
+    <button onclick="location.href='orderHistory.html'" class="button-book-now">
+      Full Order History
+    </button>
+  <div>
 
-    <!------------SCRIPTS------------>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!------------SCRIPTS------------>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-    <script> // TOP BAR
-        $(document).ready(function () {
-            $.ajax({
-                url: "/isLoggedIn",
-                type: "GET",
-                success: function (result) {
-                    if (result.status == true) $('#loginButton').remove();
-                    else $('#profileButton').remove();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log('failure');
-                }
-            });
+<script> // TOP BAR
+    $(document).ready(function () {
+        $.ajax({
+            url: "/isLoggedIn",
+            type: "GET",
+            success: function (result) {
+                if (result.status == true) $('#loginButton').remove();
+                else $('#profileButton').remove();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('failure');
+            }
         });
-    </script>
+    });
+</script>
 
-    <script> // INITIALIZE
-        $(document).ready(function () {
-            var newDiv = document.createElement('div');
-            newDiv.className = "flex-homepage-latest-movie";
-            newDiv.style = "height: 70vh";
-            newDiv.innerHTML = "<h3>" + "Search for Movies!" + "</h3>"
-            document.getElementById('searchResults').appendChild(newDiv);
-        });
-    </script>
+<script> // INITIALIZE
+    $(document).ready(function () {
+        var newDiv = document.createElement('div');
+        newDiv.className = "flex-homepage-latest-movie";
+        newDiv.style = "height: 70vh";
+        newDiv.innerHTML = "<h3>" + "Search for Movies!" + "</h3>"
+        document.getElementById('searchResults').appendChild(newDiv);
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
 integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -168,7 +166,36 @@ crossorigin="anonymous"></script>
 	});
   </script>
 
- 
+  <script> // DISPLAY CART ITEMS
+    $(document).ready(function() {
+        $.ajax( {
+            url: "/getCart",
+            type: "GET",
+            success: function(result1) {
+                var content = '';
+                result1.returnable.forEach((result) => {
+                    content += '<div class="flex-container-row2">';
+                    content += '<img class="img-flex" style="height: 120px; width: 150px;" src="' + result.img + '" id="poster" />';
+                    content += '<div class="flex-container-column2" style="flex: 1">';
+
+                    content += '<p class="text-small" style="font-size: 0.4em;">Showtime: ' + result.date + result.time + '</p>';
+                    content += '<p class="text-small" style="font-size: 0.4em;">Seat Number: ' + result.seat_number + '</p>';
+                    content += '<p class="text-small" style="font-size: 0.4em;">Ticket Type: ' + result.ticketTypeName + '</p>';
+                    content += '</div></div>';
+                });
+                content += '<br><br><div class="flex-container-row2" style="justify-content: center; align-items: center; padding: 5px;">';
+                content += '<form action="/cart.html">';
+                content += '<input class="button-book-now" type="submit" value="Back to Cart"></input>';
+                content += '</form>';
+                content += '</div>';
+                document.getElementById('cartDiv').innerHTML = content;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log('failure');
+            }
+        });
+    });
+</script>
 
 <script> // DISPLAY CART ITEMS
     $(document).ready(function() {
@@ -202,33 +229,21 @@ crossorigin="anonymous"></script>
     });
 </script>
 
-
-
-<script> // BILLING ADDRESS
+<script> // CARD BUTTONS
     $(document).ready(function() {
       $.ajax( {
         url: "/getCard",
         type: "GET",
         success: function(result) {
-          if (result.address_id != '') {
-            $.ajax( {
-              url: "/getAddress",
-              dataType: 'json',
-              type: "POST",
-              contentType: 'application/x-www-form-urlencoded',
-              data: $.param({id: result.address_id}),
-              processData: false,
-              success: function(result2) {
-                if (result.status == false) {
-                    $('#editCard').remove();
-                    $('#deleteButton').remove();
-                }
-                else {
-                    $('#addNewCard').remove();
-                }
-            }});
+          if (result.status == false) {
+              $('#editCard').remove();
+              $('#deleteButton').remove();
           }
-      }});
+          else {
+              $('#addNewCard').remove();
+          }
+        }
+      });
     });
 </script>
 
@@ -255,7 +270,8 @@ crossorigin="anonymous"></script>
       });
     });
   </script>
-<script> // CARD CREDENTIALS
+
+<script> // ORDER HISTORY
   $(document).ready(function() {
     $.ajax( {
       url: "/getOrderHistory",
@@ -263,32 +279,78 @@ crossorigin="anonymous"></script>
       success: function(result1) {
         result1.forEach(createUserRow);
         function createUserRow(result) {
-        var content = '';
-        console.log("count")
-        console.log(result.total_price);
-      
-                console.log(result1[0].show_id)
-
-                var newDiv = document.createElement('div');
+          var content = '';
+  
+          var newDiv = document.createElement('div');
           newDiv.className = "orders";
-            console.log(result1);
-            console.log(result)
-            
-                content += '<br><br><div class="flex-container-row2" style="justify-content: center; align-items: left; padding: 5px;">';
-                content += '<h2>Movie: ' + result.title +`   </h2>`;
-                content += `<br>`
-              content +=  '<h2>&nbsp&nbsp&nbsp Total Price: ' + result.total_price +`</h2>`;
-              content +=  '<h2>&nbsp&nbsp&nbsp Date: ' + result1.date +`</h2>`;
-              content +=  '<h2>&nbsp&nbsp&nbsp Time: ' + result.test +`</h2>`;
-                content += '</div>';
+      
+          content += '<br><br><div class="flex-container-row2" style="justify-content: center; align-items: left; padding: 5px;">';
+          content += '<h2>Movie: ' + result.title +`   </h2>`;
+          content += `<br>`
+          content +=  '<h2>Total Price: ' + result.total_price +`</h2>`;
+          content +=  '<h2>Date: ' + result1.date +`</h2>`;
+          content +=  '<h2>Time: ' + result.test +`</h2>`;
+          content += '</div>';
 
-                newDiv.innerHTML = content;
-                if (document.getElementById('history') != null) console.log("not null")
-                document.getElementById('history').appendChild(newDiv);
+          newDiv.innerHTML = content;
+          if (document.getElementById('history') != null) console.log("not null")
+          document.getElementById('history').appendChild(newDiv);
         }
                 
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script>
+
+
+<!-- ORDER HISTORY -->
+<script>
+  $(document).ready(function () {
+    $.ajax({
+      url: "/getOrderHistory",
+      type: "GET",
+      success: function (result1) {
+        if (result1.status == false) {
+          var content = '<h3>No Order History Found</h3>'
+          document.getElementById('historyDiv').innerHTML = content;
+        }
+        else {
+          document.getElementById('historyDiv').innerHTML = ''; // clear old
+          result1.returnable.forEach(createUserRow);
+          function createUserRow(result2) {
+            var content = '<div class="flex-container-row2" style="justify-content: center; align-items: center">';
+            content += "<p><b>Order ID: </b>" + result2.booking_id + " ";
+            content += "<b>Total Price: </b>$" + result2.total_price + " ";
+            content += "<b>Card: </b>" + result2.card_num + " ";
+            content += " - ";
+
+            result2.tickets.forEach(createRow);
+            function createRow(result3) {
+              let date = new Date(result3.date);
+              let displayDate = date.toDateString();
+
+              date.setHours(result3.time.substr(0,2));
+              let displayTime = date.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+              content += "<b>Show Time: </b>" + displayDate + ' ' + displayTime + " ";
+
+              content += "<b>Movie: </b>" + result3.title + " ";
+              content += "<b>Seat: </b>" + result3.seat_number + " ";
+              content += "<b>Type: </b>" + result3.seat_type + " ";
+              content += " ";
+            }
+            content += '<p></div>';
+            
+            var newDiv = document.createElement('div');
+            newDiv.style = "align-content: center; text-align:center";
+            newDiv.innerHTML = content;
+            document.getElementById('historyDiv').appendChild(newDiv);
+          }
+        }
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log('failure');
       }
     });

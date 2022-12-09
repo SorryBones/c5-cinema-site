@@ -16,30 +16,28 @@
 <body style="padding-top:55px ; background-color: black">
 
   <!--Navbar-->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727">
     <a class="navbar-brand" href="index.html">UGA Flix</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <form action="/index.html">
-          <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
-        </form>
-        <form action="/browse.html">
-          <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
-        </form>
-        <form action="/profile.html">
-          <input class="btn" id="profileButton" type="submit" value="Profile"
-            style="background-color:#272727 ; color:white">
-        </form>
-        <form action="/login.html">
-          <input class="btn" id="loginButton" type="submit" value="Login"
-            style="background-color:#272727 ; color:white">
-        </form>
-      </ul>
+        <ul class="navbar-nav mr-auto">
+          <form action="/index.html">
+            <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/browse.html">
+            <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/profile.html">
+            <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+          </form>
+          <form action="/login.html">
+            <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
+          </form>
+        </ul>
+        <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
     </div>
   </nav>
 
@@ -49,6 +47,9 @@
     </form>
     <form action="/usercards.html" method="GET">
       <input class="btn" type="submit" value="Payment" style="background-color:#272727 ; color:white">
+    </form>
+    <form action="/orderHistory.html" method="GET">
+      <input class="btn" type="submit" value="Order History" style="background-color:#272727 ; color:white">
     </form>
     <div id="adminControlsButton">
       <form action="/adminMain.html" method="GET">
@@ -66,7 +67,7 @@
     <div style="width: 100%; height:fit-content; display: flex; justify-content: center;">
       <div class="div-base"
         style="max-width:40%; min-width: fit-content; height:max-content; justify-self: center; font-size: 20px;  text-align: center; border-radius: 15px;">
-        <h1> Profile </h1>
+        <h1>Profile</h1>
       </div>
     </div>
     <div style="width: 100%; height:min-content;display: flex; flex-direction: row; justify-content: space-between;">

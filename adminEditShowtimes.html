@@ -14,7 +14,7 @@
 <body style="padding-top:55px ; background-color: black">
 
   <!--Navbar-->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727">
     <a class="navbar-brand" href="index.html">UGA Flix</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -35,6 +35,7 @@
             <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
           </form>
         </ul>
+        <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
     </div>
   </nav>
 
@@ -129,7 +130,8 @@
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>
 
-  <script> // TOP BAR
+
+  <script>
     $(document).ready(function() {
       $.ajax( {
         url: "/isLoggedIn",
