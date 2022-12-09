@@ -40,9 +40,9 @@
     </div>
   </nav>
 
-  <div class="div-browse-entry">
-    <div class="div-browse-text">
-      <img class="img-browse-entry" src="images/poster-default.png" id="poster"/>
+  <div class="flex-container-row2" style="justify-content: start; align-items: start; height: 100%; padding: 10px;">
+    <img class="img-browse-entry" src="images/poster-default.png" id="poster"/>
+    <div class="flex-container-column2" style="justify-content: start; align-items: start; height: 100%;">
         <p id="title">TITLE:</p>
         <p id="genre">GENRE:</p>
         <p id="rating">AGE RATING:</p>
@@ -75,7 +75,7 @@
             </select required>
           </div>
       </div>
-      <input class="button-book-now" style="width: 150px" type="submit" value="submit">
+      <input class="button-book-now" style="width: 150px" type="submit" value="Book Now"> <!--TEXT OF BUTTON, CHANGED FROM "submit"-->
     </form>
   </div>
 
@@ -84,6 +84,7 @@
   </form>
 
   <div id="bookSeatsDiv"></div>
+
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="

@@ -29,7 +29,7 @@
         <form action="/browse.html">
           <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
         </form>
-        <form action="/profile" method="GET">
+        <form action="/profile.html" method="GET">
           <input class="btn" type="submit" value="Profile" style="background-color:#272727 ; color:white">
         </form>
       </ul>
@@ -41,11 +41,11 @@
 
   <!--Username Display Div-->
   <div class="flex-secret-wrapper">
-    <div class="flex-container-column2">
+    <div class="flex-container-column2" style="background: black;">
       <!--flex-container-homepage-->
       <!--Make New Promotion-->
 
-      <div class="div-promo-fields h-50 w-100 p-3">
+      <div class="div-promo-fields h-50 w-100 p-3" style="border-radius: 5%;">
         <p class="text-main" style="font-size: 2.2em;">Are You Sure You Want to Send This Promotion?</p>
         <div class="flex-container-column2"> <!--div-browse-search-->
           <p class="text-main" style="font-size: 2em;">Movie:</p>
@@ -71,14 +71,20 @@
 
             <!-- <textarea class="form-control" class = "text" rows="5" id="message" name = "message" form = "addPromotion" ></textarea> -->
 
-            <form action="/sendPromotion" name="sendPromotion" id="sendPromotion" method="POST">
-              <input type="submit" class="button-book-admin" value="Send Promotion">
-            </form>
-            </form>
-            <form action="/removePromotion" name="removePromotion" id="removePromotion" method="POST">
-              <!-- <a href="adminPromotions.html"><button type="button" class="button-book-now">Go Back</button></a>-->
-              <input type="submit" class="button-book-now" value="Delete Promotion">
-            </form>
+            <div class="flex-container-row2">
+              <form action="/sendPromotion" name="sendPromotion" id="sendPromotion" method="POST">
+                <input type="submit" class="button-book-admin" value="Send Promotion">
+              </form>
+            </div>
+
+            <div class="flex-container-row2">
+              <form action="/removePromotion" name="removePromotion" id="removePromotion" method="POST">
+                <!-- <a href="adminPromotions.html"><button type="button" class="button-book-now">Go Back</button></a>-->
+                <input type="submit" class="button-book-admin" value="Delete Promotion">
+              </form>
+            </div>
+            
+            
           </div>
         </div>
       </div>
