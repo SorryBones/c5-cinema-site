@@ -51,8 +51,5 @@ exports.getSelectedSeats = async (req, res) => {
 };
 
 exports.addToCart = (req, res) => {
-    for (let x in req.body) {
-        values.addToCart(values.getShowId(), x, req.body[x]);
-    }
-    res.redirect('/cart.html');
+     model.addToCart(req, res);
 };

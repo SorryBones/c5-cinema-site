@@ -73,6 +73,14 @@ let setIsIncorrectPassword = function(input) {
     isIncorrectPassword = input;
 }
 
+let isIncorrectUser = false;
+let getIsIncorrectUser = function() {
+    return isIncorrectUser;
+}
+let setIsIncorrectUser = function(input) {
+    isIncorrectUser = input;
+}
+
 let isIncorrectShowtime = false;
 let getIsIncorrectShowtime = function() {
     return isIncorrectShowtime;
@@ -216,6 +224,7 @@ module.exports = {
     getRegisterBody, setRegisterBody,
     getForgotPasswordEmail, setForgotPasswordEmail,
     getIsIncorrectPassword, setIsIncorrectPassword,
+    getIsIncorrectUser, setIsIncorrectUser,
     getIsIncorrectShowtime, setIsIncorrectShowtime,
     getIsEmailTaken, setIsEmailTaken,
     getIsInvalidMovie, setIsInvalidMovie,

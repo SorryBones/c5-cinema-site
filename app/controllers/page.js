@@ -13,6 +13,14 @@ exports.isIncorrectPassword = (req, res) => {
     values.setIsIncorrectPassword(false);
 };
 
+exports.isIncorrectUser = (req, res) => {
+    if (values.getIsIncorrectUser()) res.json({status: true});
+    else res.json({status: false});
+
+    values.setIsIncorrectUser(false);
+};
+
+
 exports.isEmailTaken = (req, res) => {
     if (values.getIsEmailTaken()) res.json({status: true});
     else res.json({status: false});

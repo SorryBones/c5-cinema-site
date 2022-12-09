@@ -41,6 +41,8 @@
     </div>
   </nav>
 
+  <div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px; display:none" id="incorrect">Only Registered Users Can Purchase Tickets</div>
+
   <div class="flex-container-row2" style="justify-content: start; align-items: start; height: 100%; padding: 10px;">
     <img class="img-browse-entry" src="images/poster-default.png" id="poster"/>
     <div class="flex-container-column2" style="justify-content: start; align-items: start; height: 100%;">
@@ -99,6 +101,22 @@
         success: function(result) {
           if (result.status == true) $('#loginButton').remove();
           else $('#profileButton').remove();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
+
+  <script> // INCORRECT PASSWORD
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/isIncorrectUser",
+        type: "GET",
+        success: function(result) {
+          const targetDiv = document.getElementById("incorrect");
+          if (result.status === true) targetDiv.style.display = "block";
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           console.log('failure');

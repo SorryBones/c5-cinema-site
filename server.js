@@ -62,6 +62,7 @@ app.post("/adminPromotions", pageController.adminPromotions);
 app.post("/adminEditPromotion", pageController.adminEditPromotion);
 app.post("/adminEditShowtimes", pageController.adminEditShowtimes);
 app.get("/isIncorrectPassword", pageController.isIncorrectPassword);
+app.get("/isIncorrectUser", pageController.isIncorrectUser);
 app.get("/isEmailTaken", pageController.isEmailTaken);
 app.post("/adminEditMovie", pageController.adminEditMovie);
 app.post("/book", pageController.book);

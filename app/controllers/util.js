@@ -24,10 +24,12 @@ exports.getAddress = (req, res) => {
 };
 
 exports.logout = (req, res) => {
-    console.log('logged out')
+    values.flushShowSeats();
+    values.flushCart();
     values.setLoggedIn(false);
     values.setCurrentUserID(-1);
     res.redirect('/login.html');
+    console.log('logged out')
 };
 
 exports.getCart = (req, res) => {

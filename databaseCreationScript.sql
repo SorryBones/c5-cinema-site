@@ -292,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `NewCES`.`showTime` (
   `show_id` INT NOT NULL AUTO_INCREMENT,
   `movie_id` INT NOT NULL,
   `room_id` INT NOT NULL,
-  `date` DATE NULL DEFAULT NULL,
+  `date` VARCHAR(10) NULL DEFAULT NULL,
   `time` TIME NULL DEFAULT NULL,
   PRIMARY KEY (`show_id`, `movie_id`, `room_id`),
   INDEX `fk_show_movie_idx` (`movie_id` ASC) VISIBLE,

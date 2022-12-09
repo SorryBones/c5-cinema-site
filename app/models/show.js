@@ -7,8 +7,12 @@ function sleep(ms) {
 }
 
 exports.getAllShowtimes = (res) => {
-    const query = 'SELECT * FROM showTime WHERE movie_id = ?';
-    connection.query(query,[values.getMovieId()],function(error,results,fields) {
+    let movie_id = values.getMovieId();
+    // let today = new Date().toISOString().slice(0, 10);
+    const query = "SELECT * FROM showTime WHERE movie_id = 1 AND date BETWEEN '2022-12-09' AND '9999-99-99' ORDER BY date;";
+    // connection.query(query,[movie_id, today],function(error,results,fields) {
+    connection.query(query,[movie_id],function(error,results,fields) {
+        console.log(results)
         if (results.length > 0) {
             res.json(results);
         } else {
@@ -97,4 +101,28 @@ exports.getSeats = async (req, res) => {
             res.json({status: false});
         }
     });
+};
+
+exports.addToCart = (req, res) => {
+    if (values.getCurrentUserID() != -1) {
+        let user_id = values.getCurrentUserID();
+        connection.query('SELECT * FROM user WHERE user_id = ?',[user_id],function(error,results,fields){
+            let utype_id = results[0].utype_id;
+            if (utype_id == 2) { // user
+                for (let x in req.body) {
+                    values.addToCart(values.getShowId(), x, req.body[x]);
+                }
+                res.redirect('/cart.html');
+            } else { // admin
+                console.log('user type is admin');
+                values.setIsIncorrectUser(true);
+                res.redirect('/book.html');
+            }
+          })
+    }
+    else { // guest
+        console.log('user type is guest');
+        values.setIsIncorrectUser(true);
+        res.redirect('/book.html');
+    }
 };
