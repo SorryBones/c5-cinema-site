@@ -57,7 +57,7 @@
           <h2>
             <p id="name"></p>
           </h2>
-          <form action="/updateName" method="POST">
+          <form action="/adminUpdateName" method="POST">
             <input class="form-register" type="text" id="fname" name="fname" placeholder="First Name" style="width: 210px ; margin-right: 10px" required>
             <input class="form-register" type="text" id="lname" name="lname" placeholder="Last Name" style="width: 210px ; margin-right: 10px" required>
             <input class="button-book-now" type="submit" value="Update">
@@ -67,7 +67,7 @@
           <h2>
             <p id="phone"></p>
           </h2>
-          <form action="/updatePhone" method="POST">
+          <form action="/adminUpdatePhone" method="POST">
             <input class="form-register" type="text" id="phone" name="phone" placeholder="Update Phone Number" style="width: 50%" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required> 
             <input class="button-book-now" type="submit" value="Update">
           </form>
@@ -80,13 +80,13 @@
     </form>
     <br>
     <h1>Subscribed for Promotions:</h1>
-          <form action="/updatePromotion" method="POST">
+          <form action="/adminUpdatePromotion" method="POST">
             <input type="checkbox" style="width: 25%; height: 3em;" id="promotions" name="promotions">
             <input class="button-book-now" type="submit" value="Update" style="margin-top: -17px;">
           </form>
           <br>
           <h1>Password:</h1>
-          <form action="/updatePassword" method="POST">
+          <form action="/adminUpdatePassword" method="POST">
             <input class="form-register" type="password" id="newPassword" name="newPassword" placeholder="New Password" style="text-align: center ; width: 50% ; margin-bottom: 5px" required><br>
             <input class="form-register" type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password" style="text-align: center ; width: 50% ; margin-bottom: 5px" required><br>
             <input class="button-book-now" type="submit" value="Update">
@@ -97,7 +97,7 @@
         <div style="width: 45%; display: flexbox; flex-direction: column;">
         <!--User Home Adress Div-->
         <div style="background-color:#272727; width:90%; height: fit-content; color:white; display: flexbox; flex-direction: column; border-radius: 5%; padding: 5%; text-align: center;">
-          <form action="/updateHomeAddress" method="POST">
+          <form action="/adminUpdateHomeAddress" method="POST">
             <a style="width:55%">
               <h1>Street Address:</h1>
             </a>
