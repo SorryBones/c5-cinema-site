@@ -59,7 +59,7 @@ exports.getPromo = (res) => {
           res.json({status: false});
       }
     })
-    })
+    });
   };
 
 exports.editPromotion = (req, res) => {

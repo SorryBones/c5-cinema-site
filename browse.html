@@ -37,21 +37,21 @@
   </nav>
 
   <!-- Search Fields -->
-  <div class="div-browse-search" style="border: 10px solid black;">      
+  <div class="div-browse-search">      
     <form action="/searchMovie" method="POST">   
-      <div class="input-group mb-3 w-75">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Title:</span>
         </div>
-        <input type="text" class="form-control" placeholder="title" id="title" name="title" aria-describedby="basic-addon3">
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="basic-addon3">
       </div>
 
-      <div class="input-group mb-3 w-75">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Genre:</span>
         </div>
         <select class="form-control" id="genre" name="genre">
-          <option value="" selected disabled>Select an option...</option>
+          <option value=""></option>
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
           <option value="Comedy">Comedy</option>
@@ -61,12 +61,12 @@
         </select>
       </div>
 
-      <div class="input-group mb-3 w-75">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text text-light border border-danger" style="background-color: #272727;" id="basic-addon3">Rating:</span>
         </div>
         <select class="form-control" id="rating" name="rating">
-          <option value="" selected disabled>Select an option...</option>
+          <option value=""></option>
           <option value="PG">PG</option>
           <option value="PG-13">PG-13</option>
           <option value="R">R</option>
@@ -77,7 +77,7 @@
   </div>
 
   <!-- MOVIES -->
-  <div class="flex-container-homepage" style="border: 10px solid black;">
+  <div class="flex-container-homepage">
     <div class="flex-container-row">
       <h1 class="text-sub">RESULTS:</h1>
     </div>
