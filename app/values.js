@@ -158,6 +158,10 @@ let removeFromCart = function(id) {
         }
     }
 }
+let flushCart = function() {
+    cart = [];
+    cartIdCounter = 0;
+}
 
 
 // database encryption
@@ -174,7 +178,6 @@ let decrypt = function(encryptedMsg) {
   const decrypter = crypto.createDecipheriv(algorithm, key, iv);
   let decryptedMsg = decrypter.update(encryptedMsg, "hex", "utf8");
   decryptedMsg += decrypter.final("utf8");
-  console.log(decryptedMsg)
   return decryptedMsg;
 }
 
@@ -222,6 +225,6 @@ module.exports = {
     getPromoId, setPromoId,
     encrypt, decrypt,
     sendEmail,
-    setShowId, getShowId, addShowSeat, flushShowSeats, getShowSeats, 
-    getCart, addToCart, removeFromCart,
+    setShowId, getShowId, getShowSeats, addShowSeat, flushShowSeats,
+    getCart, addToCart, removeFromCart, flushCart,
 };

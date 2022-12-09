@@ -173,7 +173,7 @@ exports.forgotPassword = (req, res) => {
     values.setForgotPasswordEmail(req.body.email);
     values.setVerificationCode(Math.floor(100000 + Math.random() * 900000));
     let message = 'Return to the cinema site and enter this code to reset your password: ' + values.getVerificationCode();
-    sendEmail(values.getForgotPasswordEmail(), message);
+    values.sendEmail(values.getForgotPasswordEmail(), message);
 
     res.redirect('/resetPassword.html');
 };

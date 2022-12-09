@@ -13,5 +13,5 @@ exports.purchase = (req, res) => {
 };
 
 exports.getOrderHistory = (req, res) => {
-    model.getOrderHistory(req, res)
+    model.getOrderHistory(res)
 };

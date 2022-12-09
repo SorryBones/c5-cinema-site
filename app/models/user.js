@@ -240,6 +240,11 @@ exports.forgotUpdatePassword = (newPassword, res) => {
         let user_id = results[0].user_id;
         connection.query('UPDATE user SET password = ? WHERE user_id = ?',[encrypt(newPassword), user_id],function(error,results,fields) {
             console.log('password updated');
+            connection.query('SELECT * FROM user WHERE user_id = ?;',[values.getCurrentUserID()],function(error,results,fields) {
+                let email = results[0].email;
+                let message = 'Your account password has been updated!'
+                values.sendEmail(email, message);
+            });
             res.redirect('/login.html');
         });
     });

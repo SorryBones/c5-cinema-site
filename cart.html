@@ -14,29 +14,26 @@
 <body style="padding-top:55px ; background-color: black">
 
     <!--Navbar-->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727;">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #272727">
         <a class="navbar-brand" href="index.html">UGA Flix</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
         </button>
-
+  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <form action="/index.html"> <!--Home-->
-                    <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
-                </form>
-                <form action="/browse.html"> <!--Browse-->
-                    <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
-                </form>
-                <form action="/profile.html"> <!--Profile-->
-                    <input class="btn" id="profileButton" type="submit" value="Profile"
-                        style="background-color:#272727 ; color:white">
-                </form>
-                <form action="/login.html"> <!--Login-->
-                    <input class="btn" id="loginButton" type="submit" value="Login"
-                        style="background-color:#272727 ; color:white">
-                </form>
+              <form action="/index.html">
+                <input class="btn" type="submit" value="Home" style="background-color:#272727 ; color:white">
+              </form>
+              <form action="/browse.html">
+                <input class="btn" type="submit" value="Browse" style="background-color:#272727 ; color:white">
+              </form>
+              <form action="/profile.html">
+                <input class="btn" id="profileButton" type="submit" value="Profile" style="background-color:#272727 ; color:white">
+              </form>
+              <form action="/login.html">
+                <input class="btn" id="loginButton" type="submit" value="Login" style="background-color:#272727 ; color:white">
+              </form>
             </ul>
             <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
         </div>
@@ -52,14 +49,12 @@
     <div class="flex-container-column2" style="justify-content: start; align-items: center; padding: 5px;">
         <br>
         <div id="orderTotalsDiv"></div>
-        <div class="flex-container-row2" style="justify-content: center; align-items: center; padding: 5px;">
+        <div id="checkoutButton" class="flex-container-row2" style="justify-content: center; align-items: center; padding: 5px;">
             <form action="/checkout.html">
                 <input class="button-book-now" style="border: 1px solid red" type="submit" value="Proceed to Checkout">
             </form>
         </div>
     </div>
-
-
 
     <!------------SCRIPTS------------>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -87,7 +82,13 @@
                 url: "/getCart",
                 type: "GET",
                 success: function(result1) {
-                    console.log(result1);
+                    if (result1.returnable.length == 0) {
+                        var newButtonContent = '';
+                        newButtonContent += '<form action="/index.html">';
+                        newButtonContent += '<input class="button-book-now" style="border: 1px solid red" type="submit" value="Add More Items to Cart">';
+                        newButtonContent += '</form>';
+                        document.getElementById('checkoutButton').innerHTML = newButtonContent;
+                    }
                     var content = '';
                     result1.returnable.forEach((result) => {
                         content += '<div class="flex-container-row2" style="justify-content: top; align-items: start;">';

@@ -86,8 +86,9 @@ exports.addShowtime = (date, showtime, res) => {
     });
 }
 
-exports.getSeats = async (show_id, res) => {
+exports.getSeats = async (req, res) => {
     await sleep(500);
+    let show_id = req.body.showId;
     const query = 'SELECT * FROM showSeat WHERE show_id = ?';
     connection.query(query,[show_id],function(error,results,fields) {
         if (results.length > 0) {

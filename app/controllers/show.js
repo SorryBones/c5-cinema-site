@@ -28,8 +28,7 @@ exports.editShowtime = (req, res) => {
 };
 
 exports.getSeats = (req, res) => {
-    let show_id = req.body.showId;
-    model.getSeats(show_id, res);
+    model.getSeats(req, res);
 };
 
 exports.selectShowtime = (req, res) => {
