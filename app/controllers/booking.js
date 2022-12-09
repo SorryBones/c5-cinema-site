@@ -11,7 +11,3 @@ exports.removeItemFromCart = (req, res) => {
 exports.purchase = (req, res) => {
     model.purchase(req, res);
 };
-
-exports.getOrderHistory = (req, res) => {
-    model.getOrderHistory(req, res)
-};
