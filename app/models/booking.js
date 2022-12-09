@@ -69,4 +69,50 @@ exports.purchase = (req, res) => {
 
     res.redirect('orderConfirmation.html');
 };
+
+exports.getOrderHistory = (req, res) => {
+    console.log("order hist")
+    let title = [];
+    let date = [];
+    let time = [];
+    let showId;
+    const query = 'SELECT * FROM booking WHERE user_id = ?';
+    connection.query(query, [values.getCurrentUserID()], function (error, results1, fields) {
+        console.log(results1);
+        console.log(error);
+        
+        results1.forEach(result => {
+            showId = result.show_id;
+            const query = 'SELECT * FROM movie WHERE movie_id = ?';
+               // console.log(results1[index].show_id + " show id")
+                let movieId = result.movie_id;
+                result.title = "";
+                result.date = "";
+                result.time = "";
+                connection.query(query, [movieId], function (error, results2, fields) {
+                    console.log(results2[0].title + "cop");
+                    result.title = results2[0].title;
+                       results2.forEach(showResult => {
+                        const query = 'SELECT * FROM showTime WHERE show_id = ?';
+                    connection.query(query, [showId], function (error, results3, fields) {
+                        result.date = results3[0].date;
+                        result.time = results3[0].time;
+                       })
+                    })
+                       
+                    
+        }) ;
+
+
+        })
+
+     
+        console.log(results1)
+        if (results1.length > 0) {
+            setTimeout(() => { res.json(results1); }, 5250);
+        } else {
+            res.json({ status: false });
+        }
+    })
+}
   
