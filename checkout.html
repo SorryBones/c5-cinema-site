@@ -168,36 +168,7 @@ crossorigin="anonymous"></script>
 	});
   </script>
 
-  <script> // DISPLAY CART ITEMS
-    $(document).ready(function() {
-        $.ajax( {
-            url: "/getCart",
-            type: "GET",
-            success: function(result1) {
-                var content = '';
-                result1.returnable.forEach((result) => {
-                    content += '<div class="flex-container-row2">';
-                    content += '<img class="img-flex" style="height: 120px; width: 150px;" src="' + result.img + '" id="poster" />';
-                    content += '<div class="flex-container-column2" style="flex: 1">';
-
-                    content += '<p class="text-small" style="font-size: 0.4em;">Showtime: ' + result.date + result.time + '</p>';
-                    content += '<p class="text-small" style="font-size: 0.4em;">Seat Number: ' + result.seat_number + '</p>';
-                    content += '<p class="text-small" style="font-size: 0.4em;">Ticket Type: ' + result.ticketTypeName + '</p>';
-                    content += '</div></div>';
-                });
-                content += '<br><br><div class="flex-container-row2" style="justify-content: center; align-items: center; padding: 5px;">';
-                content += '<form action="/cart.html">';
-                content += '<input class="button-book-now" type="submit" value="Back to Cart"></input>';
-                content += '</form>';
-                content += '</div>';
-                document.getElementById('cartDiv').innerHTML = content;
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                console.log('failure');
-            }
-        });
-    });
-</script>
+ 
 
 <script> // DISPLAY CART ITEMS
     $(document).ready(function() {
@@ -231,26 +202,7 @@ crossorigin="anonymous"></script>
     });
 </script>
 
-<script> // CARD CREDENTIALS
-    $(document).ready(function() {
-      $.ajax( {
-        url: "/getCard",
-        type: "GET",
-        success: function(result) {
-          if (result.status == false) console.log('no cards');
-          else {
-            console.log(result);
-            $("#cardType").html(result.type);
-            $("#expirationDate").html(result.expiration_month + '/' + result.expiration_year);
-            $("#cardNumber").html(result.card_num);
-          }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          console.log('failure');
-        }
-      });
-    });
-</script>
+
 
 <script> // BILLING ADDRESS
     $(document).ready(function() {
@@ -303,6 +255,45 @@ crossorigin="anonymous"></script>
       });
     });
   </script>
+<script> // CARD CREDENTIALS
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/getOrderHistory",
+      type: "GET",
+      success: function(result1) {
+        result1.forEach(createUserRow);
+        function createUserRow(result) {
+        var content = '';
+        console.log("count")
+        console.log(result.total_price);
+      
+                console.log(result1[0].show_id)
+
+                var newDiv = document.createElement('div');
+          newDiv.className = "orders";
+            console.log(result1);
+            console.log(result)
+            
+                content += '<br><br><div class="flex-container-row2" style="justify-content: center; align-items: left; padding: 5px;">';
+                content += '<h2>Movie: ' + result.title +`   </h2>`;
+                content += `<br>`
+              content +=  '<h2>&nbsp&nbsp&nbsp Total Price: ' + result.total_price +`</h2>`;
+              content +=  '<h2>&nbsp&nbsp&nbsp Date: ' + result1.date +`</h2>`;
+              content +=  '<h2>&nbsp&nbsp&nbsp Time: ' + result.test +`</h2>`;
+                content += '</div>';
+
+                newDiv.innerHTML = content;
+                if (document.getElementById('history') != null) console.log("not null")
+                document.getElementById('history').appendChild(newDiv);
+        }
+                
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script>
 
 </body>
 
