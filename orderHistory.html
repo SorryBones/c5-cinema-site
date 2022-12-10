@@ -62,8 +62,8 @@
 
   <!--UsersDiv-->
   
-    <div class="div-base" style="width:85% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; text-align: center; background-color: black; gap: 5%;">
-        <div class="flex-container-row" id="historyDiv"></div>
+    <div class="div-base" style="width:85% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: black; gap: 5%;">
+        <div class="flex-container-row" style="border: 15px solid black; border-radius: 5%;" id="historyDiv"></div>
     </div>
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -105,10 +105,10 @@
                 url: "/getOrderHistory",
                 type: "GET",
                 success: function (result1) {
-                    if (result1.status == false) {
-                        var content = '<h3>No Order History Found</h3>'
+                    if (result1.returnable == null) {
+                        var content = '<h2>No Order History Found</h2><br>'
                         document.getElementById('historyDiv').innerHTML = content;
-                    }
+                      }
                     else {
                         document.getElementById('historyDiv').innerHTML = ''; // clear old
                         result1.returnable.forEach(createUserRow);
