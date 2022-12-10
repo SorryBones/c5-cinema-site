@@ -61,7 +61,10 @@ app.get("/adminGetUserInfo", pageController.getUserInfo);
 app.post("/adminPromotions", pageController.adminPromotions);
 app.post("/adminEditPromotion", pageController.adminEditPromotion);
 app.post("/adminEditShowtimes", pageController.adminEditShowtimes);
+app.get("/isIncorrectCode", pageController.isIncorrectCode);
 app.get("/isIncorrectPassword", pageController.isIncorrectPassword);
+app.get("/isIncorrectUpdatePassword", pageController.isIncorrectUpdatePassword);
+app.get("/isIncorrectUser", pageController.isIncorrectUser);
 app.get("/isEmailTaken", pageController.isEmailTaken);
 app.post("/adminEditMovie", pageController.adminEditMovie);
 app.post("/book", pageController.book);
@@ -69,6 +72,8 @@ app.get("/userInfo", pageController.userInfo);
 app.get("/isInvalidMovie", pageController.isInvalidMovie);
 app.get("/isIncorrectShowtime", pageController.isIncorrectShowtime);
 app.get("/adminManageMovies", pageController.adminManageMovies);
+app.get("/isIncorrectPromo", pageController.isIncorrectPromo);
+app.get("/isNoCard", pageController.isNoCard);
 
 // update users
 app.post("/adminUpdateName", editUsersController.updateName);

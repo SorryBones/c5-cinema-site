@@ -190,6 +190,8 @@ exports.updatePassword = (currentPassword, newPassword, res) => {
         }
         else {
             console.log('currentPassword entered does not match records');
+            values.setIsIncorrectUpdatePassword(true);
+            res.redirect('/editProfile.html');
         }
     });
 };
@@ -207,6 +209,7 @@ exports.addCard = (cardType, cardNumber, cardExpirationArray, billingStreet, bil
 
 exports.deleteCard = (id, res) => {
     // delete billing address
+    console.log(id);
     connection.query('SELECT * FROM paymentCard WHERE paymentCard_id = ?',[id],function(error,results,fields) {
         let address_id = results[0].address_id;
         connection.query('DELETE FROM address WHERE address_id = ?',[address_id],function(error,results,fields) {
@@ -240,11 +243,9 @@ exports.forgotUpdatePassword = (newPassword, res) => {
         let user_id = results[0].user_id;
         connection.query('UPDATE user SET password = ? WHERE user_id = ?',[encrypt(newPassword), user_id],function(error,results,fields) {
             console.log('password updated');
-            connection.query('SELECT * FROM user WHERE user_id = ?;',[values.getCurrentUserID()],function(error,results,fields) {
-                let email = results[0].email;
-                let message = 'Your account password has been updated!'
-                values.sendEmail(email, message);
-            });
+            let email = values.getForgotPasswordEmail();
+            let message = 'Your account password has been updated!'
+            values.sendEmail(email, message);
             res.redirect('/login.html');
         });
     });

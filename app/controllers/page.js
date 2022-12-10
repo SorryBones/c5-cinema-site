@@ -6,12 +6,50 @@ let adminModel = require("../models/editUsers.js");
 let userModel = require("../models/user.js");
 let pageModel = require("../models/page.js");
 
+exports.isIncorrectCode = (req, res) => {
+    if (values.getIsIncorrectCode()) res.json({status: true});
+    else res.json({status: false});
+
+    values.setIsIncorrectCode(false);
+};
+
+exports.isIncorrectUpdatePassword = (req, res) => {
+    if (values.getIsIncorrectUpdatePassword()) res.json({status: true});
+    else res.json({status: false});
+
+    values.setIsIncorrectUpdatePassword(false);
+};
+
+
 exports.isIncorrectPassword = (req, res) => {
     if (values.getIsIncorrectPassword()) res.json({status: true});
     else res.json({status: false});
 
     values.setIsIncorrectPassword(false);
 };
+
+exports.isIncorrectPromo = (req, res) => {
+    if (values.getIsIncorrectPromo()) res.json({status: true});
+    else res.json({status: false});
+
+    values.setIsIncorrectPromo(false);
+};
+
+exports.isNoCard = (req, res) => {
+    if (values.getIsNoCard()) res.json({status: true});
+    else res.json({status: false});
+
+    values.setIsNoCard(false);
+};
+
+
+exports.isIncorrectUser = (req, res) => {
+    if (values.getIsIncorrectUser()) res.json({status: true});
+    else res.json({status: false});
+
+    values.setIsIncorrectUser(false);
+};
+
 
 exports.isEmailTaken = (req, res) => {
     if (values.getIsEmailTaken()) res.json({status: true});

@@ -21,8 +21,8 @@ exports.purchase = (req, res) => {
                 promo_id = results[0].promo_id;
                 discount = results[0].discount;
             } else {
-                res.json({ status: false });
-                return;
+                console.log('incorrect promo');
+                values.setIsIncorrectPromo(true);
             }
         });
     }
@@ -61,18 +61,23 @@ exports.purchase = (req, res) => {
                             });
                         }
                     });
+                    connection.query('SELECT * FROM user WHERE user_id = ?;',[values.getCurrentUserID()],function(error,results,fields) {
+                        let email = results[0].email;
+                        let message = 'Thank you for your purchase at UGAflix!\n\Enjoy the Show!';
+                        values.sendEmail(email, message);
+                    });
                     values.flushShowSeats();
                     values.flushCart();
+                    res.redirect('orderConfirmation.html');
                 } else {
-                    res.json({status: false});
+                    console.log('no card');
+                    values.setIsNoCard(true);
                 }
             });
         } else {
             res.json({status: false});
         }
     });
-
-    res.redirect('orderConfirmation.html');
 };
 
 exports.getOrderHistory = async (res) => {

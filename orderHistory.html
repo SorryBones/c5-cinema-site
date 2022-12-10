@@ -105,10 +105,10 @@
                 url: "/getOrderHistory",
                 type: "GET",
                 success: function (result1) {
-                    if (result1.status == false) {
-                        var content = '<h3>No Order History Found</h3>'
+                    if (result1.returnable == null) {
+                        var content = '<h2>No Order History Found</h2><br>'
                         document.getElementById('historyDiv').innerHTML = content;
-                    }
+                      }
                     else {
                         document.getElementById('historyDiv').innerHTML = ''; // clear old
                         result1.returnable.forEach(createUserRow);

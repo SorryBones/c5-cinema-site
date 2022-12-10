@@ -138,6 +138,8 @@ exports.updatePassword = (req, res) => {
 
     if (newPassword != confirmNewPassword) {
         console.log('passwords dont match');
+        values.setIsIncorrectUpdatePassword(true);
+        res.redirect('/editProfile.html');
     }
     else {
         model.updatePassword(currentPassword, newPassword, res);
@@ -183,11 +185,15 @@ exports.forgotUpdatePassword = (req, res) => {
   let confirmNewPassword = req.body.confirmNewPassword;
 
   if (req.body.regCode != values.getVerificationCode()) {
-      console.log('wrong code');
+    values.setIsIncorrectCode(true);
+    console.log('wrong code');
+    res.redirect('/resetPassword.html');
   }
   else {
       if (newPassword != confirmNewPassword) {
-          console.log('passwords dont match');
+        values.setIsIncorrectCode(true);
+        console.log('passwords dont match');
+        res.redirect('/resetPassword.html');
       }
       else {
           model.forgotUpdatePassword(newPassword, res);

@@ -40,6 +40,8 @@
         <a href="cart.html"><img src="images/cart.png" width="30" height="30" alt="Cart"></a> <!--Cart-->
     </div>
   </nav>
+
+  <div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px; display:none" id="incorrect">Incorrect Password</div>
   
   <!-- Side Navbar -->
   <ul class="sidebar"> 
@@ -210,6 +212,23 @@
         });
       });
     </script>
+
+
+  <script> // INCORRECT PASSWORD
+    $(document).ready(function() {
+      $.ajax( {
+        url: "/isIncorrectUpdatePassword",
+        type: "GET",
+        success: function(result) {
+          const targetDiv = document.getElementById("incorrect");
+          if (result.status === true) targetDiv.style.display = "block";
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log('failure');
+        }
+      });
+    });
+  </script>
 
   <script> // ADMIN CONTROLS SIDEBAR
     $(document).ready(function() {

@@ -65,12 +65,52 @@ let setForgotPasswordEmail = function(input) {
     forgotPasswordEmail = input;
 }
 
+let isIncorrectCode = false;
+let getIsIncorrectCode = function() {
+    return isIncorrectCode;
+}
+let setIsIncorrectCode = function(input) {
+    isIncorrectCode = input;
+}
+
+let isIncorrectUpdatePassword = false;
+let getIsIncorrectUpdatePassword = function() {
+    return isIncorrectUpdatePassword;
+}
+let setIsIncorrectUpdatePassword = function(input) {
+    isIncorrectUpdatePassword = input;
+}
+
+let isIncorrectPromo = false;
+let getIsIncorrectPromo = function() {
+    return isIncorrectPromo;
+}
+let setIsIncorrectPromo = function(input) {
+    isIncorrectPromo = input;
+}
+
+let isNoCard = false;
+let getIsNoCard = function() {
+    return isNoCard;
+}
+let setIsNoCard = function(input) {
+    isNoCard = input;
+}
+
 let isIncorrectPassword = false;
 let getIsIncorrectPassword = function() {
     return isIncorrectPassword;
 }
 let setIsIncorrectPassword = function(input) {
     isIncorrectPassword = input;
+}
+
+let isIncorrectUser = false;
+let getIsIncorrectUser = function() {
+    return isIncorrectUser;
+}
+let setIsIncorrectUser = function(input) {
+    isIncorrectUser = input;
 }
 
 let isIncorrectShowtime = false;
@@ -215,7 +255,12 @@ module.exports = {
     getVerificationCode, setVerificationCode,
     getRegisterBody, setRegisterBody,
     getForgotPasswordEmail, setForgotPasswordEmail,
+    getIsIncorrectCode, setIsIncorrectCode,
+    getIsIncorrectPromo, setIsIncorrectPromo,
+    getIsNoCard, setIsNoCard,
     getIsIncorrectPassword, setIsIncorrectPassword,
+    getIsIncorrectUpdatePassword, setIsIncorrectUpdatePassword,
+    getIsIncorrectUser, setIsIncorrectUser,
     getIsIncorrectShowtime, setIsIncorrectShowtime,
     getIsEmailTaken, setIsEmailTaken,
     getIsInvalidMovie, setIsInvalidMovie,

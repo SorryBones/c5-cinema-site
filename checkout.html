@@ -39,6 +39,9 @@
       </div>
     </nav>
 
+    <div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px; display:none" id="noCard">No Payment Card Added</div>
+    <div class="banner" style="background-color: white; color:red; text-align: center; font-size:25px; display:none" id="incorrectPromo">Incorrect Promo Code</div>
+
     <!--Window Wrapper-->
     <div class="flex-checkout-main">
         <div class="flex-checkout-left">
@@ -113,6 +116,38 @@
             }
         });
     });
+</script>
+
+<script> // NO CARD
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/isNoCard",
+      type: "GET",
+      success: function(result) {
+        const targetDiv = document.getElementById("noCard");
+        if (result.status === true) targetDiv.style.display = "block";
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
+</script>
+
+<script> // INCORRECT PROMO
+  $(document).ready(function() {
+    $.ajax( {
+      url: "/isIncorrectPromo",
+      type: "GET",
+      success: function(result) {
+        const targetDiv = document.getElementById("incorrectPromo");
+        if (result.status === true) targetDiv.style.display = "block";
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('failure');
+      }
+    });
+  });
 </script>
 
 <script> // INITIALIZE

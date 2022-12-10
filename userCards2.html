@@ -64,54 +64,73 @@
     </form>
   </ul>
 
-  <div class="div-base" style="width:85% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; text-align: center; background-color: black; gap: 5%;">
+  <div class="div-base" style="width:85% ; height:94vh; max-height: auto; float: inline-end; display: flex; flex-direction: column; align-items: center; text-align: center; background-color: black; gap: 5%">
     <!--Username Display Div-->
-    <div class="div-base" style="width:auto; height: fit-content; font-size: 30px;  text-align: center; border-radius: 15px; padding: 15px; overflow: hidden;">
+    <div class="div-base"
+      style="width:auto; height:max-content ; font-size: 20px;  text-align: center; border: none; border-radius: 15px;">
       <h1> User's Payment Info </h1>
     </div>
-  <div style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 0 0 0 15%;">
-    <div style="width: 80%; display: flexbox;  background-color:#272727; border-radius: 15px; margin-bottom: 5%;">
-      <div style="background-color:#272727; width:55%; height:auto ; color:white; display: flex; flex-direction: column; align-items: center; text-align: center; float: left; border-radius: 20px; margin-bottom: 15px;">
-        <h1>Card</h1>
-        <h2>Card Type:</h2>
-        <p id="cardType">None</p>
-        <h2>Exp. Date:</h2>
-        <p id="expirationDate">None</p>
-        <br>
-        <h2>Card Number:</h2>
-        <h2><p id="cardNumber">None</p></h2>
-        <div style="width: 100%;">
-        <form action="/deleteCard" METHOD="POST">
-          <input style="display:none" type="number" name="id" value="22">
-          <input class="button-book-now" id="loginButton" type="submit" value="Delete Card">
-        </form>
-        <form action="/editPayment.html">
-          <input class="button-book-now" id="loginButton" type="submit" value="Edit Card">
-        </form>
-        <!-- <form action="/editPayment" METHOD="POST">
-          <input style="display:none" type="number" name="id" value="22">
-          <input class="button-book-now" id="loginButton" type="submit" value="Edit Card">
-        </form> -->
-      </div>
-    </div>
-    <div style="width: 45%; display: flex; flex-direction: column;">
-      <div style="background-color:#272727; width:90%; height:auto ; color:white; border-radius: 20px; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center;">
-        <h1>Billing Address</h1>
-        <h2>Street Address:</h2>
-        <p id="street">None</p>
-        <h2>City:</h2>
-        <p id="city">None</p>
-        <h2>State:</h2>
-        <p id="state">None</p>
-        <h2>ZIP:</h2>
-        <br>
+  <!--div for cards and address-->
+  <div style="width: 100%; height:min-content;display: flex; flex-direction: row; justify-content: space-between;">
+    <div style="width: 50%; max-height: 75vh; display: flexbox; flex-direction: column; justify-content: space-between; align-self: flex-start;  overflow:auto; direction: rtl;">
+          <div style="background-color:#272727; width:90%; height:auto ; color:white; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; align-self: flex-start; direction: ltr; border-radius: 20px; padding: 5%; margin-bottom: 15px;">
+            <a style="width:45%">
+              <h2>Card Type:</h2>
+              <p id="cardType">None</p>
+            </a>
+            <a style="width:45%">
+              <h2>Exp. Date:</h2>
+              <p id="expirationDate">None</p>
+            </a>
+            <br>
+            <a style="width:80% ; font-size: 20px;">
+              <h2>Card Number:</h2>
+              <h2>
+                <p id="cardNumber">None</p>
+              </h2>
+            </a>
+            <div style="width: 100%;">
+              <button class="button-book-now" id="deleteButton">
+                Delete Card
+              </button>
+              <button id="editCard" onclick="location.href='editPayment.html'" class="button-book-now">
+                Edit Payment Info
+              </button>
+              <button onclick="location.href='addcard.html'" class="button-book-now">
+                Add New Card +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div style="width: 45%; display: flex; flex-direction: column;">
+          <!--User Home Adress Div-->
+          <div
+            style="background-color:#272727; width:90%; height:auto ; color:white; border-radius: 20px; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center;">
+            <a >
+              <h1>Billing Address</h1>
+            </a>
+            <a>
+              <h2>Street Address:</h2>
+              <p id="street">None</p>
+            </a>
+            <a style="width:30%">
+              <h2>City:</h2>
+              <p id="city">None</p>
+            </a>
+            <a style="width:30%">
+              <h2>State:</h2>
+              <p id="state">None</p>
+            </a>
+            <a style="width:30%">
+              <h2>ZIP:</h2>
+              <p id="zip">None</p>
+            </a>
+            <br>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-      
-  <button onclick="location.href='addcard.html'" class="button-book-now">
-    Add New Card +
-  </button>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
 integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -241,4 +260,3 @@ crossorigin="anonymous"></script>
 </script>
 </body>
 </html>
-
